@@ -1,10 +1,6 @@
 import { domain } from '../data/settings.json';
 
-export default function Index() {}
+export default function Index() {
+    return <h1>Comming soon...</h1>
+}
 
-Index.getInitialProps = ({ res }) => {
-  res.writeHead(301, {
-    Location: domain,
-  });
-  res.end();
-};
