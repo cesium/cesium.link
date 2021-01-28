@@ -6,4 +6,3 @@ repository before making a change.
 
 Please note we have a [Code of Conduct](CODE_OF_CONDUCT.md), please follow it
 in all your interactions with the project.
-

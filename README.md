@@ -15,7 +15,7 @@ local machine for development and testing purposes.
 
 The following software is required to be installed on your system:
 
-- [nodejs](https://nodejs.org/en/download/)
+- [Node.js 15.7+](https://nodejs.org/en/download/)
 
 Install all dependencies using `npm install`.
 
@@ -45,6 +45,14 @@ Format your code.
 npm run format
 ```
 
+### :link: References
+
+You can use this resources to learn more about the tecnologies this project
+uses.
+
+- [Getting Started with React](https://reactjs.org/docs/getting-started.html)
+- [Learn Next.js](https://nextjs.org/learn).
+
 ## :handshake: Contributing
 
 Please read [CONTRIBUTING][contributing] and [CODE_OF_CONDUCT][code_of_conduct]
@@ -55,4 +63,3 @@ to us.
 
 This project is licensed under the MIT License - see the [LICENSE][license]
 file for details.
-
