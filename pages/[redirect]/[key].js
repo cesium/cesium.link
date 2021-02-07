@@ -1,28 +1,28 @@
-import ErrorPage from 'next/error'
+import ErrorPage from "next/error";
 
-import { domain } from '../../data/settings.yml'
-import forms from '../../data/forms.yml'
+import { domain } from "../../data/settings.yml";
+import forms from "../../data/forms.yml";
 
 const repos = {
   gh: {
     base_uri: "https://github.com",
-    username: "cesium"
+    username: "cesium",
   },
   gl: {
     base_uri: "https://gitlab.com",
-    username: "cesiuminho"
-  }
-}
+    username: "cesiuminho",
+  },
+};
 
 const maps = {
   a: "activities",
   n: "articles",
-  j: "jobs"
-}
+  j: "jobs",
+};
 
 const uris = {
-  f: forms
-}
+  f: forms,
+};
 
 export async function getServerSideProps({ params }) {
   const { key, redirect } = params;
@@ -31,38 +31,40 @@ export async function getServerSideProps({ params }) {
     return {
       redirect: {
         destination: `${repos[redirect].base_uri}/${repos[redirect].username}/${key}`,
-        permanent: false
-      }
-    }
+        permanent: false,
+      },
+    };
   }
 
   if (redirect in maps) {
     return {
       redirect: {
         destination: `${domain}/${maps[redirect]}/${key}`,
-        permanent: false
-      }
-    }
+        permanent: false,
+      },
+    };
   }
 
   if (redirect in uris) {
     if (!(key in uris[redirect])) {
       return {
-        notFound: true
-      }
+        notFound: true,
+      };
     }
 
     return {
       redirect: {
         destination: `${uris[redirect][key]}`,
-        permanent: false
-      }
-    }
+        permanent: false,
+      },
+    };
   }
 
   return {
-    notFound: true
-  }
+    notFound: true,
+  };
 }
 
-export default () => <ErrorPage statusCode={400} />
+const Redirect = () => <ErrorPage statusCode={400} />;
+
+export default Redirect;

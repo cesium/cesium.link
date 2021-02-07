@@ -1,3 +1,3 @@
-const withYaml = require('next-plugin-yaml');
+const withYaml = require("next-plugin-yaml");
 
 module.exports = withYaml();
