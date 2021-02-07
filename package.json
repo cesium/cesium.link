@@ -9,6 +9,7 @@
     "lint": "eslint --fix ."
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "next": "10.0.6",
     "next-plugin-yaml": "^1.0.1",
     "react": "17.0.1",
