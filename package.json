@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "animate.css": "^4.1.1",
+    "mongoose": "^5.11.15",
+    "moongoose": "^0.0.4",
     "next": "10.0.6",
     "next-plugin-yaml": "^1.0.1",
     "react": "17.0.1",

@@ -3,10 +3,27 @@ import Image from "next/image";
 import Card from "../components/Card";
 import Footer from "../components/Footer";
 
-import links from "../data/links.yml";
+import dbConnect from "../utils/database";
+import Link from "../models/Link";
+
+// import links from "../data/links.yml";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
+export async function getServerSideProps() {
+  await dbConnect();
+
+  const result = await Link.find({});
+  const links = result.map((doc) => {
+    const link = doc.toObject();
+    link._id = link._id.toString();
+    link.created = link.created.toString();
+    return link;
+  });
+
+  return { props: { links: links.reverse() } };
+}
+
+export default function Home({ links }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -30,7 +47,7 @@ export default function Home() {
 
         <div className={styles.grid}>
           {links.map((link) => (
-            <Card key={link.url} {...link} />
+            <Card key={link._id} {...link} />
           ))}
         </div>
       </main>
