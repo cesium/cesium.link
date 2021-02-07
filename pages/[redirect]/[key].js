@@ -1,17 +1,11 @@
 import ErrorPage from "next/error";
 
-import { domain } from "../../data/settings.yml";
+import { domain, github, gitlab } from "../../data/settings.yml";
 import forms from "../../data/forms.yml";
 
 const repos = {
-  gh: {
-    base_uri: "https://github.com",
-    username: "cesium",
-  },
-  gl: {
-    base_uri: "https://gitlab.com",
-    username: "cesiuminho",
-  },
+  gh: github,
+  gl: gitlab,
 };
 
 const maps = {
@@ -30,7 +24,7 @@ export async function getServerSideProps({ params }) {
   if (redirect in repos) {
     return {
       redirect: {
-        destination: `${repos[redirect].base_uri}/${repos[redirect].username}/${key}`,
+        destination: `${repos[redirect].base_url}/${repos[redirect].username}/${key}`,
         permanent: false,
       },
     };
