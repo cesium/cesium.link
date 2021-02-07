@@ -9,7 +9,10 @@
     "lint": "eslint --fix ."
   },
   "dependencies": {
+    "@ant-design/icons": "^4.4.0",
     "animate.css": "^4.1.1",
+    "antd": "^4.12.2",
+    "axios": "^0.21.1",
     "mongoose": "^5.11.15",
     "moongoose": "^0.0.4",
     "next": "10.0.6",
