@@ -6,11 +6,13 @@ import API from "../../utils/api";
 const LinksContext = createContext();
 
 const reducer = async (links, action) => {
+  let response;
+
   switch (action.type) {
     case "INIT":
       return action.links;
     case "CREATE":
-      const response = await API.post("/links", action.link);
+      response = await API.post("/links", action.link);
       return [response.data.data, ...links];
     case "DELETE":
       await API.delete(`/links/${action.id}`);
