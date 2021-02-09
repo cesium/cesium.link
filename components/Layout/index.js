@@ -1,7 +1,7 @@
-import Head from "next/head";
-import Footer from "../Footer";
+import Head from 'next/head';
+import Footer from '../Footer';
 
-import styles from "./style.module.css";
+import styles from './style.module.css';
 
 const Layout = ({ children, title }) => (
   <div className={styles.container}>
