@@ -5,7 +5,7 @@ const Link = new Schema({
   description: { type: String, required: false },
   url: { type: String, required: true },
   emoji: { type: String, required: false },
-  atention: { type: Boolean, default: false },
+  attention: { type: Boolean, default: false },
   created: { type: Date, default: Date.now }
 });
 
