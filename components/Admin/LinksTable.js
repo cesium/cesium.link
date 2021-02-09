@@ -9,6 +9,7 @@ const columns = [
         title: "Emoji",
         dataIndex: "emoji",
         key: "emoji",
+        fixed: 'left',
         align: "center",
         render: (emoji) => <Twemoji svg text={emoji} />,
     },
@@ -38,6 +39,7 @@ const columns = [
     {
         title: "Action",
         key: "action",
+        fixed: 'right',
         render: (_, record) => <Actions record={record} />,
     },
 ];
