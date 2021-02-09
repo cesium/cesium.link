@@ -54,7 +54,7 @@ function LinksTable() {
     useEffect(() => {
         API.get("/links")
             .then((response) => {
-                dispatch({ type: "INIT", links: response.data.data });
+                dispatch({ type: "INIT", links: response.data.data.reverse() });
                 setLoading(false)
             })
             .catch((error) => {
