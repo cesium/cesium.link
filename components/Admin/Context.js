@@ -1,5 +1,5 @@
 import { useContext, createContext } from "react";
-import useAsyncReducer from '../../utils/useAsyncReducer';
+import useAsyncReducer from "../../utils/useAsyncReducer";
 
 import API from "../../utils/api";
 
@@ -7,6 +7,8 @@ const LinksContext = createContext();
 
 const reducer = async (links, action) => {
   switch (action.type) {
+    case "INIT":
+      return action.links;
     case "CREATE":
       const response = await API.post("/links", action.link);
       return [response.data.data, ...links];
@@ -24,7 +26,9 @@ export const AdminContextProvider = ({ children, initialState }) => {
   const [links, dispatch] = useAsyncReducer(reducer, initialState);
 
   return (
-    <LinksContext.Provider value={{ links, dispatch }}>{children}</LinksContext.Provider>
+    <LinksContext.Provider value={{ links, dispatch }}>
+      {children}
+    </LinksContext.Provider>
   );
 };
 
