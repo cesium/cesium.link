@@ -16,7 +16,6 @@ function Actions({ record }) {
 
     return (
         <Space size="middle">
-            <a>Edit</a>
             <Popconfirm
                 title="Are you sure you?"
                 okText="Yes"
