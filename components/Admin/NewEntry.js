@@ -1,12 +1,12 @@
 import { useState } from "react";
+import { useLinks } from "./Context";
 import { Modal, Tooltip, Button, Input, Checkbox, Form } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
-
-import API from "../../utils/api";
 
 const { Item } = Form;
 
 function NewEntry() {
+  const { dispatch } = useLinks();
   const [isVisible, setVisible] = useState(false);
   const [form] = Form.useForm();
 
@@ -14,10 +14,6 @@ function NewEntry() {
     form.submit();
     setVisible(false);
   };
-
-  async function submit(values) {
-    await API.post("/links", values);
-  }
 
   return (
     <>
@@ -30,7 +26,10 @@ function NewEntry() {
         onOk={ok}
         onCancel={() => setVisible(false)}
       >
-        <Form form={form} onFinish={submit}>
+        <Form
+          form={form}
+          onFinish={(values) => dispatch({ type: "CREATE", link: values })}
+        >
           <Item
             name="emoji"
             label={
