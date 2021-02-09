@@ -5,14 +5,16 @@
   ],
   "extends": [
     "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:react/recommended"
   ],
   "env": {
-    "node": true,
     "browser": true,
-    "commonjs": true,
-    "es6": true
+    "node": true
   },
   "settings": {
     "react": {
