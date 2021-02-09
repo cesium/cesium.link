@@ -1,7 +1,7 @@
-import { useContext, createContext } from "react";
-import useAsyncReducer from "../../utils/useAsyncReducer";
+import { useContext, createContext } from 'react';
+import useAsyncReducer from '../../utils/useAsyncReducer';
 
-import API from "../../utils/api";
+import API from '../../utils/api';
 
 const LinksContext = createContext();
 
@@ -9,15 +9,15 @@ const reducer = async (links, action) => {
   let response;
 
   switch (action.type) {
-    case "INIT":
+    case 'INIT':
       return action.links;
-    case "CREATE":
-      response = await API.post("/links", action.link);
+    case 'CREATE':
+      response = await API.post('/links', action.link);
       return [response.data.data, ...links];
-    case "DELETE":
+    case 'DELETE':
       await API.delete(`/links/${action.id}`);
       return links.filter((link) => link._id !== action.id);
-    case "UPDATE":
+    case 'UPDATE':
       return links;
     default:
       throw new Error(`Unknown action: ${action.type}`);
@@ -27,11 +27,7 @@ const reducer = async (links, action) => {
 export const AdminContextProvider = ({ children, initialState }) => {
   const [links, dispatch] = useAsyncReducer(reducer, initialState);
 
-  return (
-    <LinksContext.Provider value={{ links, dispatch }}>
-      {children}
-    </LinksContext.Provider>
-  );
+  return <LinksContext.Provider value={{ links, dispatch }}>{children}</LinksContext.Provider>;
 };
 
 export const useLinks = () => useContext(LinksContext);

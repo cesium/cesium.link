@@ -1,21 +1,21 @@
-import ErrorPage from "next/error";
+import ErrorPage from 'next/error';
 
-import { domain, github, gitlab } from "../../data/settings.yml";
-import forms from "../../data/forms.yml";
+import { domain, github, gitlab } from '../../data/settings.yml';
+import forms from '../../data/forms.yml';
 
 const repos = {
   gh: github,
-  gl: gitlab,
+  gl: gitlab
 };
 
 const maps = {
-  a: "activities",
-  n: "articles",
-  j: "jobs",
+  a: 'activities',
+  n: 'articles',
+  j: 'jobs'
 };
 
 const uris = {
-  f: forms,
+  f: forms
 };
 
 export async function getServerSideProps({ params }) {
@@ -25,8 +25,8 @@ export async function getServerSideProps({ params }) {
     return {
       redirect: {
         destination: `${repos[redirect].base_url}/${repos[redirect].username}/${key}`,
-        permanent: false,
-      },
+        permanent: false
+      }
     };
   }
 
@@ -34,28 +34,28 @@ export async function getServerSideProps({ params }) {
     return {
       redirect: {
         destination: `${domain}/${maps[redirect]}/${key}`,
-        permanent: false,
-      },
+        permanent: false
+      }
     };
   }
 
   if (redirect in uris) {
     if (!(key in uris[redirect])) {
       return {
-        notFound: true,
+        notFound: true
       };
     }
 
     return {
       redirect: {
         destination: `${uris[redirect][key]}`,
-        permanent: false,
-      },
+        permanent: false
+      }
     };
   }
 
   return {
-    notFound: true,
+    notFound: true
   };
 }
 

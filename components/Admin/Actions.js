@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useLinks } from "./Context";
-import { Space, Popconfirm, Button } from "antd";
+import { useState } from 'react';
+import { useLinks } from './Context';
+import { Space, Popconfirm, Button } from 'antd';
 
 function Actions({ record }) {
   const [isVisible, setVisible] = useState(false);
@@ -9,7 +9,7 @@ function Actions({ record }) {
 
   const confirmDelete = () => {
     setLoading(true);
-    dispatch({ type: "DELETE", id: record._id });
+    dispatch({ type: 'DELETE', id: record._id });
     setVisible(false);
     setLoading(false);
   };
@@ -23,8 +23,7 @@ function Actions({ record }) {
         visible={isVisible}
         onConfirm={confirmDelete}
         okButtonProps={{ loading: loading }}
-        onCancel={() => setVisible(false)}
-      >
+        onCancel={() => setVisible(false)}>
         <Button onClick={() => setVisible(true)} type="link" danger>
           Delete
         </Button>

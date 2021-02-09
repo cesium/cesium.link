@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 
 const Link = new Schema({
   title: { type: String, required: true },
@@ -6,7 +6,7 @@ const Link = new Schema({
   url: { type: String, required: true },
   emoji: { type: String, required: false },
   atention: { type: Boolean, default: false },
-  created: { type: Date, default: Date.now },
+  created: { type: Date, default: Date.now }
 });
 
-export default mongoose.models.Link || mongoose.model("Link", Link);
+export default mongoose.models.Link || mongoose.model('Link', Link);

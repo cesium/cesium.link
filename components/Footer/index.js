@@ -3,18 +3,18 @@ import {
   IoLogoInstagram,
   IoLogoTwitter,
   IoLogoGithub,
-  IoHeart,
-} from "react-icons/io5";
+  IoHeart
+} from 'react-icons/io5';
 
-import social from "../../data/social.yml";
+import social from '../../data/social.yml';
 
-import styles from "./style.module.css";
+import styles from './style.module.css';
 
 const logos = {
   facebook: IoLogoFacebook,
   instagram: IoLogoInstagram,
   twitter: IoLogoTwitter,
-  github: IoLogoGithub,
+  github: IoLogoGithub
 };
 
 const SocialIcon = ({ name, url, username, tag }) => {
@@ -35,11 +35,7 @@ const Footer = () => (
       ))}
     </div>
     <div className={styles.copyright}>
-      <a
-        href="https://cesium.di.uminho.pt"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://cesium.di.uminho.pt" target="_blank" rel="noopener noreferrer">
         hacked with <IoHeart className={styles.heart} size="1.2em" /> by
         <img src="/cesium.svg" alt="CeSIUM's Logo" className={styles.logo} />
       </a>
