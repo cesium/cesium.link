@@ -1,15 +1,18 @@
+import { useEffect, useState } from "react";
 import { useLinks } from "../../components/Admin/Context";
 import { Twemoji } from "react-emoji-render";
-import { Table, Checkbox } from "antd";
+import { Table, Checkbox, notification } from "antd";
 import Actions from "./Actions";
 import NewEntry from "../../components/Admin/NewEntry";
+
+import API from "../../utils/api";
 
 const columns = [
     {
         title: "Emoji",
         dataIndex: "emoji",
         key: "emoji",
-        fixed: 'left',
+        fixed: "left",
         align: "center",
         render: (emoji) => <Twemoji svg text={emoji} />,
     },
@@ -39,17 +42,33 @@ const columns = [
     {
         title: "Action",
         key: "action",
-        fixed: 'right',
+        fixed: "right",
         render: (_, record) => <Actions record={record} />,
     },
 ];
 
 function LinksTable() {
-    const { links } = useLinks();
+    const [loading, setLoading] = useState(true);
+    const { links, dispatch } = useLinks();
+
+    useEffect(() => {
+        API.get("/links")
+            .then((response) => {
+                dispatch({ type: "INIT", links: response.data.data });
+                setLoading(false)
+            })
+            .catch((error) => {
+                notification["error"]({
+                    message: `${error.response.statusText}`,
+                    description: error.message,
+                });
+            });
+    }, []);
 
     return (
         <Table
             columns={columns}
+            loading={loading}
             bordered
             rowKey="_id"
             pagination={{ position: ["bottomCenter"] }}

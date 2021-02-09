@@ -1,7 +1,8 @@
+import { withApiAuthRequired } from "@auth0/nextjs-auth0";
 import dbConnect from "../../../utils/database";
 import Link from "../../../models/Link";
 
-export default async (req, res) => {
+export default withApiAuthRequired(async (req, res) => {
   const { method } = req;
 
   await dbConnect();
@@ -35,4 +36,4 @@ export default async (req, res) => {
       });
       break;
   }
-};
+});
