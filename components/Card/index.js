@@ -3,11 +3,11 @@ import { Twemoji } from "react-emoji-render";
 import "animate.css";
 import styles from "./style.module.css";
 
-const Card = ({ title, description, emoji, url, atention = false }) => (
+const Card = ({ title, description, emoji, url, attention = false }) => (
   <a href={url} className={styles.card}>
     <h3
       className={
-        atention
+        attention
           ? "animate__animated animate__shakeX animate__delay-2s"
           : undefined
       }

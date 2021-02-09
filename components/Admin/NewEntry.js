@@ -70,8 +70,8 @@ function NewEntry() {
           <Item name="description" label="Description">
             <Input.TextArea />
           </Item>
-          <Item name="atention" valuePropName="checked">
-            <Checkbox defaultChecked={false}>Atention</Checkbox>
+          <Item name="attention" valuePropName="checked">
+            <Checkbox defaultChecked={false}>Attention</Checkbox>
           </Item>
         </Form>
       </Modal>

@@ -27,9 +27,9 @@ const columns = [
         key: "description",
     },
     {
-        title: "Atention",
-        dataIndex: "atention",
-        key: "atention",
+        title: "Attention",
+        dataIndex: "attention",
+        key: "attention",
         align: "center",
         render: (state) => <Checkbox checked={state} disabled={true} />,
     },
