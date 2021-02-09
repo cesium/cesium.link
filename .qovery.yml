@@ -1,0 +1,15 @@
+---
+application:
+  name: "cesium-link"
+  project: "delegatewise-deleted-1612839684768"
+  organization: "QoveryCommunity"
+databases:
+- type: "MONGODB"
+  name: "redirects"
+  version: "4.4"
+routers:
+- name: "main-cesium-link"
+  routes:
+  - application_name: "cesium-link"
+    paths:
+    - "/*"
