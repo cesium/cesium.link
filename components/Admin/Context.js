@@ -1,30 +1,17 @@
-import { useReducer, useContext, useMemo, createContext } from "react";
+import { useContext, createContext } from "react";
+import useAsyncReducer from '../../utils/useAsyncReducer';
 
 import API from "../../utils/api";
 
 const LinksContext = createContext();
 
-const dispatchMiddleware = (dispatch) => {
-  return async (action) => {
-    switch (action.type) {
-      case "CREATE":
-        const response = await API.post("/links", action.link);
-        action.link = response.data.data;
-        dispatch(action);
-        break;
-      case "DELETE":
-        await API.delete(`/links/${action.id}`);
-      default:
-        return dispatch(action);
-    }
-  };
-};
-
-const reducer = (links, action) => {
+const reducer = async (links, action) => {
   switch (action.type) {
     case "CREATE":
-      return [action.link, ...links];
+      const response = await API.post("/links", action.link);
+      return [response.data.data, ...links];
     case "DELETE":
+      await API.delete(`/links/${action.id}`);
       return links.filter((link) => link._id !== action.id);
     case "UPDATE":
       return links;
@@ -34,14 +21,10 @@ const reducer = (links, action) => {
 };
 
 export const AdminContextProvider = ({ children, initialState }) => {
-  const [links, dispatch] = useReducer(reducer, initialState);
-  const values = useMemo(
-    () => ({ links, dispatch: dispatchMiddleware(dispatch) }),
-    [links, dispatch]
-  );
+  const [links, dispatch] = useAsyncReducer(reducer, initialState);
 
   return (
-    <LinksContext.Provider value={values}>{children}</LinksContext.Provider>
+    <LinksContext.Provider value={{ links, dispatch }}>{children}</LinksContext.Provider>
   );
 };
 
