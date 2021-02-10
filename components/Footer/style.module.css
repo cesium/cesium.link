@@ -1,3 +1,6 @@
+@value colors: "../../styles/colors.css";
+@value orange from colors;
+
 .footer {
   width: 100%;
   height: 150px;
@@ -30,7 +33,7 @@
 }
 
 .social a:hover {
-  color: #f47c58;
+  color: orange;
 }
 
 .copyright {
@@ -39,7 +42,7 @@
 
 .heart {
   margin: 0 0.2em;
-  color: #f47c58;
+  color: orange;
 }
 
 .logo {

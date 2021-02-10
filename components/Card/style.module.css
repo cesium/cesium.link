@@ -1,3 +1,6 @@
+@value colors: "../../styles/colors.css";
+@value blue from colors;
+
 .card {
   margin: 1rem;
   flex-basis: 45%;
@@ -14,8 +17,8 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: blue;
+  border-color: blue;
 }
 
 .card h3 {
