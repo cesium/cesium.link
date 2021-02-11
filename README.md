@@ -65,4 +65,3 @@ This project is licensed under the MIT License - see the [LICENSE][license]
 file for details.
 
 <img src="public/cesium.svg" height="170">
-

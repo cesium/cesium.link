@@ -6,6 +6,7 @@ const Link = new Schema({
   url: { type: String, required: true },
   emoji: { type: String, required: false },
   attention: { type: Boolean, default: false },
+  index: { type: Number, required: true, index: true },
   created: { type: Date, default: Date.now }
 });
 

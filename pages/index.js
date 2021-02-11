@@ -11,7 +11,7 @@ import styles from '../styles/Home.module.css';
 export async function getServerSideProps() {
   await dbConnect();
 
-  const result = await Link.find({});
+  const result = await Link.find({}).sort({ index: 'asc' });
   const links = result.map((doc) => {
     const link = doc.toObject();
     link._id = link._id.toString();
@@ -19,7 +19,7 @@ export async function getServerSideProps() {
     return link;
   });
 
-  return { props: { links: links.reverse() } };
+  return { props: { links: links } };
 }
 
 export default function Home({ links }) {

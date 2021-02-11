@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLinks } from './Context';
+import { useLinks } from '../Context';
 import { Space, Popconfirm, Button } from 'antd';
 
 function Actions({ record }) {
