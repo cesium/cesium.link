@@ -8,6 +8,7 @@ import Actions from './Actions';
 import NewEntry from './NewEntry';
 
 import API from '../../../utils/api';
+import styles from './style.module.css';
 
 const Dragger = sortableHandle(() => <MenuOutlined style={{ cursor: 'pointer', color: '#999' }} />);
 
@@ -16,9 +17,8 @@ const columns = [
     title: 'Order',
     dataIndex: 'order',
     align: 'center',
-    className: 'drag-visible',
     render: function Order() {
-      return <Dragger />;
+      return <Dragger className={styles.visible} />;
     }
   },
   {
@@ -26,7 +26,7 @@ const columns = [
     dataIndex: 'emoji',
     fixed: 'left',
     align: 'center',
-    className: 'drag-visible',
+    className: styles.visible,
     render: function Emoji(emoji) {
       return <Twemoji svg text={emoji} />;
     }
@@ -34,18 +34,18 @@ const columns = [
   {
     title: 'Title',
     dataIndex: 'title',
-    className: 'drag-visible'
+    className: styles.visible
   },
   {
     title: 'Description',
     dataIndex: 'description',
-    className: 'drag-visible'
+    className: styles.visible
   },
   {
     title: 'Attention',
     dataIndex: 'attention',
     align: 'center',
-    className: 'drag-visible',
+    className: styles.visible,
     render: function Attention(state) {
       return <Checkbox checked={state} disabled={true} />;
     }
@@ -53,7 +53,7 @@ const columns = [
   {
     title: 'URL',
     dataIndex: 'url',
-    className: 'drag-visible',
+    className: styles.visible,
     render: function Url(url) {
       return <a href={url}>{url}</a>;
     }
@@ -77,7 +77,7 @@ const DraggableContainer = (props) => {
     <SortableContainer
       useDragHandle
       disableAutoscroll
-      helperClass="row-dragging"
+      helperClass={styles.dragging}
       onSortEnd={({ oldIndex, newIndex }) =>
         dispatch({ type: 'SORT', oldIndex: oldIndex, newIndex: newIndex })
       }
