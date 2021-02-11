@@ -14,11 +14,11 @@ const Dragger = sortableHandle(() => <MenuOutlined style={{ cursor: 'pointer', c
 
 const columns = [
   {
-    title: 'Order',
-    dataIndex: 'order',
-    align: 'center',
+    title: '#',
+    width: 40,
+    className: styles.visible,
     render: function Order() {
-      return <Dragger className={styles.visible} />;
+      return <Dragger />;
     }
   },
   {
@@ -26,6 +26,7 @@ const columns = [
     dataIndex: 'emoji',
     fixed: 'left',
     align: 'center',
+    width: 40,
     className: styles.visible,
     render: function Emoji(emoji) {
       return <Twemoji svg text={emoji} />;
@@ -45,7 +46,6 @@ const columns = [
     title: 'Attention',
     dataIndex: 'attention',
     align: 'center',
-    className: styles.visible,
     render: function Attention(state) {
       return <Checkbox checked={state} disabled={true} />;
     }
