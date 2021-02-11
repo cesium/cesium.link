@@ -23,10 +23,6 @@
   font-size: 1rem;
 }
 
-.footer a:hover {
-  color: black;
-}
-
 .social {
   margin: 1em;
 }
@@ -34,6 +30,10 @@
 .social a {
   display: inline;
   margin: 10px;
+}
+
+.footer a:hover {
+  color: black;
 }
 
 .social a:hover {
