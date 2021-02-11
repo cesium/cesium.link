@@ -7,15 +7,15 @@ import API from '../../utils/api';
 const LinksContext = createContext();
 
 const reducer = async (links, action) => {
-  const { oldIndex, newIndex } = action;
+  const { type, link, links: newLinks, oldIndex, newIndex } = action;
   let response;
 
-  switch (action.type) {
+  switch (type) {
     case 'INIT':
-      return action.links;
+      return newLinks;
     case 'CREATE':
-      action.link.index = links.length;
-      response = await API.post('/links', action.link);
+      link.index = links.length;
+      response = await API.post('/links', link);
       return [...links, response.data.data];
     case 'DELETE':
       await API.delete(`/links/${action.id}`);
@@ -31,7 +31,7 @@ const reducer = async (links, action) => {
       }
       return links;
     default:
-      throw new Error(`Unknown action: ${action.type}`);
+      throw new Error(`Unknown action: ${type}`);
   }
 };
 
