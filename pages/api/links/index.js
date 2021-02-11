@@ -10,7 +10,7 @@ export default withApiAuthRequired(async (req, res) => {
   switch (method) {
     case 'GET':
       try {
-        const links = await Link.find({});
+        const links = await Link.find({}).sort({ index: 'asc' });
         res.status(200).json({ success: true, data: links });
       } catch (error) {
         res.status(400).json({ success: false, error: { message: error.message } });
