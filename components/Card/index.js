@@ -8,7 +8,6 @@ const Card = ({ title, description, emoji, url, attention = false }) => (
     <h3 className={attention ? 'animate__animated animate__shakeX animate__delay-2s' : undefined}>
       <Twemoji svg text={`${emoji} ${title}`} />
     </h3>
-    {description && <p>{description}</p>}
   </a>
 );
 
