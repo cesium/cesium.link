@@ -17,7 +17,7 @@ The following software is required to be installed on your system:
 
 - [Node.js 15.7+](https://nodejs.org/en/download/)
 
-Install all dependencies using `npm install`.
+    Install all dependencies using `npm install`.
 
 ### :hammer: Development
 
@@ -64,4 +64,12 @@ to us.
 This project is licensed under the MIT License - see the [LICENSE][license]
 file for details.
 
-<img src="public/cesium.svg" height="170">
+<div align="center">
+<br>
+
+  <a href="https://cesium.di.uminho.pt">
+    <img src="public/cesium.svg" height="42">
+  </a>
+
+</div>
+
