@@ -17,7 +17,7 @@ The following software is required to be installed on your system:
 
 - [Node.js 15.7+](https://nodejs.org/en/download/)
 
-    Install all dependencies using `npm install`.
+  Install all dependencies using `npm install`.
 
 ### :hammer: Development
 
@@ -72,4 +72,3 @@ file for details.
   </a>
 
 </div>
-
