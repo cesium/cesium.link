@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Avatar, Dropdown, Menu } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { LinkOutlined, UserOutlined } from '@ant-design/icons';
 
-import API from '../../utils/api';
+import API from '../../../utils/api';
 
 import styles from './style.module.css';
+
+export const navbar = {
+  links: {
+    icon: <LinkOutlined />,
+    title: 'Links'
+  }
+};
 
 function Navbar({ selected }) {
   const [user, setUser] = useState({});
