@@ -1,23 +1,15 @@
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { LinkOutlined } from '@ant-design/icons';
 import { AdminContextProvider } from '../../components/Admin/Context';
 import LinksTable from '../../components/Admin/LinksTable';
-import Navbar from '../../components/Admin/Navbar';
+import Navbar, { navbar as entries } from '../../components/Admin/Navbar';
 import Footer from '../../components/Footer';
 
 import 'antd/dist/antd.css';
 
-const navbar = {
-  links: {
-    icon: <LinkOutlined />,
-    title: 'Links'
-  }
-};
-
 export async function getServerSideProps({ query }) {
   const { tab } = query;
 
-  if (!tab || !(tab in navbar)) {
+  if (!tab || !(tab in entries)) {
     return {
       redirect: {
         destination: '/admin?tab=links',
