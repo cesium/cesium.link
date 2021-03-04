@@ -1,6 +1,6 @@
 {
   "name": "cesium.link",
-  "version": "2.0.0",
+  "version": "2.0.0-beta",
   "private": true,
   "scripts": {
     "develop": "npm-run-all dev",
@@ -20,19 +20,18 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.4.0",
-    "@auth0/nextjs-auth0": "^1.0.0-beta.1",
+    "@auth0/nextjs-auth0": "^1.1.0",
     "animate.css": "^4.1.1",
     "antd": "^4.12.2",
-    "axios": "^0.21.1",
     "mongoose": "^5.11.15",
-    "moongoose": "^0.0.4",
-    "next": "10.0.6",
+    "next": "^10.0.7",
     "next-plugin-yaml": "^1.0.1",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-emoji-render": "^1.2.4",
     "react-icons": "^4.1.0",
-    "react-sortable-hoc": "^1.11.0"
+    "react-sortable-hoc": "^1.11.0",
+    "redaxios": "^0.4.1"
   },
   "devDependencies": {
     "eslint": "^7.19.0",

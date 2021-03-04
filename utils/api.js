@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'redaxios';
 
 let APP_URL = process.env.NEXT_PUBLIC_APP_URL;
 
