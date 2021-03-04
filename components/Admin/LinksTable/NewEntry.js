@@ -32,7 +32,7 @@ function NewEntry() {
                 </Tooltip>
               </span>
             }>
-            <Input placeholder=":emoji:" />
+            <Input defaultValue="" placeholder=":emoji:" />
           </Item>
           <Item
             name="title"
