@@ -1,6 +1,7 @@
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { AdminContextProvider } from '../../components/Admin/Context';
 import LinksTable from '../../components/Admin/LinksTable';
+import FormsTable from '../../components/Admin/FormsTable';
 import Navbar, { navbar as entries } from '../../components/Admin/Navbar';
 import Footer from '../../components/Footer';
 
@@ -28,6 +29,7 @@ function Admin({ tab }) {
     <AdminContextProvider initialState={[]}>
       <Navbar selected={tab} />
       {(!tab || tab === 'links') && <LinksTable />}
+      {(!tab || tab === 'forms') && <FormsTable />}
       <Footer />
     </AdminContextProvider>
   );

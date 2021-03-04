@@ -1,10 +1,10 @@
 import { withApiAuthRequired } from '@auth0/nextjs-auth0';
-import dbConnect from '../../../utils/database';
-import Link from '../../../models/Link';
+import dbConnect from '../../../../utils/database';
+import Form from '../../../../models/Form';
 
 export default withApiAuthRequired(async (req, res) => {
   const {
-    query: { id },
+    query: { slug },
     method
   } = req;
 
@@ -13,12 +13,12 @@ export default withApiAuthRequired(async (req, res) => {
   switch (method) {
     case 'GET':
       try {
-        const link = await Link.findById(id);
+        const form = await Form.findOne({ slug });
 
-        if (!link) {
-          return res.status(404).json({ success: false, error: { message: 'Link not found' } });
+        if (!form) {
+          return res.status(404).json({ success: false, error: { message: 'Form not found' } });
         }
-        res.status(200).json({ success: true, data: link });
+        res.status(200).json({ success: true, data: form });
       } catch (error) {
         res.status(400).json({ success: false, error: { message: error.message } });
       }
@@ -26,14 +26,18 @@ export default withApiAuthRequired(async (req, res) => {
 
     case 'PUT':
       try {
-        const link = await Link.findByIdAndUpdate(id, req.body, {
-          new: true,
-          runValidators: true
-        });
-        if (!link) {
-          return res.status(404).json({ success: false, error: { message: 'Link not found' } });
+        const form = await Form.findOneAndUpdate(
+          slug,
+          { ...req.body, updated: Date.now() },
+          {
+            new: true,
+            runValidators: true
+          }
+        );
+        if (!form) {
+          return res.status(404).json({ success: false, error: { message: 'Form not found' } });
         }
-        res.status(200).json({ success: true, data: link });
+        res.status(200).json({ success: true, data: form });
       } catch (error) {
         res.status(400).json({ success: false, error: { message: error.message } });
       }
@@ -41,7 +45,7 @@ export default withApiAuthRequired(async (req, res) => {
 
     case 'DELETE':
       try {
-        const deleted = await Link.deleteOne({ _id: id });
+        const deleted = await Form.deleteOne({ slug });
         if (!deleted) {
           return res.status(400).json({ success: false });
         }

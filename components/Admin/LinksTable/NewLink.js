@@ -5,7 +5,7 @@ import { QuestionCircleOutlined } from '@ant-design/icons';
 
 const { Item } = Form;
 
-function NewEntry() {
+function NewLink() {
   const { dispatch } = useLinks();
   const [isVisible, setVisible] = useState(false);
   const [form] = Form.useForm();
@@ -21,7 +21,9 @@ function NewEntry() {
         New
       </Button>
       <Modal title="New Entry" visible={isVisible} onOk={ok} onCancel={() => setVisible(false)}>
-        <Form form={form} onFinish={(values) => dispatch({ type: 'CREATE', link: values })}>
+        <Form
+          form={form}
+          onFinish={(values) => dispatch({ type: 'CREATE', link: values }) && form.resetFields()}>
           <Item
             name="emoji"
             label={
@@ -40,7 +42,7 @@ function NewEntry() {
             rules={[
               {
                 required: true,
-                message: 'Please insert a Title'
+                message: 'Please insert a title.'
               }
             ]}>
             <Input placeholder="Awesome Link Name" />
@@ -51,7 +53,11 @@ function NewEntry() {
             rules={[
               {
                 required: true,
-                message: 'Please insert a URL'
+                message: 'Please insert a url.'
+              },
+              {
+                type: 'url',
+                message: 'This field must be a valid url.'
               }
             ]}>
             <Input placeholder="https://cesium.link" />
@@ -68,4 +74,4 @@ function NewEntry() {
   );
 }
 
-export default NewEntry;
+export default NewLink;

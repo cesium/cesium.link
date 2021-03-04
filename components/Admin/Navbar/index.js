@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { Avatar, Dropdown, Menu } from 'antd';
-import { LinkOutlined, UserOutlined } from '@ant-design/icons';
+import LinkTo from '../../utils/LinkTo';
+import { Avatar, Menu, Typography, Space } from 'antd';
+import { LinkOutlined, FormOutlined, UserOutlined } from '@ant-design/icons';
 
 import API from '../../../utils/api';
 
@@ -11,6 +11,10 @@ export const navbar = {
   links: {
     icon: <LinkOutlined />,
     title: 'Links'
+  },
+  forms: {
+    icon: <FormOutlined />,
+    title: 'Forms'
   }
 };
 
@@ -25,26 +29,21 @@ function Navbar({ selected }) {
     <Menu selectedKeys={[selected]} mode="horizontal">
       {Object.keys(navbar).map((key) => (
         <Menu.Item key={key} icon={navbar[key].icon}>
-          <Link href={`/admin?tab=${key}`}>
-            <a>{navbar[key].title}</a>
-          </Link>
+          <LinkTo href={`/admin?tab=${key}`}>{navbar[key].title}</LinkTo>
         </Menu.Item>
       ))}
-      <Dropdown
+      <Menu.SubMenu
         className={styles.avatar}
-        overlay={
-          <Menu>
-            <Menu.Item>
-              <Link href="/api/auth/logout">
-                <a>logout</a>
-              </Link>
-            </Menu.Item>
-          </Menu>
+        title={
+          <Space>
+            <Avatar src={user.picture} icon={<UserOutlined />} />
+            <Typography.Text>{user.name}</Typography.Text>
+          </Space>
         }>
-        <div>
-          <Avatar src={user.picture} icon={<UserOutlined />} /> {user.name}
-        </div>
-      </Dropdown>
+        <Menu.Item>
+          <LinkTo href="/api/auth/logout">logout</LinkTo>
+        </Menu.Item>
+      </Menu.SubMenu>
     </Menu>
   );
 }
