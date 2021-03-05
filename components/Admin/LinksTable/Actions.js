@@ -17,7 +17,7 @@ function Actions({ record }) {
   return (
     <Space size="middle">
       <Popconfirm
-        title="Are you sure you?"
+        title="Are you sure?"
         okText="Yes"
         cancelText="No"
         visible={isVisible}
