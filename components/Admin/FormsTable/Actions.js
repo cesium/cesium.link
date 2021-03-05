@@ -55,7 +55,7 @@ function Actions({ record }) {
         <EditOutlined />
       </Button>
       <Popconfirm
-        title="Are you sure you?"
+        title="Are you sure?"
         okText="Yes"
         cancelText="No"
         visible={isVisible}
