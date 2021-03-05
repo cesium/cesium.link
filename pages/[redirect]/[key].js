@@ -1,7 +1,7 @@
 import ErrorPage from 'next/error';
+import API from '../../utils/api';
 
 import { domain, github, gitlab } from '../../data/settings.yml';
-import forms from '../../data/forms.yml';
 
 const repos = {
   gh: github,
@@ -12,10 +12,6 @@ const maps = {
   a: 'activities',
   n: 'articles',
   j: 'jobs'
-};
-
-const uris = {
-  f: forms
 };
 
 export async function getServerSideProps({ params }) {
@@ -39,16 +35,27 @@ export async function getServerSideProps({ params }) {
     };
   }
 
-  if (redirect in uris) {
-    if (!(key in uris[redirect])) {
+  if (redirect === 'f') {
+    const response = await API.get(`/forms/${key}/url`)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        return error;
+      });
+
+    if (!response.data.success) {
       return {
-        notFound: true
+        props: {
+          code: response.status,
+          message: response.data.error.message || response.statusText
+        }
       };
     }
 
     return {
       redirect: {
-        destination: `${uris[redirect][key]}`,
+        destination: response.data.data,
         permanent: false
       }
     };
@@ -59,6 +66,8 @@ export async function getServerSideProps({ params }) {
   };
 }
 
-const Redirect = () => <ErrorPage statusCode={400} />;
+const Redirect = ({ message = 'This page could not be found.', code = 404 }) => (
+  <ErrorPage title={message} statusCode={code} />
+);
 
 export default Redirect;

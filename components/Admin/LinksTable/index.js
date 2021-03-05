@@ -5,7 +5,7 @@ import { Table, Checkbox, notification } from 'antd';
 import { Twemoji } from 'react-emoji-render';
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import Actions from './Actions';
-import NewEntry from './NewEntry';
+import NewLink from './NewLink';
 
 import API from '../../../utils/api';
 import styles from './style.module.css';
@@ -105,7 +105,7 @@ function LinksTable() {
       })
       .catch((error) => {
         notification['error']({
-          message: `${error.response.statusText}`,
+          message: `${error.statusText}`,
           description: error.message
         });
       });
@@ -119,7 +119,6 @@ function LinksTable() {
       columns={columns}
       dataSource={links}
       bordered
-      // pagination={{ position: ['bottomCenter'] }}
       pagination={false}
       components={{
         body: {
@@ -127,7 +126,7 @@ function LinksTable() {
           row: DraggableBodyRow
         }
       }}
-      footer={() => <NewEntry />}
+      footer={() => <NewLink />}
     />
   );
 }

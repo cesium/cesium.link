@@ -1,6 +1,6 @@
 import { withApiAuthRequired } from '@auth0/nextjs-auth0';
 import dbConnect from '../../../utils/database';
-import Link from '../../../models/Link';
+import Form from '../../../models/Form';
 
 export default withApiAuthRequired(async (req, res) => {
   const { method } = req;
@@ -10,16 +10,16 @@ export default withApiAuthRequired(async (req, res) => {
   switch (method) {
     case 'GET':
       try {
-        const links = await Link.find({}).sort({ index: 'asc' });
-        res.status(200).json({ success: true, data: links });
+        const forms = await Form.find({}).sort({ created: 'asc' });
+        res.status(200).json({ success: true, data: forms });
       } catch (error) {
         res.status(400).json({ success: false, error: { message: error.message } });
       }
       break;
     case 'POST':
       try {
-        const link = await Link.create(req.body);
-        res.status(201).json({ success: true, data: link });
+        const form = await Form.create(req.body);
+        res.status(201).json({ success: true, data: form });
       } catch (error) {
         res.status(400).json({ success: false, error: { message: error.message } });
       }

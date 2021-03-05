@@ -1,12 +1,11 @@
 import { useContext, createContext } from 'react';
-import useAsyncReducer from '../../utils/useAsyncReducer';
 import { arrayMove } from 'react-sortable-hoc';
 
-import API from '../../utils/api';
+import API from '../../../utils/api';
 
-const LinksContext = createContext();
+export const LinksContext = createContext();
 
-const reducer = async (links, action) => {
+export const reducer = async (links, action) => {
   const { type, link, links: newLinks, oldIndex, newIndex } = action;
   let response;
 
@@ -33,12 +32,6 @@ const reducer = async (links, action) => {
     default:
       throw new Error(`Unknown action: ${type}`);
   }
-};
-
-export const AdminContextProvider = ({ children, initialState }) => {
-  const [links, dispatch] = useAsyncReducer(reducer, initialState);
-
-  return <LinksContext.Provider value={{ links, dispatch }}>{children}</LinksContext.Provider>;
 };
 
 export const useLinks = () => useContext(LinksContext);
