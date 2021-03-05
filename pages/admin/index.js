@@ -1,4 +1,5 @@
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
+import { useRouter } from 'next/router';
 import { AdminContextProvider } from '../../components/Admin/Context';
 import LinksTable from '../../components/Admin/LinksTable';
 import FormsTable from '../../components/Admin/FormsTable';
@@ -7,24 +8,15 @@ import Footer from '../../components/Footer';
 
 import 'antd/dist/antd.css';
 
-export async function getServerSideProps({ query }) {
-  const { tab } = query;
+function Admin() {
+  const router = useRouter();
+
+  const { tab } = router.query;
 
   if (!tab || !(tab in entries)) {
-    return {
-      redirect: {
-        destination: '/admin?tab=links',
-        permanent: false
-      }
-    };
+    router.push('/admin?tab=links');
   }
 
-  return {
-    props: { tab }
-  };
-}
-
-function Admin({ tab }) {
   return (
     <AdminContextProvider initialState={[]}>
       <Navbar selected={tab} />
