@@ -38,11 +38,6 @@ const columns = [
     className: styles.visible
   },
   {
-    title: 'Description',
-    dataIndex: 'description',
-    className: styles.visible
-  },
-  {
     title: 'Attention',
     dataIndex: 'attention',
     align: 'center',

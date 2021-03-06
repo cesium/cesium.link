@@ -4,9 +4,35 @@ import { CloseOutlined, DeleteOutlined, EditOutlined, SaveOutlined } from '@ant-
 import { useForms } from '../Context';
 import { useEditing } from './Context';
 
-function Actions({ record }) {
+function DeleteEntry({ record }) {
   const [isVisible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { dispatch: dispatchForms } = useForms();
+
+  const confirm = () => {
+    setLoading(true);
+    dispatchForms({ type: 'DELETE', slug: record.slug });
+    setVisible(false);
+    setLoading(false);
+  };
+
+  return (
+    <Popconfirm
+      title="Are you sure?"
+      okText="Yes"
+      cancelText="No"
+      visible={isVisible}
+      onConfirm={confirm}
+      okButtonProps={{ loading: loading }}
+      onCancel={() => setVisible(false)}>
+      <Button onClick={() => setVisible(true)} type="link" danger>
+        <DeleteOutlined />
+      </Button>
+    </Popconfirm>
+  );
+}
+
+function Actions({ record }) {
   const { forms, dispatch: dispatchForms } = useForms();
   const { editing, dispatch: dispatchEditing } = useEditing();
 
@@ -33,13 +59,6 @@ function Actions({ record }) {
     }
   };
 
-  const confirmDelete = () => {
-    setLoading(true);
-    dispatchForms({ type: 'DELETE', slug: record.slug });
-    setVisible(false);
-    setLoading(false);
-  };
-
   return record._id === editing.key ? (
     <Space>
       <Button onClick={() => save(record._id)} type="link">
@@ -54,18 +73,7 @@ function Actions({ record }) {
       <Button disabled={editing.key !== ''} onClick={() => edit(record)} type="link">
         <EditOutlined />
       </Button>
-      <Popconfirm
-        title="Are you sure?"
-        okText="Yes"
-        cancelText="No"
-        visible={isVisible}
-        onConfirm={confirmDelete}
-        okButtonProps={{ loading: loading }}
-        onCancel={() => setVisible(false)}>
-        <Button onClick={() => setVisible(true)} type="link" danger>
-          <DeleteOutlined />
-        </Button>
-      </Popconfirm>
+      <DeleteEntry record={record} />
     </Space>
   );
 }
