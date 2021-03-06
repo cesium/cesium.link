@@ -54,6 +54,12 @@ const columns = [
     }
   },
   {
+    title: 'Clicks',
+    dataIndex: 'clicks',
+    align: 'center',
+    className: styles.visible
+  },
+  {
     title: 'Action',
     fixed: 'right',
     render: function Action(_, record) {
