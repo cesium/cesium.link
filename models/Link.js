@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import { nanoid } from 'nanoid';
 
 const Link = new Schema({
   title: { type: String, required: true },
@@ -6,6 +7,8 @@ const Link = new Schema({
   emoji: { type: String, required: false },
   attention: { type: Boolean, default: false },
   index: { type: Number, required: true, index: true },
+  slug: { type: String, unique: true, index: true, required: true, default: () => nanoid(10) },
+  clicks: { type: Number, default: 0 },
   created: { type: Date, default: Date.now }
 });
 
