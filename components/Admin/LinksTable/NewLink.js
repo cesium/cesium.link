@@ -62,9 +62,6 @@ function NewLink() {
             ]}>
             <Input placeholder="https://cesium.link" />
           </Item>
-          <Item name="description" label="Description">
-            <Input.TextArea />
-          </Item>
           <Item name="attention" valuePropName="checked">
             <Checkbox defaultChecked={false}>Attention</Checkbox>
           </Item>

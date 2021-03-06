@@ -5,7 +5,6 @@ import Card from '../components/Card';
 import dbConnect from '../utils/database';
 import Link from '../models/Link';
 
-// import links from "../data/links.yml";
 import styles from '../styles/Home.module.css';
 
 export async function getServerSideProps() {

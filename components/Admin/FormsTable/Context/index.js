@@ -3,8 +3,6 @@ import { useContext, createContext } from 'react';
 export const EditingContext = createContext();
 
 export const reducer = async (editing, action) => {
-  // {key: '',
-  // form: Form.useForm()}
   const { type, key } = action;
 
   switch (type) {
