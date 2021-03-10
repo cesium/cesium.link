@@ -47,7 +47,7 @@ npm run format
 
 ### :link: References
 
-You can use this resources to learn more about the tecnologies this project
+You can use these resources to learn more about the technologies this project
 uses.
 
 - [Getting Started with React](https://reactjs.org/docs/getting-started.html)
