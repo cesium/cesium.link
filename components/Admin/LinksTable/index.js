@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLinks } from '../Context';
+import { Checkbox, Table, Typography, notification } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
-import { Table, Checkbox, notification } from 'antd';
 import { Twemoji } from 'react-emoji-render';
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import Actions from './Actions';
@@ -35,12 +35,14 @@ const columns = [
   {
     title: 'Title',
     dataIndex: 'title',
+    width: 250,
     className: styles.visible
   },
   {
     title: 'Attention',
     dataIndex: 'attention',
     align: 'center',
+    width: 40,
     render: function Attention(state) {
       return <Checkbox checked={state} disabled={true} />;
     }
@@ -54,9 +56,25 @@ const columns = [
     }
   },
   {
+    title: 'Link',
+    editable: false,
+    width: 300,
+    dataIndex: 'slug',
+    render: function UrlLink(slug) {
+      const link = `${process.env.NEXT_PUBLIC_APP_URL}/r/${slug}`;
+
+      return (
+        <Typography.Link href={link} copyable>
+          {link}
+        </Typography.Link>
+      );
+    }
+  },
+  {
     title: 'Clicks',
     dataIndex: 'clicks',
     align: 'center',
+    width: 40,
     className: styles.visible
   },
   {
