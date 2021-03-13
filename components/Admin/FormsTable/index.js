@@ -38,7 +38,7 @@ function FormsTable() {
       title: 'Name',
       editable: true,
       required: false,
-      width: 300,
+      width: 250,
       dataIndex: 'name'
     },
     {
@@ -50,7 +50,6 @@ function FormsTable() {
     {
       title: 'URL',
       editable: true,
-      width: 500,
       dataIndex: 'url',
       render: function Url(url) {
         return <a href={url}>{url}</a>;
@@ -59,7 +58,7 @@ function FormsTable() {
     {
       title: 'Link',
       editable: false,
-      width: 500,
+      width: 300,
       dataIndex: 'slug',
       render: function UrlLink(slug) {
         const link = `${process.env.NEXT_PUBLIC_APP_URL}/f/${slug}`;
@@ -75,11 +74,13 @@ function FormsTable() {
       title: 'Visits',
       editable: false,
       align: 'center',
+      width: 40,
       dataIndex: 'visits'
     },
     {
       title: 'Last edited',
       editable: false,
+      width: 150,
       dataIndex: 'updated',
       render: function Updated(updated) {
         const formatted = DateTime.fromISO(updated)
