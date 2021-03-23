@@ -7,7 +7,7 @@ import Link from '../models/Link';
 
 import styles from '../styles/Home.module.css';
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   await dbConnect();
 
   const result = await Link.find({}).sort({ index: 'asc' });
@@ -19,7 +19,7 @@ export async function getServerSideProps() {
     return link;
   });
 
-  return { props: { links: links } };
+  return { props: { links: links }, revalidate: 5 };
 }
 
 export default function Home({ links }) {
