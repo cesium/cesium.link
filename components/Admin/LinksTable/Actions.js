@@ -9,7 +9,7 @@ function Actions({ record }) {
 
   const confirmDelete = () => {
     setLoading(true);
-    dispatch({ type: 'DELETE', id: record._id });
+    dispatch({ type: 'DELETE', id: record._id, index: record.index });
     setVisible(false);
     setLoading(false);
   };

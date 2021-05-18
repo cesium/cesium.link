@@ -13,7 +13,7 @@ export const reducer = async (links, action) => {
     case 'INIT':
       return newLinks;
     case 'CREATE':
-      link.index = links.length;
+      link.index = links[links.length - 1].index + 1;
       response = await API.post('/links', link);
       return [...links, response.data.data];
     case 'DELETE':
