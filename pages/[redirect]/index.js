@@ -11,7 +11,6 @@ export async function getServerSideProps({ params }) {
       permanent: false
     }
   };
-
 }
 
 const Redirect = ({ message = 'This page could not be found.', code = 404 }) => (
