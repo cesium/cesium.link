@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import {
   IoLogoFacebook,
   IoLogoInstagram,
@@ -9,6 +10,8 @@ import {
 import social from '../../data/social.yml';
 
 import styles from './style.module.css';
+
+import logo from '../../public/cesium.svg';
 
 const logos = {
   facebook: IoLogoFacebook,
@@ -37,7 +40,7 @@ const Footer = () => (
     <div className={styles.copyright}>
       <a href="https://cesium.di.uminho.pt" target="_blank" rel="noopener noreferrer">
         hacked with <IoHeart className={styles.heart} size="1.2em" /> by
-        <img src="/cesium.svg" alt="CeSIUM's Logo" className={styles.logo} />
+        <Image width={84} height={24} src={logo} alt="CeSIUM's Logo" />
       </a>
     </div>
   </footer>

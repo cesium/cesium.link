@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import LinkTo from '../../utils/LinkTo';
 import { Avatar, Col, Menu, Row, Space, Typography } from 'antd';
-import { LinkOutlined, FormOutlined, UserOutlined } from '@ant-design/icons';
+import { LinkOutlined, FormOutlined, TagsOutlined, UserOutlined } from '@ant-design/icons';
 
 import API from '../../../utils/api';
 
@@ -9,12 +9,16 @@ import styles from './style.module.css';
 
 export const navbar = {
   links: {
-    icon: <LinkOutlined />,
+    icon: <TagsOutlined />,
     title: 'Links'
   },
   forms: {
     icon: <FormOutlined />,
     title: 'Forms'
+  },
+  urls: {
+    icon: <LinkOutlined />,
+    title: 'Redirects'
   }
 };
 
