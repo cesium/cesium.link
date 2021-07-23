@@ -64,11 +64,4 @@ to us.
 This project is licensed under the MIT License - see the [LICENSE][license]
 file for details.
 
-<div align="center">
-<br>
-
-  <a href="https://cesium.di.uminho.pt">
-    <img src="public/cesium.svg" height="42">
-  </a>
-
-</div>
+![CeSIUM Logo](public/cesium.png)
