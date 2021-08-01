@@ -1,6 +1,6 @@
 import { withApiAuthRequired } from '@auth0/nextjs-auth0';
-import dbConnect from '../../../../utils/database';
-import Redirect from '../../../../models/Redirect';
+import dbConnect from '~/lib/database';
+import Redirect from '~/models/Redirect';
 
 export default withApiAuthRequired(async (req, res) => {
   const {

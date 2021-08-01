@@ -1,7 +1,7 @@
 import { useContext, createContext } from 'react';
 import { arrayMove } from 'react-sortable-hoc';
 
-import API from '../../../utils/api';
+import API from '~/lib/api';
 
 export const LinksContext = createContext();
 

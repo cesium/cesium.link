@@ -1,5 +1,5 @@
-import dbConnect from '../../../../utils/database';
-import Link from '../../../../models/Link';
+import dbConnect from '~/lib/database';
+import Link from '~/models/Link';
 
 export default async (req, res) => {
   const {

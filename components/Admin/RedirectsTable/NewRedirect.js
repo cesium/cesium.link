@@ -23,7 +23,9 @@ function NewRedirect() {
       <Modal title="New Entry" visible={isVisible} onOk={ok} onCancel={() => setVisible(false)}>
         <Form
           form={form}
-          onFinish={(values) => dispatch({ type: 'CREATE', redirect: values }) && form.resetFields()}>
+          onFinish={(values) =>
+            dispatch({ type: 'CREATE', redirect: values }) && form.resetFields()
+          }>
           <Item
             name="name"
             label={

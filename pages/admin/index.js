@@ -1,11 +1,11 @@
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { useRouter } from 'next/router';
-import { AdminContextProvider } from '../../components/Admin/Context';
-import FormsTable from '../../components/Admin/FormsTable';
-import LinksTable from '../../components/Admin/LinksTable';
-import RedirectsTable from '../../components/Admin/RedirectsTable';
-import Navbar, { navbar as entries } from '../../components/Admin/Navbar';
-import Footer from '../../components/Footer';
+import { AdminContextProvider } from '~/components/Admin/Context';
+import FormsTable from '~/components/Admin/FormsTable';
+import LinksTable from '~/components/Admin/LinksTable';
+import RedirectsTable from '~/components/Admin/RedirectsTable';
+import Navbar, { navbar as entries } from '~/components/Admin/Navbar';
+import Footer from '~/components/Footer';
 
 import 'antd/dist/antd.css';
 

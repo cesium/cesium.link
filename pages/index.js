@@ -1,11 +1,11 @@
 import Image from 'next/image';
-import Layout from '../components/Layout';
-import Card from '../components/Card';
+import Layout from '~/components/Layout';
+import Card from '~/components/Card';
 
-import dbConnect from '../utils/database';
-import Link from '../models/Link';
+import dbConnect from '~/lib/database';
+import Link from '~/models/Link';
 
-import styles from '../styles/Home.module.css';
+import styles from '~/styles/Home.module.css';
 
 export async function getStaticProps() {
   await dbConnect();

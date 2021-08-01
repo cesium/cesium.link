@@ -1,6 +1,6 @@
 import ErrorPage from 'next/error';
 
-import { domain } from '../../data/settings.yml';
+import { domain } from '~/data/settings.yml';
 
 export async function getServerSideProps({ params }) {
   const { redirect } = params;

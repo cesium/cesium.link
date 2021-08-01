@@ -1,6 +1,6 @@
 import { withApiAuthRequired } from '@auth0/nextjs-auth0';
-import dbConnect from '../../../../utils/database';
-import Form from '../../../../models/Form';
+import dbConnect from '~/lib/database';
+import Form from '~/models/Form';
 
 export default withApiAuthRequired(async (req, res) => {
   const {

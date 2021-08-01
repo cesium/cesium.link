@@ -1,7 +1,7 @@
 import ErrorPage from 'next/error';
-import API from '../../utils/api';
+import API from '~/lib/api';
 
-import { domain, github, gitlab } from '../../data/settings.yml';
+import { domain, github, gitlab } from '~/data/settings.yml';
 
 const repos = {
   gh: github,

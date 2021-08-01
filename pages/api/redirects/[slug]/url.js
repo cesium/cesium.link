@@ -1,5 +1,5 @@
-import dbConnect from '../../../../utils/database';
-import Redirect from '../../../../models/Redirect';
+import dbConnect from '~/lib/database';
+import Redirect from '~/models/Redirect';
 
 export default async (req, res) => {
   const {
@@ -12,7 +12,11 @@ export default async (req, res) => {
   switch (method) {
     case 'GET':
       try {
-        const redirect = await Redirect.findOneAndUpdate({ slug }, { $inc: { visits: 1 } }, { new: true });
+        const redirect = await Redirect.findOneAndUpdate(
+          { slug },
+          { $inc: { visits: 1 } },
+          { new: true }
+        );
 
         if (!redirect) {
           return res.status(404).json({ success: false, error: { message: 'Redirect not found' } });

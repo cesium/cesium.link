@@ -7,10 +7,9 @@ import {
   IoHeart
 } from 'react-icons/io5';
 
-import social from '../../data/social.yml';
+import social from '~/data/social.yml';
 
 import styles from './style.module.css';
-
 import logo from '../../public/cesium.svg';
 
 const logos = {

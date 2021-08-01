@@ -1,4 +1,4 @@
-import useAsyncReducer from '../../../utils/useAsyncReducer';
+import useAsyncReducer from '~/hooks/useAsyncReducer';
 import { reducer as reducerLinks, LinksContext } from './links';
 import { reducer as reducerForms, FormsContext } from './forms';
 import { reducer as reducerRedirects, RedirectsContext } from './redirects';
