@@ -15,7 +15,7 @@ export async function getStaticProps() {
     const link = doc.toObject();
     link._id = link._id.toString();
     link.created = link.created.toString();
-    link.url = `${process.env.NEXT_PUBLIC_APP_URL}/r/${link.slug}`;
+    link.url = `${process.env.NEXT_PUBLIC_APP_URL}/u/${link.slug}`;
     return link;
   });
 

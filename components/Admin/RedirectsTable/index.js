@@ -5,23 +5,23 @@ import useAsyncReducer from '../../../utils/useAsyncReducer';
 import { EditingContext, reducer as reducerEditing } from './Context';
 import EditableTable from '../../EditableTable';
 import Actions from './Actions';
-import NewForm from './NewForm';
+import NewRedirect from './NewRedirect';
 
 import API from '../../../utils/api';
-import { useForms } from '../Context';
+import { useRedirects } from '../Context';
 
-function FormsTable() {
+function RedirectsTable() {
   const [loading, setLoading] = useState(true);
-  const { forms, dispatch } = useForms();
+  const { redirects, dispatch } = useRedirects();
   const [form] = Form.useForm();
   const [editing, dispatchEditing] = useAsyncReducer(reducerEditing, { key: '', form: form });
 
   const isEditing = (record) => record._id === editing.key;
 
   useEffect(() => {
-    API.get('/api/forms')
+    API.get('/api/redirects')
       .then((response) => {
-        dispatch({ type: 'INIT', forms: response.data.data });
+        dispatch({ type: 'INIT', redirects: response.data.data });
         setLoading(false);
       })
       .catch((error) => {
@@ -61,7 +61,7 @@ function FormsTable() {
       width: 300,
       dataIndex: 'slug',
       render: function UrlLink(slug) {
-        const link = `${process.env.NEXT_PUBLIC_APP_URL}/f/${slug}`;
+        const link = `${process.env.NEXT_PUBLIC_APP_URL}/r/${slug}`;
 
         return (
           <Typography.Link href={link} copyable>
@@ -105,17 +105,17 @@ function FormsTable() {
         rowKey="slug"
         isEditing={isEditing}
         columns={columns}
-        dataSource={forms}
+        dataSource={redirects}
         bordered
         form={form}
         pagination={{
           onChange: () => dispatchEditing({ type: 'CANCEL' }),
           position: ['bottomCenter']
         }}
-        footer={() => <NewForm />}
+        footer={() => <NewRedirect />}
       />
     </EditingContext.Provider>
   );
 }
 
-export default FormsTable;
+export default RedirectsTable;

@@ -14,6 +14,12 @@ const maps = {
   j: 'jobs'
 };
 
+const collections = {
+  f: 'forms',
+  r: 'redirects',
+  u: 'links'
+};
+
 export async function getServerSideProps({ params }) {
   const { key, redirect } = params;
 
@@ -35,34 +41,8 @@ export async function getServerSideProps({ params }) {
     };
   }
 
-  if (redirect === 'r') {
-    const response = await API.get(`/links/${key}/url`)
-      .then((response) => {
-        return response;
-      })
-      .catch((error) => {
-        return error;
-      });
-
-    if (!response.data.success) {
-      return {
-        props: {
-          code: response.status,
-          message: response.data.error.message || response.statusText
-        }
-      };
-    }
-
-    return {
-      redirect: {
-        destination: response.data.data,
-        permanent: false
-      }
-    };
-  }
-
-  if (redirect === 'f') {
-    const response = await API.get(`/forms/${key}/url`)
+  if (redirect in collections) {
+    const response = await API.get(`/api/${collections[redirect]}/${key}/url`)
       .then((response) => {
         return response;
       })

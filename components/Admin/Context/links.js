@@ -14,10 +14,10 @@ export const reducer = async (links, action) => {
       return newLinks;
     case 'CREATE':
       link.index = links[links.length - 1].index + 1;
-      response = await API.post('/links', link);
+      response = await API.post('/api/links', link);
       return [...links, response.data.data];
     case 'DELETE':
-      await API.delete(`/links/${action.id}`);
+      await API.delete(`/api/links/${action.id}`);
       return links.filter((link) => link._id !== action.id);
     case 'UPDATE':
       return links;
@@ -25,7 +25,7 @@ export const reducer = async (links, action) => {
       if (oldIndex !== newIndex) {
         links = arrayMove([].concat(links), oldIndex, newIndex).filter((elem) => !!elem);
         links.map((elem, index) => {
-          API.put(`/links/${elem._id}`, { index });
+          API.put(`/api/links/${elem._id}`, { index });
         });
       }
       return links;
