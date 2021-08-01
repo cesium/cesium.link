@@ -16,7 +16,7 @@ export const navbar = {
     icon: <FormOutlined />,
     title: 'Forms'
   },
-  urls: {
+  redirects: {
     icon: <LinkOutlined />,
     title: 'Redirects'
   }
@@ -26,7 +26,7 @@ function Navbar({ selected }) {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    API.get('/auth/me').then((response) => setUser(response.data));
+    API.get('/api/auth/me').then((response) => setUser(response.data));
   }, []);
 
   return (

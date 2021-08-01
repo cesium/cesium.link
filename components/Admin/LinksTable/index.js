@@ -61,7 +61,7 @@ const columns = [
     width: 300,
     dataIndex: 'slug',
     render: function UrlLink(slug) {
-      const link = `${process.env.NEXT_PUBLIC_APP_URL}/r/${slug}`;
+      const link = `${process.env.NEXT_PUBLIC_APP_URL}/u/${slug}`;
 
       return (
         <Typography.Link href={link} copyable>
@@ -117,7 +117,7 @@ function LinksTable() {
   const { links, dispatch } = useLinks();
 
   useEffect(() => {
-    API.get('/links')
+    API.get('/api/links')
       .then((response) => {
         dispatch({ type: 'INIT', links: response.data.data });
         setLoading(false);
