@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Form, Typography, notification } from 'antd';
 import { DateTime } from 'luxon';
-import useAsyncReducer from '../../../utils/useAsyncReducer';
+import useAsyncReducer from '~/hooks/useAsyncReducer';
 import { EditingContext, reducer as reducerEditing } from './Context';
 import EditableTable from '../../EditableTable';
 import Actions from './Actions';
 import NewRedirect from './NewRedirect';
 
-import API from '../../../utils/api';
+import API from '~/lib/api';
 import { useRedirects } from '../Context';
 
 function RedirectsTable() {

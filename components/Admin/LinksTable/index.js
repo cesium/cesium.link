@@ -7,7 +7,7 @@ import { sortableContainer, sortableElement, sortableHandle } from 'react-sortab
 import Actions from './Actions';
 import NewLink from './NewLink';
 
-import API from '../../../utils/api';
+import API from '~/lib/api';
 import styles from './style.module.css';
 
 const Dragger = sortableHandle(() => <MenuOutlined style={{ cursor: 'pointer', color: '#999' }} />);

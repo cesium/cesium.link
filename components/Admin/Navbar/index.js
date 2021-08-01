@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import LinkTo from '../../utils/LinkTo';
+import LinkTo from '~/components/LinkTo';
 import { Avatar, Col, Menu, Row, Space, Typography } from 'antd';
 import { LinkOutlined, FormOutlined, TagsOutlined, UserOutlined } from '@ant-design/icons';
 
-import API from '../../../utils/api';
+import API from '~/lib/api';
 
 import styles from './style.module.css';
 

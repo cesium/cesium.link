@@ -1,6 +1,6 @@
 import { useContext, createContext } from 'react';
 
-import API from '../../../utils/api';
+import API from '~/lib/api';
 
 export const RedirectsContext = createContext();
 
