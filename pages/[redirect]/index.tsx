@@ -1,8 +1,9 @@
+import { GetServerSideProps } from 'next';
 import ErrorPage from 'next/error';
 
-import { domain } from '~/data/settings.yml';
+import { domain } from '~/data/settings.json';
 
-export async function getServerSideProps({ params }) {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { redirect } = params;
 
   return {
@@ -11,7 +12,7 @@ export async function getServerSideProps({ params }) {
       permanent: false
     }
   };
-}
+};
 
 const Redirect = ({ message = 'This page could not be found.', code = 404 }) => (
   <ErrorPage title={message} statusCode={code} />

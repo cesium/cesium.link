@@ -1,7 +1,22 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import dbConnect from '~/lib/database';
-import Link from '~/models/Link';
+import Link, { ILink } from '~/models/Link';
 
-export default async (req, res) => {
+type Error = {
+  success: false;
+  error: {
+    message: string;
+  };
+};
+
+type Success = {
+  success: true;
+  data: string;
+};
+
+type Response = Success | Error;
+
+export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
   const {
     query: { id: slug },
     method
@@ -12,7 +27,11 @@ export default async (req, res) => {
   switch (method) {
     case 'GET':
       try {
-        const link = await Link.findOneAndUpdate({ slug }, { $inc: { clicks: 1 } }, { new: true });
+        const link: ILink = await Link.findOneAndUpdate(
+          { slug },
+          { $inc: { clicks: 1 } },
+          { new: true }
+        );
 
         if (!link) {
           return res.status(404).json({ success: false, error: { message: 'Link not found' } });

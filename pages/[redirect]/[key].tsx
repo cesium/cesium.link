@@ -1,7 +1,8 @@
+import { GetServerSideProps } from 'next';
 import ErrorPage from 'next/error';
 import API from '~/lib/api';
 
-import { domain, github, gitlab } from '~/data/settings.yml';
+import { domain, github, gitlab } from '~/data/settings.json';
 
 const repos = {
   gh: github,
@@ -20,8 +21,14 @@ const collections = {
   u: 'links'
 };
 
-export async function getServerSideProps({ params }) {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { key, redirect } = params;
+
+  if (Array.isArray(redirect) || Array.isArray(key)) {
+    return {
+      notFound: true
+    };
+  }
 
   if (redirect in repos) {
     return {
@@ -70,7 +77,7 @@ export async function getServerSideProps({ params }) {
   return {
     notFound: true
   };
-}
+};
 
 const Redirect = ({ message = 'This page could not be found.', code = 404 }) => (
   <ErrorPage title={message} statusCode={code} />

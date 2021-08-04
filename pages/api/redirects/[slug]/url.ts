@@ -1,7 +1,22 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import dbConnect from '~/lib/database';
-import Redirect from '~/models/Redirect';
+import Redirect, { IRedirect } from '~/models/Redirect';
 
-export default async (req, res) => {
+type Error = {
+  success: false;
+  error: {
+    message: string;
+  };
+};
+
+type Success = {
+  success: true;
+  data: string;
+};
+
+type Response = Success | Error;
+
+export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
   const {
     query: { slug },
     method
@@ -12,7 +27,7 @@ export default async (req, res) => {
   switch (method) {
     case 'GET':
       try {
-        const redirect = await Redirect.findOneAndUpdate(
+        const redirect: IRedirect = await Redirect.findOneAndUpdate(
           { slug },
           { $inc: { visits: 1 } },
           { new: true }

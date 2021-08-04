@@ -1,13 +1,14 @@
+import { GetStaticProps } from 'next';
 import Image from 'next/image';
 import Layout from '~/components/Layout';
 import Card from '~/components/Card';
 
 import dbConnect from '~/lib/database';
-import Link from '~/models/Link';
+import Link, { ILink } from '~/models/Link';
 
 import styles from '~/styles/Home.module.css';
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   await dbConnect();
 
   const result = await Link.find({}).sort({ index: 'asc' });
@@ -15,14 +16,13 @@ export async function getStaticProps() {
     const link = doc.toObject();
     link._id = link._id.toString();
     link.created = link.created.toString();
-    link.url = `${process.env.NEXT_PUBLIC_APP_URL}/u/${link.slug}`;
     return link;
   });
 
   return { props: { links: links }, revalidate: 5 };
-}
+};
 
-export default function Home({ links }) {
+export default function Home({ links }: { links: ILink[] }) {
   return (
     <Layout title="CeSIUM">
       <Image src="/2020.png" alt="CeSIUM's T-shirt 2020/21" width={150} height={150} />

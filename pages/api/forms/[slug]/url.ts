@@ -1,7 +1,22 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import dbConnect from '~/lib/database';
-import Form from '~/models/Form';
+import Form, { IForm } from '~/models/Form';
 
-export default async (req, res) => {
+type Error = {
+  success: false;
+  error: {
+    message: string;
+  };
+};
+
+type Success = {
+  success: true;
+  data: string;
+};
+
+type Response = Success | Error;
+
+export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
   const {
     query: { slug },
     method
@@ -12,7 +27,11 @@ export default async (req, res) => {
   switch (method) {
     case 'GET':
       try {
-        const form = await Form.findOneAndUpdate({ slug }, { $inc: { visits: 1 } }, { new: true });
+        const form: IForm = await Form.findOneAndUpdate(
+          { slug },
+          { $inc: { visits: 1 } },
+          { new: true }
+        );
 
         if (!form) {
           return res.status(404).json({ success: false, error: { message: 'Form not found' } });
