@@ -14,7 +14,7 @@ function Admin() {
 
   const { tab } = router.query;
 
-  if (!tab || !(tab in entries)) {
+  if (!tab || tab instanceof Array || !(tab in entries)) {
     router.push('/admin?tab=links');
   }
 

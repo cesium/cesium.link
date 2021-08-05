@@ -59,10 +59,8 @@ function RedirectsTable() {
       title: 'Link',
       editable: false,
       width: 300,
-      dataIndex: 'slug',
-      render: function UrlLink(slug) {
-        const link = `${process.env.NEXT_PUBLIC_APP_URL}/r/${slug}`;
-
+      dataIndex: 'link',
+      render: function UrlLink(link) {
         return (
           <Typography.Link href={link} copyable>
             {link}

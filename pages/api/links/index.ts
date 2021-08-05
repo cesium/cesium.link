@@ -1,8 +1,23 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { withApiAuthRequired } from '@auth0/nextjs-auth0';
 import dbConnect from '~/lib/database';
-import Redirect from '~/models/Redirect';
+import Link, { ILink } from '~/models/Link';
 
-export default withApiAuthRequired(async (req, res) => {
+type Error = {
+  success: false;
+  error: {
+    message: string;
+  };
+};
+
+type Success = {
+  success: true;
+  data: ILink | ILink[];
+};
+
+type Response = Success | Error;
+
+export default withApiAuthRequired(async (req: NextApiRequest, res: NextApiResponse<Response>) => {
   const { method } = req;
 
   await dbConnect();
@@ -10,16 +25,16 @@ export default withApiAuthRequired(async (req, res) => {
   switch (method) {
     case 'GET':
       try {
-        const redirects = await Redirect.find({}).sort({ created: 'asc' });
-        res.status(200).json({ success: true, data: redirects });
+        const links = await Link.find({}).sort({ index: 'asc' });
+        res.status(200).json({ success: true, data: links });
       } catch (error) {
         res.status(400).json({ success: false, error: { message: error.message } });
       }
       break;
     case 'POST':
       try {
-        const redirect = await Redirect.create(req.body);
-        res.status(201).json({ success: true, data: redirect });
+        const link = await Link.create(req.body);
+        res.status(201).json({ success: true, data: link });
       } catch (error) {
         res.status(400).json({ success: false, error: { message: error.message } });
       }

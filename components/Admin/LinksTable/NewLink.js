@@ -33,7 +33,13 @@ function NewLink() {
                   <QuestionCircleOutlined />
                 </Tooltip>
               </span>
-            }>
+            }
+            rules={[
+              {
+                required: true,
+                message: 'Please select an emoji.'
+              }
+            ]}>
             <Input defaultValue="" placeholder=":emoji:" />
           </Item>
           <Item

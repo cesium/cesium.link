@@ -1,19 +1,44 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { withApiAuthRequired } from '@auth0/nextjs-auth0';
 import dbConnect from '~/lib/database';
-import Redirect from '~/models/Redirect';
+import Redirect, { IRedirect } from '~/models/Redirect';
 
-export default withApiAuthRequired(async (req, res) => {
+type Error = {
+  success: false;
+  error: {
+    message: string;
+  };
+};
+
+type Success = {
+  success: true;
+  data?: IRedirect;
+};
+
+type Response = Success | Error;
+
+export default withApiAuthRequired(async (req: NextApiRequest, res: NextApiResponse<Response>) => {
   const {
     query: { slug },
     method
   } = req;
+
+  if (Array.isArray(slug)) {
+    return res
+      .status(400)
+      .json({ success: false, error: { message: "Slug field can't be a list" } });
+  }
+
+  if (!slug) {
+    return res.status(400).json({ success: false, error: { message: 'Slug field is mandatory' } });
+  }
 
   await dbConnect();
 
   switch (method) {
     case 'GET':
       try {
-        const redirect = await Redirect.findOne({ slug });
+        const redirect: IRedirect = await Redirect.findOne({ slug });
 
         if (!redirect) {
           return res.status(404).json({ success: false, error: { message: 'Redirect not found' } });
@@ -26,8 +51,8 @@ export default withApiAuthRequired(async (req, res) => {
 
     case 'PUT':
       try {
-        const redirect = await Redirect.findOneAndUpdate(
-          slug,
+        const redirect: IRedirect = await Redirect.findOneAndUpdate(
+          { slug },
           { ...req.body, updated: Date.now() },
           {
             new: true,
@@ -47,9 +72,11 @@ export default withApiAuthRequired(async (req, res) => {
       try {
         const deleted = await Redirect.deleteOne({ slug });
         if (!deleted) {
-          return res.status(400).json({ success: false });
+          return res
+            .status(400)
+            .json({ success: false, error: { message: 'Form could not be deleted' } });
         }
-        res.status(200).json({ success: true, data: {} });
+        res.status(200).json({ success: true });
       } catch (error) {
         res.status(400).json({ success: false, error: { message: error.message } });
       }
