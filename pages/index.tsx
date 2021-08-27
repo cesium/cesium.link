@@ -24,12 +24,22 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default function Home({ links }: { links: ILink[] }) {
   return (
-    <Layout title="CeSIUM">
-      <Image src="/2020.png" alt="CeSIUM's T-shirt 2020/21" width={150} height={150} />
+    <Layout title="CoderDojo Braga">
 
-      <h1 className={styles.title}>CeSIUM</h1>
+      <div>
+        <div className={styles.rectangle} />
+        <div className={styles.curve} />
+        <div className={styles.base} />
+      </div>
 
-      <p className={styles.description}>Centro de Estudantes de Engenharia Informática da UMinho</p>
+      <div className={styles.logo}>
+        <Image src="/logo_lettering.png" alt="CoderDojo Braga Logo" width={345} height={100} />
+      </div>
+
+      <p className={styles.description}>
+        O CoderDojo Braga integra-se num movimento global, voluntário,
+        sem fins lucrativos e que visa ensinar crianças e jovens dos 7 aos 17 anos a programar.
+      </p>
 
       <div className={styles.grid}>
         {links.map((link) => (

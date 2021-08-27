@@ -3,14 +3,14 @@
     "name": "Facebook",
     "tag": "facebook",
     "url": "https://facebook.com",
-    "username": "cesiuminho"
+    "username": "coderdojobraga"
   },
 
   {
     "name": "Instagram",
     "tag": "instagram",
     "url": "https://instagram.com",
-    "username": "cesiuminho"
+    "username": "coderdojobraga"
   },
 
   {
@@ -24,6 +24,6 @@
     "name": "GitHub",
     "tag": "github",
     "url": "https://github.com",
-    "username": "cesium"
+    "username": "coderdojobraga"
   }
 ]

@@ -16,7 +16,8 @@
 
 .title,
 .description {
-  margin: 0.3rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
@@ -30,7 +31,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 1050px;
+  max-width: 1050px; 
 }
 
 @media (max-width: 1050px) {
@@ -39,5 +40,253 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+}
+
+.logo {
+  margin-top: 2rem;
+}
+
+@media (min-width: 1050px) {
+  .rectangle {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2360px;
+    z-index: -1;
+  }
+
+  .rectangle::after {
+    overflow: hidden;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 28%;
+    background-color: #343434;
+    transform: translate(0%, 1375px);
+    z-index: -3;
+  }
+
+  .curve {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2380px;
+    z-index: -1;
+  }
+
+  .curve::before {
+    overflow: hidden;
+    content: "";
+    display: block;
+    position: absolute;
+    border-bottom-right-radius: 9999px;
+    width: 115%;
+    height: 30%;
+    background-color: white;
+    transform: translate(0%, 1342px);
+    z-index: -1;
+  }
+
+  .curve::after {
+    overflow: hidden;
+    content: "";
+    display: block;
+    position: absolute;
+    border-top-left-radius: 9999px;
+    width: 115%;
+    height: 28%;
+    background-color: #343434;
+    transform: translate(-13%, 2055px);
+    z-index: -2;
+  }
+
+  .base {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2360px;
+    z-index: -1;
+  }
+
+  .base::after {
+    overflow: hidden;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 260px;
+    background-color: #343434;
+    transform: translate(0%, 2700px);
+    z-index: -4;
+  }
+}
+
+@media (min-width: 1280px) {
+  .rectangle {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2360px;
+    z-index: -1;
+  }
+
+  .rectangle::after {
+    overflow: hidden;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 28%;
+    background-color: #343434;
+    transform: translate(0%, 1385px);
+    z-index: -3;
+  }
+
+  .curve {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2380px;
+    z-index: -1;
+  }
+
+  .curve::before {
+    overflow: hidden;
+    content: "";
+    display: block;
+    position: absolute;
+    border-bottom-right-radius: 9999px;
+    width: 100%;
+    height: 28%;
+    background-color: white;
+    transform: translate(0%, 1400px);
+    z-index: -1;
+  }
+
+  .curve::after {
+    overflow: hidden;
+    content: "";
+    display: block;
+    position: absolute;
+    border-top-left-radius: 9999px;
+    width: 100%;
+    height: 28%;
+    background-color: #343434;
+    transform: translate(0%, 2065px);
+    z-index: -2;
+  }
+
+  .base {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2360px;
+    z-index: -1;
+  }
+
+  .base::after {
+    overflow: hidden;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    background-color: #343434;
+    transform: translate(0%, 2710px);
+    z-index: -4;
+  }
+}
+
+@media (min-width: 1536px) {
+  .rectangle {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2360px;
+    z-index: -1;
+  }
+
+  .rectangle::after {
+    overflow: hidden;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 28%;
+    background-color: #343434;
+    transform: translate(0%, 1420px);
+    z-index: -3;
+  }
+
+  .curve {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2380px;
+    z-index: -1;
+  }
+
+  .curve::before {
+    overflow: hidden;
+    content: "";
+    display: block;
+    position: absolute;
+    border-bottom-right-radius: 9999px;
+    width: 100%;
+    height: 28%;
+    background-color: white;
+    transform: translate(0%, 1435.5px);
+    z-index: -1;
+  }
+
+  .curve::after {
+    overflow: hidden;
+    content: "";
+    display: block;
+    position: absolute;
+    border-top-left-radius: 9999px;
+    width: 100%;
+    height: 28%;
+    background-color: #343434;
+    transform: translate(0%, 2101px);
+    z-index: -2;
+  }
+
+  .base {
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2360px;
+    z-index: -1;
+  }
+
+  .base::after {
+    overflow: hidden;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 270px;
+    background-color: #343434;
+    transform: translate(0%, 2747px);
+    z-index: -4;
   }
 }

@@ -1,10 +1,10 @@
 @value colors: "../../styles/colors.css";
-@value orange from colors;
+@value purple from colors;
+@value dark from colors;
 
 .footer {
   width: 100%;
-  height: 150px;
-  border-top: 1px solid #eaeaea;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,15 +16,25 @@
 }
 
 .footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: dark;
+    font-size: 1rem;
+}
+
+@media (min-width: 1050px) {
+  .footer a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1rem;
+  }
 }
 
 .social {
-  margin: 1em;
+  margin: 0.75em;
 }
 
 .social a {
@@ -33,18 +43,17 @@
 }
 
 .footer a:hover {
-  color: black;
+  color: purple;
 }
 
 .social a:hover {
-  color: orange;
+  color: purple;
 }
 
 .copyright {
-  margin: 1em;
 }
 
 .heart {
   margin: 0 0.2em;
-  color: orange;
+  color: purple;
 }
