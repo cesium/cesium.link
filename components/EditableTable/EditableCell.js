@@ -1,4 +1,4 @@
-import { Input, InputNumber, Form } from 'antd';
+import { Input, InputNumber, Checkbox, Form } from 'antd';
 
 const EditableCell = ({
   editing,
@@ -9,7 +9,8 @@ const EditableCell = ({
   children,
   ...restProps
 }) => {
-  const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+  const inputNode =
+    inputType === 'checkbox' ? <Checkbox /> : inputType === 'number' ? <InputNumber /> : <Input />;
 
   return (
     <td {...restProps}>
@@ -19,6 +20,7 @@ const EditableCell = ({
           style={{
             margin: 0
           }}
+          {...(inputType == 'checkbox' && { valuePropName: 'checked' })}
           rules={[
             {
               required: required,

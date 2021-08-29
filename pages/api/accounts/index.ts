@@ -3,7 +3,7 @@ import pick from 'lodash/pick';
 import withAuth from '~/lib/auth';
 import { NextIronRequest } from '~/lib/session';
 import dbConnect from '~/lib/database';
-import Link, { ILink } from '~/models/Link';
+import Account, { IAccount } from '~/models/Account';
 
 type Error = {
   success: false;
@@ -14,12 +14,18 @@ type Error = {
 
 type Success = {
   success: true;
-  data: ILink | ILink[];
+  data: IAccount | IAccount[];
 };
 
 type Response = Success | Error;
 
 export default withAuth(async (req: NextIronRequest, res: NextApiResponse<Response>) => {
+  const currentUser = req.session.get('currentUser');
+
+  if (!currentUser.admin) {
+    return res.status(403).end();
+  }
+
   const { method } = req;
 
   await dbConnect();
@@ -27,17 +33,20 @@ export default withAuth(async (req: NextIronRequest, res: NextApiResponse<Respon
   switch (method) {
     case 'GET':
       try {
-        const links = await Link.find({}).sort({ index: 'asc' });
-        res.status(200).json({ success: true, data: links });
+        const accounts = await Account.find({}).select('-password').sort({ index: 'asc' });
+
+        res.status(200).json({ success: true, data: accounts });
       } catch (error) {
         res.status(400).json({ success: false, error: { message: error.message } });
       }
       break;
     case 'POST':
       try {
-        const params = pick(req.body, ['title', 'url', 'emoji', 'attention', 'index', 'slug']);
-        const link = await Link.create(params);
-        res.status(201).json({ success: true, data: link });
+        const params = pick(req.body, ['name', 'email', 'password', 'admin']);
+
+        const account = await Account.create(params);
+
+        res.status(201).json({ success: true, data: account });
       } catch (error) {
         res.status(400).json({ success: false, error: { message: error.message } });
       }

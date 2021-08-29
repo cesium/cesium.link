@@ -1,0 +1,27 @@
+.layout {
+  height: 100vh;
+}
+
+.content {
+  width: 100%;
+  margin: 15vh auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  margin: 50px auto;
+  max-width: 350px;
+}
+
+.login-form-forgot {
+  float: right;
+}
+
+.submit {
+  width: 100%;
+}

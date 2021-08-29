@@ -2,7 +2,7 @@ import type { NextApiResponse } from 'next';
 import withAuth from '~/lib/auth';
 import { NextIronRequest } from '~/lib/session';
 import dbConnect from '~/lib/database';
-import Redirect, { IRedirect } from '~/models/Redirect';
+import Account, { IAccount } from '~/models/Account';
 
 type Error = {
   success: false;
@@ -13,25 +13,25 @@ type Error = {
 
 type Success = {
   success: true;
-  data?: IRedirect;
+  data?: IAccount;
 };
 
 type Response = Success | Error;
 
 export default withAuth(async (req: NextIronRequest, res: NextApiResponse<Response>) => {
+  const currentUser = req.session.get('currentUser');
+
+  if (!currentUser.admin) {
+    return res.status(403).end();
+  }
+
   const {
-    query: { slug },
+    query: { id },
     method
   } = req;
 
-  if (Array.isArray(slug)) {
-    return res
-      .status(400)
-      .json({ success: false, error: { message: "Slug field can't be a list" } });
-  }
-
-  if (!slug) {
-    return res.status(400).json({ success: false, error: { message: 'Slug field is mandatory' } });
+  if (Array.isArray(id)) {
+    return res.status(400).json({ success: false, error: { message: "ID field can't be a list" } });
   }
 
   await dbConnect();
@@ -39,12 +39,13 @@ export default withAuth(async (req: NextIronRequest, res: NextApiResponse<Respon
   switch (method) {
     case 'GET':
       try {
-        const redirect: IRedirect = await Redirect.findOne({ slug });
+        const account = await Account.findById(id).select('-password');
 
-        if (!redirect) {
-          return res.status(404).json({ success: false, error: { message: 'Redirect not found' } });
+        if (!account) {
+          return res.status(404).json({ success: false, error: { message: 'Account not found' } });
         }
-        res.status(200).json({ success: true, data: redirect });
+
+        res.status(200).json({ success: true, data: account });
       } catch (error) {
         res.status(400).json({ success: false, error: { message: error.message } });
       }
@@ -52,18 +53,20 @@ export default withAuth(async (req: NextIronRequest, res: NextApiResponse<Respon
 
     case 'PUT':
       try {
-        const redirect: IRedirect = await Redirect.findOneAndUpdate(
-          { slug },
+        const account = await Account.findByIdAndUpdate(
+          id,
           { ...req.body, updated: Date.now() },
           {
             new: true,
             runValidators: true
           }
-        );
-        if (!redirect) {
-          return res.status(404).json({ success: false, error: { message: 'Redirect not found' } });
+        ).select('-password');
+
+        if (!account) {
+          return res.status(404).json({ success: false, error: { message: 'Account not found' } });
         }
-        res.status(200).json({ success: true, data: redirect });
+
+        res.status(200).json({ success: true, data: account });
       } catch (error) {
         res.status(400).json({ success: false, error: { message: error.message } });
       }
@@ -71,11 +74,17 @@ export default withAuth(async (req: NextIronRequest, res: NextApiResponse<Respon
 
     case 'DELETE':
       try {
-        const deleted = await Redirect.deleteOne({ slug });
+        if (currentUser.id == id) {
+          return res
+            .status(403)
+            .json({ success: false, error: { message: 'Cannot delete own account' } });
+        }
+
+        const deleted = await Account.deleteOne({ _id: id });
         if (!deleted) {
           return res
             .status(400)
-            .json({ success: false, error: { message: 'Form could not be deleted' } });
+            .json({ success: false, error: { message: 'Account could not be deleted' } });
         }
         res.status(200).json({ success: true });
       } catch (error) {

@@ -1,5 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { withApiAuthRequired } from '@auth0/nextjs-auth0';
+import type { NextApiResponse } from 'next';
+import withAuth from '~/lib/auth';
+import { NextIronRequest } from '~/lib/session';
 import dbConnect from '~/lib/database';
 import Redirect, { IRedirect } from '~/models/Redirect';
 
@@ -17,7 +18,7 @@ type Success = {
 
 type Response = Success | Error;
 
-export default withApiAuthRequired(async (req: NextApiRequest, res: NextApiResponse<Response>) => {
+export default withAuth(async (req: NextIronRequest, res: NextApiResponse<Response>) => {
   const { method } = req;
 
   await dbConnect();

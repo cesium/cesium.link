@@ -1,5 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { withApiAuthRequired } from '@auth0/nextjs-auth0';
+import type { NextApiResponse } from 'next';
+import pick from 'lodash/pick';
+import withAuth from '~/lib/auth';
+import { NextIronRequest } from '~/lib/session';
 import dbConnect from '~/lib/database';
 import Form, { IForm } from '~/models/Form';
 
@@ -17,7 +19,7 @@ type Success = {
 
 type Response = Success | Error;
 
-export default withApiAuthRequired(async (req: NextApiRequest, res: NextApiResponse<Response>) => {
+export default withAuth(async (req: NextIronRequest, res: NextApiResponse<Response>) => {
   const { method } = req;
 
   await dbConnect();
@@ -33,7 +35,10 @@ export default withApiAuthRequired(async (req: NextApiRequest, res: NextApiRespo
       break;
     case 'POST':
       try {
-        const form: IForm = await Form.create(req.body);
+        const params = pick(req.body, ['name', 'slug', 'url']);
+
+        const form = await Form.create(params);
+
         res.status(201).json({ success: true, data: form });
       } catch (error) {
         res.status(400).json({ success: false, error: { message: error.message } });

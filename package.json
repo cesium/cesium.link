@@ -1,6 +1,6 @@
 {
-  "name": "cesium.link",
-  "version": "2.0.0-beta",
+  "name": "linker",
+  "version": "1.0.0-beta",
   "private": true,
   "scripts": {
     "develop": "npm-run-all dev",
@@ -19,14 +19,16 @@
     "test:format": "prettier --check . --ignore-path .gitignore"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.6.2",
-    "@auth0/nextjs-auth0": "^1.4.2",
+    "@ant-design/icons": "^4.6.4",
     "animate.css": "^4.1.1",
     "antd": "^4.16.6",
+    "argon2": "^0.28.2",
+    "lodash": "^4.17.21",
     "luxon": "^1.27.0",
-    "mongoose": "^5.13.2",
+    "mongoose": "^6.0.2",
     "nanoid": "^3.1.23",
-    "next": "^11.1.0",
+    "next": "^11.0.1",
+    "next-iron-session": "^4.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-emoji-render": "^1.2.4",
@@ -36,7 +38,7 @@
   },
   "devDependencies": {
     "@types/mongoose": "^5.11.97",
-    "@types/react": "^17.0.15",
+    "@types/react": "^17.0.19",
     "eslint": "^7.30.0",
     "eslint-config-next": "^11.0.1",
     "eslint-config-prettier": "^8.3.0",
@@ -47,6 +49,6 @@
     "stylelint-config-css-modules": "^2.2.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^20.0.0",
-    "typescript": "^4.3.5"
+    "typescript": "^4.4.2"
   }
 }

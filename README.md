@@ -2,9 +2,9 @@
 [code_of_conduct]: CODE_OF_CONDUCT.md
 [license]: LICENSE.txt
 
-# cesium.link
+# CoderDojo Braga's Linker
 
-> :link: Mapping CeSIUM's website to shorter urls
+> :link: CoderDojo Braga's feature links
 
 ## :rocket: Getting Started
 
@@ -15,7 +15,7 @@ local machine for development and testing purposes.
 
 The following software is required to be installed on your system:
 
-- [Node.js 15.7+](https://nodejs.org/en/download/)
+- [Node.js 14.17+](https://nodejs.org/en/download/)
 
   Install all dependencies using `npm install`.
 

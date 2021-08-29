@@ -16,11 +16,11 @@
 }
 
 .footer a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: dark;
-    font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: dark;
+  font-size: 1rem;
 }
 
 @media (min-width: 1050px) {

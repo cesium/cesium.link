@@ -22,6 +22,12 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
     method
   } = req;
 
+  if (Array.isArray(slug)) {
+    return res
+      .status(400)
+      .json({ success: false, error: { message: "Slug field can't be a list" } });
+  }
+
   await dbConnect();
 
   switch (method) {

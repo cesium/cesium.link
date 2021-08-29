@@ -25,7 +25,6 @@ export const getStaticProps: GetStaticProps = async () => {
 export default function Home({ links }: { links: ILink[] }) {
   return (
     <Layout title="CoderDojo Braga">
-
       <div>
         <div className={styles.rectangle} />
         <div className={styles.curve} />
@@ -37,8 +36,8 @@ export default function Home({ links }: { links: ILink[] }) {
       </div>
 
       <p className={styles.description}>
-        O CoderDojo Braga integra-se num movimento global, voluntário,
-        sem fins lucrativos e que visa ensinar crianças e jovens dos 7 aos 17 anos a programar.
+        O CoderDojo Braga integra-se num movimento global, voluntário, sem fins lucrativos e que
+        visa ensinar crianças e jovens dos 7 aos 17 anos a programar.
       </p>
 
       <div className={styles.grid}>

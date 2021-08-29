@@ -15,7 +15,7 @@ export const reducer = async (redirects, action) => {
       response = await API.post('/api/redirects', redirect);
       return [...redirects, response.data.data];
     case 'UPDATE':
-      response = await API.put(`/api/redirects/${slug}`, form);
+      response = await API.put(`/api/redirects/${slug}`, redirect);
       return redirects.map((item) => (item._id === id ? { ...item, ...response.data.data } : item));
     case 'DELETE':
       await API.delete(`/api/redirects/${slug}`);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLinks } from '../Context';
+import { useLinks } from '~/components/Admin/Context';
 import { Checkbox, Table, Typography, notification } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { Twemoji } from 'react-emoji-render';

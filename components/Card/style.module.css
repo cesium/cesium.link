@@ -11,15 +11,20 @@
   color: white;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  background-image: linear-gradient(to right, blueviolet 0%, purple 51%, purple  100%);
+  background-image: linear-gradient(to right, blueviolet 0%, purple 51%, purple 100%);
 }
 
 .card:hover,
 .card:focus,
 .card:active {
   background-image: linear-gradient(to left, blueviolet 0%);
+
   --tw-shadow: 0 10px 15px 5px rgba(0, 0, 0, 0.1), 0 4px 6px 5px rgba(0, 0, 0, 0.05);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+
+  box-shadow:
+    var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
 }
 
 .card h3 {

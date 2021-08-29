@@ -1,27 +1,28 @@
 import { useEffect, useState } from 'react';
-import { Form, Typography, notification } from 'antd';
+import { Avatar, Checkbox, Form, Typography, notification } from 'antd';
 import { DateTime } from 'luxon';
+import { getNameInitials, getHexColor } from '~/lib/strings';
 import useAsyncReducer from '~/hooks/useAsyncReducer';
 import { EditingContext, reducer as reducerEditing } from './Context';
 import EditableTable from '~/components/EditableTable';
-import { useForms } from '~/components/Admin/Context';
+import { useAccounts } from '~/components/Admin/Context';
 import Actions from './Actions';
-import NewForm from './NewForm';
+import NewAccount from './NewAccount';
 
 import API from '~/lib/api';
 
-function FormsTable() {
+function AccountsTable() {
   const [loading, setLoading] = useState(true);
-  const { forms, dispatch } = useForms();
+  const { accounts, dispatch } = useAccounts();
   const [form] = Form.useForm();
   const [editing, dispatchEditing] = useAsyncReducer(reducerEditing, { key: '', form: form });
 
   const isEditing = (record) => record._id === editing.key;
 
   useEffect(() => {
-    API.get('/api/forms')
+    API.get('/api/accounts')
       .then((response) => {
-        dispatch({ type: 'INIT', forms: response.data.data });
+        dispatch({ type: 'INIT', accounts: response.data.data });
         setLoading(false);
       })
       .catch((error) => {
@@ -35,45 +36,39 @@ function FormsTable() {
 
   const columns = [
     {
-      title: 'Name',
-      editable: true,
-      required: false,
-      width: 250,
-      dataIndex: 'name'
-    },
-    {
-      title: 'Slug',
-      editable: true,
-      width: 175,
-      dataIndex: 'slug'
-    },
-    {
-      title: 'URL',
-      editable: true,
-      dataIndex: 'url',
-      render: function Url(url) {
-        return <a href={url}>{url}</a>;
-      }
-    },
-    {
-      title: 'Link',
-      editable: false,
-      width: 300,
-      dataIndex: 'link',
-      render: function UrlLink(link) {
+      title: 'Photo',
+      width: 50,
+      render: function Photo(_, record) {
         return (
-          <Typography.Link href={link} copyable>
-            {link}
-          </Typography.Link>
+          <Avatar style={{ backgroundColor: getHexColor(record.name) }}>
+            {getNameInitials(record.name)}
+          </Avatar>
         );
       }
     },
     {
-      title: 'Visits',
-      editable: false,
+      title: 'Name',
+      editable: true,
+      required: false,
+      width: 350,
+      dataIndex: 'name'
+    },
+    {
+      title: 'Admin',
+      editable: true,
+      inputType: 'checkbox',
       align: 'center',
-      width: 40,
-      dataIndex: 'visits'
+      width: 30,
+      dataIndex: 'admin',
+      render: function Admin(state) {
+        return <Checkbox checked={state} disabled={true} />;
+      }
+    },
+    {
+      title: 'Email',
+      editable: true,
+      width: 475,
+      dataIndex: 'email'
     },
     {
       title: 'Last edited',
@@ -100,20 +95,20 @@ function FormsTable() {
     <EditingContext.Provider value={{ editing, dispatch: dispatchEditing }}>
       <EditableTable
         loading={loading}
-        rowKey="slug"
+        rowKey="_id"
         isEditing={isEditing}
         columns={columns}
-        dataSource={forms}
+        dataSource={accounts}
         bordered
         form={form}
         pagination={{
           onChange: () => dispatchEditing({ type: 'CANCEL' }),
           position: ['bottomCenter']
         }}
-        footer={() => <NewForm />}
+        footer={() => <NewAccount />}
       />
     </EditingContext.Provider>
   );
 }
 
-export default FormsTable;
+export default AccountsTable;
