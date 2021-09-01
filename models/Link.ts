@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import { nanoid } from 'nanoid';
+import { APP_URL }from '~/lib/api';
 
 export interface ILink {
   _id: string;
@@ -32,7 +33,7 @@ const Link = new Schema<ILink>(
 );
 
 Link.virtual('link').get(function () {
-  return `${process.env.NEXT_PUBLIC_APP_URL}/u/${this.slug}`;
+  return `${APP_URL}/u/${this.slug}`;
 });
 
 export default mongoose.models.Link || mongoose.model('Link', Link);

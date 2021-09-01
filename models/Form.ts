@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import { APP_URL }from '~/lib/api';
 
 export interface IForm {
   _id: string;
@@ -27,7 +28,7 @@ const Form = new Schema<IForm>(
 );
 
 Form.virtual('link').get(function () {
-  return `${process.env.NEXT_PUBLIC_APP_URL}/f/${this.slug}`;
+  return `${APP_URL}/f/${this.slug}`;
 });
 
 export default mongoose.models.Form || mongoose.model('Form', Form);

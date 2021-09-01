@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import { nanoid } from 'nanoid';
+import { APP_URL }from '~/lib/api';
 
 export interface IRedirect {
   _id: string;
@@ -28,7 +29,7 @@ const Redirect = new Schema<IRedirect>(
 );
 
 Redirect.virtual('link').get(function () {
-  return `${process.env.NEXT_PUBLIC_APP_URL}/r/${this.slug}`;
+  return `${APP_URL}/r/${this.slug}`;
 });
 
 export default mongoose.models.Redirect || mongoose.model('Redirect', Redirect);
