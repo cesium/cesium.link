@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import { nanoid } from 'nanoid';
-import { APP_URL }from '~/lib/api';
+import { APP_URL } from '~/lib/api';
 
 export interface ILink {
   _id: string;

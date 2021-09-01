@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { APP_URL }from '~/lib/api';
+import { APP_URL } from '~/lib/api';
 
 export interface IForm {
   _id: string;
