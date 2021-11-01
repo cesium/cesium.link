@@ -7,7 +7,7 @@ import { domain } from '~/data/settings.json';
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { redirect } = params;
 
-  const response = await API.get(`/api/r/${redirect}/url`)
+  const response = await API.get(`/api/redirects/${redirect}/url`)
     .then((response) => {
       return response;
     })
