@@ -63,7 +63,7 @@ to us.
 
 <img src=".github/brand/cesium.svg" width="300">
 
-Copyright (c) 2022, CeSIUM.
+Copyright (c) 2020, CeSIUM.
 
 This project is licensed under the MIT License - see the [LICENSE][license]
 file for details.
