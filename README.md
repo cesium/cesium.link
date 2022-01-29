@@ -61,8 +61,8 @@ to us.
 
 ## :memo: License
 
-<img src=".github/brand/cesium-B-lettering.svg#gh-light-mode-only" width="300">
-<img src=".github/brand/cesium-W-lettering.svg#gh-dark-mode-only" width="300">
+<img src=".github/brand/cesium-DARK.svg#gh-light-mode-only" width="300">
+<img src=".github/brand/cesium-LIGHT.svg#gh-dark-mode-only" width="300">
 
 Copyright (c) 2020, CeSIUM.
 
