@@ -15,7 +15,7 @@ local machine for development and testing purposes.
 
 The following software is required to be installed on your system:
 
-- [Node.js 15.7+](https://nodejs.org/en/download/)
+- [Node.js 16.13+](https://nodejs.org/en/download/)
 
   Install all dependencies using `npm install`.
 
