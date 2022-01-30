@@ -31,17 +31,13 @@ function Navbar({ selected }) {
 
   return (
     <Row justify="space-between">
-      <Col span={12}>
+      <Col flex="auto">
         <Menu selectedKeys={[selected]} mode="horizontal">
           {Object.keys(navbar).map((key) => (
             <Menu.Item key={key} icon={navbar[key].icon}>
               <LinkTo href={`/admin?tab=${key}`}>{navbar[key].title}</LinkTo>
             </Menu.Item>
           ))}
-        </Menu>
-      </Col>
-      <Col>
-        <Menu mode="horizontal">
           <Menu.SubMenu
             className={styles.avatar}
             title={
