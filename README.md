@@ -1,10 +1,14 @@
 [contributing]: CONTRIBUTING.md
 [code_of_conduct]: CODE_OF_CONDUCT.md
 [license]: LICENSE.txt
+[ci-style-status]: https://github.com/cesium/CeSIUMpeloMundo/actions/workflows/style.yml/badge.svg
+[ci-style-workflow]: https://github.com/cesium/CeSIUMpeloMundo/actions/workflows/style.yml
 
 # cesium.link
 
 > :link: Mapping CeSIUM's website to shorter urls
+
+[![CI Style][ci-style-status]][ci-style-workflow]
 
 ## 🤝 Contributing
 
