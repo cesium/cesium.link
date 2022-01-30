@@ -24,7 +24,8 @@ const EditableCell = ({
               required: required,
               message: `Please Input ${title}!`
             }
-          ]}>
+          ]}
+        >
           {inputNode}
         </Form.Item>
       ) : (

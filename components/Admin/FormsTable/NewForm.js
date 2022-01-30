@@ -23,7 +23,8 @@ function NewForm() {
       <Modal title="New Entry" visible={isVisible} onOk={ok} onCancel={() => setVisible(false)}>
         <Form
           form={form}
-          onFinish={(values) => dispatch({ type: 'CREATE', form: values }) && form.resetFields()}>
+          onFinish={(values) => dispatch({ type: 'CREATE', form: values }) && form.resetFields()}
+        >
           <Item
             name="name"
             label={
@@ -39,7 +40,8 @@ function NewForm() {
                 required: true,
                 message: 'Please insert a name.'
               }
-            ]}>
+            ]}
+          >
             <Input placeholder="Nome do Formulário" />
           </Item>
           <Item
@@ -59,7 +61,8 @@ function NewForm() {
                   }
                 }
               }
-            ]}>
+            ]}
+          >
             <Input placeholder="id" />
           </Item>
           <Item
@@ -74,7 +77,8 @@ function NewForm() {
                 type: 'url',
                 message: 'This field must be a valid url.'
               }
-            ]}>
+            ]}
+          >
             <Input placeholder="https://goo.gl/form" />
           </Item>
         </Form>

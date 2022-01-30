@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import { APP_URL } from '~/lib/api';
 
 export interface ILink {
-  _id: string;
+  id: string;
   title: string;
   url: string;
   emoji: string;

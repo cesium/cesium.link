@@ -49,7 +49,8 @@ function Navbar({ selected }) {
                 <Avatar src={user.picture} icon={<UserOutlined />} />
                 <Typography.Text>{user.name}</Typography.Text>
               </Space>
-            }>
+            }
+          >
             <Menu.Item>
               <LinkTo href="/api/auth/logout">logout</LinkTo>
             </Menu.Item>

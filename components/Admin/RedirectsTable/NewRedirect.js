@@ -25,7 +25,8 @@ function NewRedirect() {
           form={form}
           onFinish={(values) =>
             dispatch({ type: 'CREATE', redirect: values }) && form.resetFields()
-          }>
+          }
+        >
           <Item
             name="name"
             label={
@@ -41,7 +42,8 @@ function NewRedirect() {
                 required: true,
                 message: 'Please insert a name.'
               }
-            ]}>
+            ]}
+          >
             <Input placeholder="Title" />
           </Item>
           <Item
@@ -60,7 +62,8 @@ function NewRedirect() {
                   }
                 }
               }
-            ]}>
+            ]}
+          >
             <Input placeholder="slug" />
           </Item>
           <Item
@@ -75,7 +78,8 @@ function NewRedirect() {
                 type: 'url',
                 message: 'This field must be a valid url.'
               }
-            ]}>
+            ]}
+          >
             <Input placeholder="https://goo.gl/form" />
           </Item>
         </Form>
