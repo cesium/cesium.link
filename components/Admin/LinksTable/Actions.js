@@ -23,7 +23,8 @@ function Actions({ record }) {
         visible={isVisible}
         onConfirm={confirmDelete}
         okButtonProps={{ loading: loading }}
-        onCancel={() => setVisible(false)}>
+        onCancel={() => setVisible(false)}
+      >
         <Button onClick={() => setVisible(true)} type="link" danger>
           Delete
         </Button>

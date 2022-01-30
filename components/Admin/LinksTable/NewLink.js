@@ -23,7 +23,8 @@ function NewLink() {
       <Modal title="New Entry" visible={isVisible} onOk={ok} onCancel={() => setVisible(false)}>
         <Form
           form={form}
-          onFinish={(values) => dispatch({ type: 'CREATE', link: values }) && form.resetFields()}>
+          onFinish={(values) => dispatch({ type: 'CREATE', link: values }) && form.resetFields()}
+        >
           <Item
             name="emoji"
             label={
@@ -39,7 +40,8 @@ function NewLink() {
                 required: true,
                 message: 'Please select an emoji.'
               }
-            ]}>
+            ]}
+          >
             <Input defaultValue="" placeholder=":emoji:" />
           </Item>
           <Item
@@ -50,7 +52,8 @@ function NewLink() {
                 required: true,
                 message: 'Please insert a title.'
               }
-            ]}>
+            ]}
+          >
             <Input placeholder="Awesome Link Name" />
           </Item>
           <Item
@@ -65,7 +68,8 @@ function NewLink() {
                 type: 'url',
                 message: 'This field must be a valid url.'
               }
-            ]}>
+            ]}
+          >
             <Input placeholder="https://cesium.link" />
           </Item>
           <Item name="attention" valuePropName="checked">

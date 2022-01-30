@@ -4,6 +4,7 @@ import Layout from '~/components/Layout';
 import Card from '~/components/Card';
 
 import dbConnect from '~/lib/database';
+import { pick } from '~/lib/utils';
 import Link, { ILink } from '~/models/Link';
 
 import styles from '~/styles/Home.module.css';
@@ -14,9 +15,8 @@ export const getStaticProps: GetStaticProps = async () => {
   const result = await Link.find({}).sort({ index: 'asc' });
   const links = result.map((doc) => {
     const link = doc.toObject();
-    link._id = link._id.toString();
-    link.created = link.created.toString();
-    return link;
+
+    return pick(link, ['id', 'emoji', 'title', 'link', 'attention']);
   });
 
   return { props: { links: links }, revalidate: 5 };
@@ -33,7 +33,7 @@ export default function Home({ links }: { links: ILink[] }) {
 
       <div className={styles.grid}>
         {links.map((link) => (
-          <Card key={link._id} {...link} />
+          <Card key={link.id} {...link} />
         ))}
       </div>
     </Layout>

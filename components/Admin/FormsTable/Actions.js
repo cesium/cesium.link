@@ -24,7 +24,8 @@ function DeleteEntry({ record }) {
       visible={isVisible}
       onConfirm={confirm}
       okButtonProps={{ loading: loading }}
-      onCancel={() => setVisible(false)}>
+      onCancel={() => setVisible(false)}
+    >
       <Button onClick={() => setVisible(true)} type="link" danger>
         <DeleteOutlined />
       </Button>
