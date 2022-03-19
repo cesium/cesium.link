@@ -17,7 +17,7 @@
 
 .card:focus,
 .card:active,
-.card:hover{
+.card:hover {
   color: white;
   border-color: white;
   background-color: orange;
