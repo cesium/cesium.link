@@ -4,6 +4,7 @@ import { AdminContextProvider } from '~/components/Admin/Context';
 import FormsTable from '~/components/Admin/FormsTable';
 import LinksTable from '~/components/Admin/LinksTable';
 import RedirectsTable from '~/components/Admin/RedirectsTable';
+import AboutApp from '~/components/Admin/AboutApp';
 import Navbar, { navbar as entries } from '~/components/Admin/Navbar';
 import Footer from '~/components/Footer';
 
@@ -24,6 +25,7 @@ function Admin() {
       {(!tab || tab === 'links') && <LinksTable />}
       {(!tab || tab === 'forms') && <FormsTable />}
       {(!tab || tab === 'redirects') && <RedirectsTable />}
+      {(!tab || tab === 'about') && <AboutApp />}
       <Footer />
     </AdminContextProvider>
   );

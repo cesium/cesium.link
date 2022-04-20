@@ -1,6 +1,14 @@
 {
   "name": "cesium.link",
+  "description": "Mapping CeSIUM's website to shorter urls",
   "version": "2.0.0-beta",
+  "license": "MIT",
+  "homepage": "https://cesium.link",
+  "bugs": "https://github.com/cesium/cesium.link/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cesium/cesium.link"
+  },
   "private": true,
   "scripts": {
     "develop": "npm-run-all dev",
@@ -26,7 +34,7 @@
     "luxon": "^2.3.0",
     "mongoose": "^6.1.8",
     "nanoid": "^3.2.0",
-    "next": "^12.0.9",
+    "next": "^12.1.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-emoji-render": "^1.2.4",
