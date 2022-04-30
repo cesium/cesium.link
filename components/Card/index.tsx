@@ -6,6 +6,7 @@ import styles from './style.module.css';
 
 const Card = ({ title, emoji, link, attention }: ILink) => (
   <a href={link} className={styles.card}>
+    <div className={styles.underline} />
     <h3 className={attention ? 'animate__animated animate__shakeX animate__delay-2s' : undefined}>
       <Twemoji svg text={`${emoji} ${title}`} />
     </h3>
