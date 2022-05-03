@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import LinkTo from '~/components/LinkTo';
 import { Avatar, Col, Menu, Row, Space, Typography } from 'antd';
 import {
+  InboxOutlined,
+  FormOutlined,
   InfoCircleOutlined,
   LinkOutlined,
-  FormOutlined,
   TagsOutlined,
   UserOutlined
 } from '@ant-design/icons';
@@ -25,6 +26,10 @@ export const navbar = {
   redirects: {
     icon: <LinkOutlined />,
     title: 'Redirects'
+  },
+  archived: {
+    icon: <InboxOutlined />,
+    title: 'Archive'
   },
   about: {
     icon: <InfoCircleOutlined />,

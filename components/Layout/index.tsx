@@ -3,7 +3,12 @@ import Footer from '../Footer';
 
 import styles from './style.module.css';
 
-const Layout = ({ children, title }) => (
+interface LayoutProps {
+  children: React.ReactNode;
+  title: string;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children, title }) => (
   <div className={styles.container}>
     <Head>
       <title>{title}</title>

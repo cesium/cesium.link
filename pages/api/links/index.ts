@@ -18,15 +18,24 @@ type Success = {
 type Response = Success | Error;
 
 export default withApiAuthRequired(async (req: NextApiRequest, res: NextApiResponse<Response>) => {
-  const { method } = req;
+  const { method, query } = req;
 
   await dbConnect();
 
   switch (method) {
     case 'GET':
       try {
-        const links = await Link.find({}).sort({ index: 'asc' });
-        res.status(200).json({ success: true, data: links });
+        const { status } = query;
+
+        if (status === 'archived') {
+          const links = await Link.find({ $or: [{ archived: true }] }).sort({ index: 'asc' });
+          res.status(200).json({ success: true, data: links });
+        } else {
+          const links = await Link.find({
+            $or: [{ archived: false }, { archived: { $exists: false } }]
+          }).sort({ index: 'asc' });
+          res.status(200).json({ success: true, data: links });
+        }
       } catch (error) {
         res.status(400).json({ success: false, error: { message: error.message } });
       }

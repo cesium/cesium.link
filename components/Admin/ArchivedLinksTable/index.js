@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useLinks } from '../Context';
+import { useArchivedLinks } from '../Context';
 import { Checkbox, Table, Typography, notification } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import { Twemoji } from 'react-emoji-render';
 import { sortableContainer, sortableElement, sortableHandle } from 'react-sortable-hoc';
 import Actions from './Actions';
-import NewLink from './NewLink';
 
 import API from '~/lib/api';
 import styles from './style.module.css';
@@ -88,7 +87,7 @@ const SortableItem = sortableElement((props) => <tr {...props} />);
 const SortableContainer = sortableContainer((props) => <tbody {...props} />);
 
 const DraggableContainer = (props) => {
-  const { dispatch } = useLinks();
+  const { dispatch } = useArchivedLinks();
 
   return (
     <SortableContainer
@@ -104,21 +103,21 @@ const DraggableContainer = (props) => {
 };
 
 const DraggableBodyRow = ({ ...restProps }) => {
-  const { links } = useLinks();
+  const { archived } = useArchivedLinks();
   // function findIndex base on Table rowKey props and should always be a right array index
-  const index = links.findIndex((x) => x.index === restProps['data-row-key']);
+  const index = archived.findIndex((x) => x.index === restProps['data-row-key']);
   return <SortableItem index={index} {...restProps} />;
 };
 
-function LinksTable() {
+function ArchivedarchivedTable() {
   const [loading, setLoading] = useState(true);
-  const { links, dispatch } = useLinks();
+  const { archived, dispatch } = useArchivedLinks();
 
   useEffect(() => {
-    API.get('/api/links')
+    API.get('/api/links?status=archived')
       .then((response) => {
         console.log(response.data.data);
-        dispatch({ type: 'INIT', links: response.data.data });
+        dispatch({ type: 'INIT', archived: response.data.data });
         setLoading(false);
       })
       .catch((error) => {
@@ -135,7 +134,7 @@ function LinksTable() {
       loading={loading}
       rowKey="index"
       columns={columns}
-      dataSource={links}
+      dataSource={archived}
       bordered
       pagination={false}
       components={{
@@ -144,9 +143,8 @@ function LinksTable() {
           row: DraggableBodyRow
         }
       }}
-      footer={() => <NewLink />}
     />
   );
 }
 
-export default LinksTable;
+export default ArchivedarchivedTable;
