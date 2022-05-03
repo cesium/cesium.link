@@ -10,7 +10,7 @@ local machine for development and testing purposes.
 
 The following software is required to be installed on your system:
 
-- [Node.js 16.13+](https://nodejs.org/en/download/)
+- [Node.js 16.15+](https://nodejs.org/en/download/)
 
 We recommend using [asdf version manager][asdf-vm] to install and manage all the
 programming languages' requirements.
@@ -67,4 +67,5 @@ You can use these resources to learn more about the technologies this project
 uses.
 
 - [Getting Started with React](https://reactjs.org/docs/getting-started.html)
-- [Learn Next.js](https://nextjs.org/learn).
+- [Learn Next.js](https://nextjs.org/learn)
+- [Ant Design Components Overview](https://ant.design/components/overview/)
