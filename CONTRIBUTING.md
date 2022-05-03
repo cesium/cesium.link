@@ -1,4 +1,5 @@
 [asdf-vm]: https://asdf-vm.com/
+[auth0-docs]: https://auth0.com/docs/get-started/auth0-overview/create-applications
 
 # 🚀 Getting Started
 
@@ -13,6 +14,12 @@ The following software is required to be installed on your system:
 
 We recommend using [asdf version manager][asdf-vm] to install and manage all the
 programming languages' requirements.
+
+## 👽 Third-party dependencies
+
+This project uses the [Auth0](https://auth0.com/) for authentication and
+authorization (with a custom javascript script). You need to create an App for
+a SPA to interact with it in development [here][auth0-docs].
 
 ## 🔧 Setup
 
