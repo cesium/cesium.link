@@ -7,7 +7,7 @@ import {
   IoHeart
 } from 'react-icons/io5';
 
-import { domain } from '~/data/settings.json';
+import settings from '~/data/settings.json';
 import social from '~/data/social.json';
 
 import styles from './style.module.css';
@@ -45,7 +45,7 @@ const Footer = () => (
       ))}
     </div>
     <div className={styles.copyright}>
-      <a href={domain} target="_blank" rel="noopener noreferrer">
+      <a href={settings.domain} target="_blank" rel="noopener noreferrer">
         hacked with <IoHeart className={styles.heart} size="1.2em" /> by
         <Image width={84} height={24} src={logo} alt="CeSIUM's Logo" />
       </a>
