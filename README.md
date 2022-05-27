@@ -1,8 +1,8 @@
 [contributing]: CONTRIBUTING.md
 [code_of_conduct]: CODE_OF_CONDUCT.md
 [license]: LICENSE.txt
-[ci-style-status]: https://github.com/cesium/CeSIUMpeloMundo/actions/workflows/style.yml/badge.svg
-[ci-style-workflow]: https://github.com/cesium/CeSIUMpeloMundo/actions/workflows/style.yml
+[ci-style-status]: https://github.com/cesium/cesium.link/actions/workflows/style.yml/badge.svg
+[ci-style-workflow]: https://github.com/cesium/cesium.link/actions/workflows/style.yml
 
 # cesium.link
 
