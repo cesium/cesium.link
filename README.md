@@ -4,11 +4,14 @@
 [ci-style-status]: https://github.com/cesium/cesium.link/actions/workflows/style.yml/badge.svg
 [ci-style-workflow]: https://github.com/cesium/cesium.link/actions/workflows/style.yml
 
-# cesium.link
-
-> :link: Mapping CeSIUM's website to shorter urls
+<h1 align="center">
+  <img src=".github/brand/cesium-link-DARK.svg#gh-light-mode-only" width="500">
+  <img src=".github/brand/cesium-link-LIGHT.svg#gh-dark-mode-only" width="500">
+</h1>
 
 [![CI Style][ci-style-status]][ci-style-workflow]
+
+> :link: Mapping CeSIUM's website to shorter urls
 
 ## 🤝 Contributing
 
