@@ -16,8 +16,8 @@ export const reducer = async (links, action) => {
       link.index = links.length == 0 ? 0 : links[links.length - 1].index + 1;
       response = await API.post('/api/links', link);
       return [...links, response.data.data];
-    case 'DELETE':
-      await API.delete(`/api/links/${action.id}`);
+    case 'ARCHIVE':
+      await API.put(`/api/links/${action.id}`, { ...link, archived: true });
       return links.filter((link) => link._id !== action.id);
     case 'UPDATE':
       return links;

@@ -3,32 +3,17 @@ import { useLinks } from '../Context';
 import { Space, Popconfirm, Button } from 'antd';
 
 function Actions({ record }) {
-  const [isVisible, setVisible] = useState(false);
-  const [loading, setLoading] = useState(false);
   const { dispatch } = useLinks();
 
-  const confirmDelete = () => {
-    setLoading(true);
-    dispatch({ type: 'DELETE', id: record._id, index: record.index });
-    setVisible(false);
-    setLoading(false);
+  const archiveLink = () => {
+    dispatch({ type: 'ARCHIVE', id: record._id, link: record });
   };
 
   return (
     <Space size="middle">
-      <Popconfirm
-        title="Are you sure?"
-        okText="Yes"
-        cancelText="No"
-        visible={isVisible}
-        onConfirm={confirmDelete}
-        okButtonProps={{ loading: loading }}
-        onCancel={() => setVisible(false)}
-      >
-        <Button onClick={() => setVisible(true)} type="link" danger>
-          Delete
-        </Button>
-      </Popconfirm>
+      <Button onClick={() => archiveLink()} type="link" danger>
+        Archive
+      </Button>
     </Space>
   );
 }

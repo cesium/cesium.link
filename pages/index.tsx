@@ -12,7 +12,11 @@ import styles from '~/styles/Home.module.css';
 export const getStaticProps: GetStaticProps = async () => {
   await dbConnect();
 
-  const result = await Link.find({}).sort({ index: 'asc' });
+  const result = await Link.find({
+    $or: [{ archived: false }, { archived: { $exists: false } }]
+  }).sort({
+    index: 'asc'
+  });
   const links = result.map((doc) => {
     const link = doc.toObject();
 

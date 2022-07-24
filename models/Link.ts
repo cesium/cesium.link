@@ -12,6 +12,7 @@ export interface ILink {
   slug: string;
   link: string;
   clicks: number;
+  archived: boolean;
   created: Date;
 }
 
@@ -24,6 +25,7 @@ const Link = new Schema<ILink>(
     index: { type: Number, required: true, index: true },
     slug: { type: String, unique: true, index: true, required: true, default: () => nanoid(10) },
     clicks: { type: Number, default: 0 },
+    archived: { type: Boolean, default: false },
     created: { type: Date, default: Date.now }
   },
   {

@@ -1,0 +1,13 @@
+.dragging {
+  background: #fafafa;
+  border: 1px solid #ccc;
+}
+
+.dragging td {
+  padding: 16px;
+  visibility: hidden;
+}
+
+.dragging .visible {
+  visibility: visible;
+}
