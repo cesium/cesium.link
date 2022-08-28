@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Form, Typography, notification } from 'antd';
-import { DateTime } from 'luxon';
 import useAsyncReducer from '~/hooks/useAsyncReducer';
+import { formatFromNow } from '~/lib/utils/date';
 import { EditingContext, reducer as reducerEditing } from './Context';
 import EditableTable from '../../EditableTable';
 import Actions from './Actions';
@@ -81,10 +81,7 @@ function RedirectsTable() {
       width: 150,
       dataIndex: 'updated',
       render: function Updated(updated) {
-        const formatted = DateTime.fromISO(updated)
-          .toRelative(Date.now())
-          .toLocaleString(DateTime.DATETIME_MED);
-        return <Typography.Text>{formatted}</Typography.Text>;
+        return <Typography.Text>{formatFromNow(updated)}</Typography.Text>;
       }
     },
     {

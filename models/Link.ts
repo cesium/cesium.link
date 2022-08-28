@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema, Model } from 'mongoose';
 import { nanoid } from 'nanoid';
 import { APP_URL } from '~/lib/api';
 
@@ -38,4 +38,4 @@ Link.virtual('link').get(function () {
   return `${APP_URL}/u/${this.slug}`;
 });
 
-export default mongoose.models.Link || mongoose.model('Link', Link);
+export default (mongoose.models.Link as Model<ILink>) || mongoose.model('Link', Link);

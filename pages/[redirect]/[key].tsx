@@ -2,11 +2,11 @@ import { GetServerSideProps } from 'next';
 import ErrorPage from 'next/error';
 import API from '~/lib/api';
 
-import settings from '~/data/settings.json';
+import { SETTINGS } from '~/data/config';
 
 const repos = {
-  gh: settings.github,
-  gl: settings.gitlab
+  gh: SETTINGS.github,
+  gl: SETTINGS.gitlab
 };
 
 const maps = {
@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   if (redirect in maps) {
     return {
       redirect: {
-        destination: `${settings.domain}/${maps[redirect]}/${key}`,
+        destination: `${SETTINGS.domain}/${maps[redirect]}/${key}`,
         permanent: false
       }
     };
