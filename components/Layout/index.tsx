@@ -1,14 +1,14 @@
+import { PropsWithChildren } from 'react';
 import Head from 'next/head';
-import Footer from '../Footer';
+import Footer from '~/components/Footer';
 
 import styles from './style.module.css';
 
-interface LayoutProps {
-  children: React.ReactNode;
+interface Props {
   title: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children, title }) => (
+const Layout = ({ children, title }: PropsWithChildren<Props>) => (
   <div className={styles.container}>
     <Head>
       <title>{title}</title>
