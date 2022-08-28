@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useUser } from '@auth0/nextjs-auth0';
 import LinkTo from '~/components/LinkTo';
 import { Avatar, Col, Menu, Row, Space, Typography } from 'antd';
 import {
@@ -38,11 +38,7 @@ export const navbar = {
 };
 
 function Navbar({ selected }) {
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    API.get('/api/auth/me').then((response) => setUser(response.data));
-  }, []);
+  const { user } = useUser();
 
   return (
     <Row justify="space-between">

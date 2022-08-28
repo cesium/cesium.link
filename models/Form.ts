@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema, Model } from 'mongoose';
 import { APP_URL } from '~/lib/api';
 
 export interface IForm {
@@ -31,4 +31,4 @@ Form.virtual('link').get(function () {
   return `${APP_URL}/f/${this.slug}`;
 });
 
-export default mongoose.models.Form || mongoose.model('Form', Form);
+export default (mongoose.models.Form as Model<IForm>) || mongoose.model('Form', Form);

@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Model, Schema } from 'mongoose';
 import { nanoid } from 'nanoid';
 import { APP_URL } from '~/lib/api';
 
@@ -32,4 +32,5 @@ Redirect.virtual('link').get(function () {
   return `${APP_URL}/r/${this.slug}`;
 });
 
-export default mongoose.models.Redirect || mongoose.model('Redirect', Redirect);
+export default (mongoose.models.Redirect as Model<IRedirect>) ||
+  mongoose.model('Redirect', Redirect);
