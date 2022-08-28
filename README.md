@@ -1,15 +1,15 @@
 [contributing]: CONTRIBUTING.md
 [code_of_conduct]: CODE_OF_CONDUCT.md
 [license]: LICENSE.txt
-[ci-style-status]: https://github.com/cesium/cesium.link/actions/workflows/style.yml/badge.svg
-[ci-style-workflow]: https://github.com/cesium/cesium.link/actions/workflows/style.yml
+[ci-status]: https://github.com/cesium/cesium.link/actions/workflows/ci.yml/badge.svg
+[ci-workflow]: https://github.com/cesium/cesium.link/actions/workflows/ci.yml
 
 <h1 align="center">
   <img src=".github/brand/cesium-link-DARK.svg#gh-light-mode-only" width="500">
   <img src=".github/brand/cesium-link-LIGHT.svg#gh-dark-mode-only" width="500">
 </h1>
 
-[![CI Style][ci-style-status]][ci-style-workflow]
+[![CI][ci-status]][ci-workflow]
 
 > :link: Mapping CeSIUM's website to shorter urls
 

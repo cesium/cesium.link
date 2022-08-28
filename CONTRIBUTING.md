@@ -10,7 +10,7 @@ local machine for development and testing purposes.
 
 The following software is required to be installed on your system:
 
-- [Node.js 16.15+](https://nodejs.org/en/download/)
+- [Node.js 16.17+](https://nodejs.org/en/download/)
 - [MongoDB 5+](https://www.mongodb.com/)
 
 We recommend using [asdf version manager][asdf-vm] to install and manage all the
@@ -54,12 +54,6 @@ Lint your code.
 
 ```
 npm run lint
-```
-
-Format your code.
-
-```
-npm run format
 ```
 
 ## 🔗 References
