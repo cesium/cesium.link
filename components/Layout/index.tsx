@@ -1,5 +1,6 @@
-import { PropsWithChildren } from 'react';
 import Head from 'next/head';
+import { PropsWithChildren } from 'react';
+
 import Footer from '~/components/Footer';
 
 import styles from './style.module.css';

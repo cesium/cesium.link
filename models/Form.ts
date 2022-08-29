@@ -1,8 +1,9 @@
-import mongoose, { Schema, Model } from 'mongoose';
+import mongoose, { Model, Schema } from 'mongoose';
+
 import { APP_URL } from '~/lib/api';
 
 export interface IForm {
-  _id: string;
+  id: string;
   name: string;
   slug: string;
   url: string;

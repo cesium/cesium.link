@@ -2,12 +2,11 @@ import Image from 'next/image';
 import { IoHeart } from 'react-icons/io5';
 
 import SocialIcon, { ISocialIcon } from '~/components/SocialIcon';
-
 import { SETTINGS } from '~/data/config';
 
+import logo from '../../public/cesium.svg';
 import { DEFAULT_SOCIAL_NETWORKS } from './config';
 import styles from './style.module.css';
-import logo from '../../public/cesium.svg';
 
 interface Props {
   social?: ISocialIcon[];

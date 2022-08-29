@@ -1,4 +1,4 @@
-import { IoLogoFacebook, IoLogoInstagram, IoLogoTwitter, IoLogoGithub } from 'react-icons/io5';
+import { IoLogoFacebook, IoLogoGithub, IoLogoInstagram, IoLogoTwitter } from 'react-icons/io5';
 import { IconType } from 'react-icons/lib';
 
 import { ESocialIcon } from './types';

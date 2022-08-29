@@ -1,36 +1,16 @@
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { useRouter } from 'next/router';
-import { AdminContextProvider } from '~/components/Admin/Context';
-import FormsTable from '~/components/Admin/FormsTable';
-import LinksTable from '~/components/Admin/LinksTable';
-import RedirectsTable from '~/components/Admin/RedirectsTable';
-import ArchivedLinksTable from '~/components/Admin/ArchivedLinksTable';
-import AboutApp from '~/components/Admin/AboutApp';
-import Navbar, { navbar as entries } from '~/components/Admin/Navbar';
-import Footer from '~/components/Footer';
 
-import 'antd/dist/antd.css';
+import AdminLayout from '~/components/AdminLayout';
+import LinksTable from '~/components/LinksTable';
 
-function Admin() {
-  const router = useRouter();
-
-  const { tab } = router.query;
-
-  if (!tab || tab instanceof Array || !(tab in entries)) {
-    router.push('/admin?tab=links');
-  }
-
-  return (
-    <AdminContextProvider initialState={[]}>
-      <Navbar selected={tab} />
-      {(!tab || tab === 'links') && <LinksTable />}
-      {(!tab || tab === 'forms') && <FormsTable />}
-      {(!tab || tab === 'redirects') && <RedirectsTable />}
-      {(!tab || tab === 'archived') && <ArchivedLinksTable />}
-      {(!tab || tab === 'about') && <AboutApp />}
-      <Footer />
-    </AdminContextProvider>
-  );
+function Page() {
+  return <LinksTable />;
 }
 
-export default withPageAuthRequired(Admin);
+Page.getLayout = function getLayout(page) {
+  return <AdminLayout tab="links">{page}</AdminLayout>;
+};
+
+export const getServerSideProps = withPageAuthRequired();
+
+export default Page;

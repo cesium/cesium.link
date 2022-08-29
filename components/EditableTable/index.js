@@ -1,4 +1,5 @@
-import { Table, Form } from 'antd';
+import { Form, Table } from 'antd';
+
 import EditableCell from './EditableCell';
 
 const EditableTable = ({ form, isEditing, columns, ...props }) => {

@@ -1,8 +1,9 @@
-import { Twemoji } from 'react-emoji-render';
+import 'animate.css';
 import classNames from 'classnames';
+import { Twemoji } from 'react-emoji-render';
+
 import { ILink } from '~/models/Link';
 
-import 'animate.css';
 import styles from './style.module.css';
 
 type Props = ILink;

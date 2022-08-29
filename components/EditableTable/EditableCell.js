@@ -1,4 +1,4 @@
-import { Input, InputNumber, Form } from 'antd';
+import { Form, Input, InputNumber } from 'antd';
 
 const EditableCell = ({
   editing,

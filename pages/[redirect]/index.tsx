@@ -1,7 +1,8 @@
 import { GetServerSideProps } from 'next';
 import ErrorPage from 'next/error';
-import API from '~/lib/api';
+
 import { SETTINGS } from '~/data/config';
+import API from '~/lib/api';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { redirect } = params;
