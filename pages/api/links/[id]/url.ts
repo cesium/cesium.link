@@ -1,17 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+
 import dbConnect from '~/lib/database';
 import Link, { ILink } from '~/models/Link';
 
 type Error = {
-  success: false;
   error: {
     message: string;
   };
 };
 
 type Success = {
-  success: true;
-  data: string;
+  url: string;
 };
 
 type Response = Success | Error;
@@ -34,19 +33,17 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
         );
 
         if (!link) {
-          return res.status(404).json({ success: false, error: { message: 'Link not found' } });
+          return res.status(404).json({ error: { message: 'Link not found' } });
         }
-        res.status(200).json({ success: true, data: link.url });
+        res.status(200).json({ url: link.url });
       } catch (error) {
-        res.status(400).json({ success: false, error: { message: error.message } });
+        console.error(error);
+        res.status(400).json({ error: { message: error.message } });
       }
       break;
     default:
       res.setHeader('Allow', ['GET']);
-      res.status(405).json({
-        success: false,
-        error: { message: `Method ${method} Not Allowed` }
-      });
+      res.status(405).json({ error: { message: `Method ${method} Not Allowed` } });
       break;
   }
 };

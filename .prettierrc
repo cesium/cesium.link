@@ -1,5 +1,8 @@
 {
   "semi": true,
   "singleQuote": true,
-  "trailingComma": "none"
+  "trailingComma": "none",
+  "importOrder": ["^~/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

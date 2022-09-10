@@ -1,5 +1,6 @@
-import mongoose, { Schema, Model } from 'mongoose';
+import mongoose, { Model, Schema } from 'mongoose';
 import { nanoid } from 'nanoid';
+
 import { APP_URL } from '~/lib/api';
 
 export interface ILink {
@@ -14,6 +15,7 @@ export interface ILink {
   clicks: number;
   archived: boolean;
   created: Date;
+  updated: Date;
 }
 
 const Link = new Schema<ILink>(
@@ -26,7 +28,8 @@ const Link = new Schema<ILink>(
     slug: { type: String, unique: true, index: true, required: true, default: () => nanoid(10) },
     clicks: { type: Number, default: 0 },
     archived: { type: Boolean, default: false },
-    created: { type: Date, default: Date.now }
+    created: { type: Date, default: Date.now },
+    updated: { type: Date, default: Date.now }
   },
   {
     toJSON: { virtuals: true },

@@ -1,4 +1,4 @@
-import { ISocialIcon, ESocialIcon } from '~/components/SocialIcon';
+import { ESocialIcon, ISocialIcon } from '~/components/SocialIcon';
 
 export const DEFAULT_SOCIAL_NETWORKS: ISocialIcon[] = [
   {

@@ -1,9 +1,10 @@
 import mongoose, { Model, Schema } from 'mongoose';
 import { nanoid } from 'nanoid';
+
 import { APP_URL } from '~/lib/api';
 
 export interface IRedirect {
-  _id: string;
+  id: string;
   name: string;
   slug: string;
   url: string;
