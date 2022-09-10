@@ -10,7 +10,7 @@ function FormsTable() {
   const { editing, dispatch } = useEditing();
 
   const isEditing = (record) => record._id === editing.key;
-  console.log('Index', forms);
+
   if (isLoading) return null;
 
   return (

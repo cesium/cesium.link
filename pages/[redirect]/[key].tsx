@@ -49,7 +49,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
 
   if (redirect in collections) {
-    const response = await API.get(`/api/${collections[redirect]}/${key}/url`)
+    const response = await API.get<{ url: string }>(`/api/${collections[redirect]}/${key}/url`)
       .then((response) => {
         return response;
       })
@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         return error;
       });
 
-    if (!response.data.success) {
+    if (!response.ok) {
       return {
         props: {
           code: response.status,
@@ -68,7 +68,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
     return {
       redirect: {
-        destination: response.data.data,
+        destination: response.data.url,
         permanent: false
       }
     };

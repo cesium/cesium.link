@@ -51,7 +51,6 @@ function Actions({ record }) {
 
   const save = async (id) => {
     if (isLoading) return;
-    console.log('ACTIONS', forms);
     const row = await editing.form.validateFields();
     if (forms.some((elem) => elem.slug === row.slug && row.slug !== record.slug)) {
       notification['error']({

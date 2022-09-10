@@ -60,7 +60,6 @@ function NewForm() {
               {
                 validator: async (_, value) => {
                   if (isLoading) return;
-                  console.log('NEW', forms);
                   if (forms.some((elem) => elem.slug === value)) {
                     return Promise.reject(new Error('Slug already exists'));
                   } else {

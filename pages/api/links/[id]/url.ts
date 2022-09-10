@@ -35,6 +35,7 @@ export default async (req: NextApiRequest, res: NextApiResponse<Response>) => {
         if (!link) {
           return res.status(404).json({ error: { message: 'Link not found' } });
         }
+
         res.status(200).json({ url: link.url });
       } catch (error) {
         console.error(error);
