@@ -1,3 +1,5 @@
+import { getVersion } from '~/lib/config';
+
 export default function Version() {
-  return `${process.env.COMMIT_HASH}`;
+  return `${getVersion().ref}`;
 }
