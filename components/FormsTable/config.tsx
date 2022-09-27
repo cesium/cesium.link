@@ -1,7 +1,9 @@
-import { Typography } from 'antd';
+import { Dropdown, Space, Typography } from 'antd';
+import { QRCode } from 'react-qrcode-logo';
 
 import { formatFromNow } from '~/lib/utils/date';
 
+import LinkWithQRCode from '../LinkWithQRCode';
 import Actions from './Actions';
 
 export const FORMS_COLUMNS = [
@@ -29,14 +31,10 @@ export const FORMS_COLUMNS = [
   {
     title: 'Link',
     editable: false,
-    width: 300,
+    width: 400,
     dataIndex: 'link',
-    render: function UrlLink(link) {
-      return (
-        <Typography.Link href={link} copyable>
-          {link}
-        </Typography.Link>
-      );
+    render: function UrlLink(url) {
+      return <LinkWithQRCode link={url} />;
     }
   },
   {
