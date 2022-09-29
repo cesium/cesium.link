@@ -3,6 +3,7 @@ import {
   InboxOutlined,
   InfoCircleOutlined,
   LinkOutlined,
+  QrcodeOutlined,
   TagsOutlined
 } from '@ant-design/icons';
 
@@ -30,6 +31,12 @@ export const NAVBAR_ENTRIES = [
     path: '/admin/archived',
     icon: <InboxOutlined />,
     title: 'Archived'
+  },
+  {
+    key: 'qrcodes',
+    path: '/admin/qrcodes',
+    icon: <QrcodeOutlined />,
+    title: 'QR Codes'
   },
   {
     key: 'about',
