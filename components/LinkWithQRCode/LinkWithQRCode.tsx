@@ -8,7 +8,15 @@ const LinkWithQRCode = ({ link }) => (
     </Typography.Link>
 
     <Dropdown
-      overlay={<QRCode value={link} logoImage={'/logo.png'} removeQrCodeBehindLogo size={500} />}
+      overlay={
+        <QRCode
+          value={link}
+          ecLevel="H"
+          logoImage={'/logo.png'}
+          removeQrCodeBehindLogo
+          size={500}
+        />
+      }
       trigger={['click']}
     >
       <a onClick={(e) => e.preventDefault()}>(QR Code)</a>

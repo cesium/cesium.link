@@ -25,6 +25,7 @@ function Page() {
             logoImage={'/logo.png'}
             fgColor="#ff794d"
             removeQrCodeBehindLogo
+            ecLevel="H"
             size={500}
           />
         )}
