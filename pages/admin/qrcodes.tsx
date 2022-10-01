@@ -14,7 +14,7 @@ function Page() {
       <Space align="center" direction="vertical" size="large">
         <Input
           size="large"
-          placeholder="large size"
+          placeholder="Type an URL..."
           prefix={<LinkOutlined />}
           value={url}
           onChange={(e) => setUrl(e.target.value)}

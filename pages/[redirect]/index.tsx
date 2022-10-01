@@ -1,8 +1,7 @@
-import { GetServerSideProps } from 'next';
-import ErrorPage from 'next/error';
-
-import { SETTINGS } from '~/data/config';
 import API from '~/lib/api';
+import ErrorPage from 'next/error';
+import { GetServerSideProps } from 'next';
+import { SETTINGS } from '~/data/config';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { redirect } = params;
@@ -15,7 +14,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       return error;
     });
 
-  if (!response.data.success) {
+  if (!response.ok) {
     return {
       redirect: {
         destination: `${SETTINGS.domain}/${redirect}`,
@@ -26,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
   return {
     redirect: {
-      destination: response.data.data,
+      destination: response.data.url,
       permanent: false
     }
   };
