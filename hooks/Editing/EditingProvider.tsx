@@ -1,8 +1,11 @@
+import { PropsWithChildren } from 'react';
+
 import useAsyncReducer from '~/hooks/useAsyncReducer';
 
 import { EditingContext } from './EditingContext';
+import { ActionType } from './types';
 
-const reducer = async (editing, action) => {
+const reducer = async (editing, action: { type: ActionType; key: string }) => {
   const { type, key } = action;
 
   switch (type) {
@@ -15,8 +18,15 @@ const reducer = async (editing, action) => {
   }
 };
 
-export function EditingProvider({ children, initialState }) {
-  const [editing, dispatchEditing] = useAsyncReducer(reducer, initialState);
+type EditingProviderProps<T> = {
+  initialState: T;
+};
+
+export function EditingProvider<T>({
+  children,
+  initialState
+}: PropsWithChildren<EditingProviderProps<T>>) {
+  const [editing, dispatchEditing] = useAsyncReducer<T>(reducer, initialState);
 
   return (
     <EditingContext.Provider value={{ editing, dispatch: dispatchEditing }}>

@@ -16,7 +16,7 @@ export const COLUMNS: ColumnsType<ILink> = [
     fixed: 'left',
     align: 'center',
     width: 40,
-    className: styles.visible,
+    className: styles.Visible,
     render: function Emoji(emoji) {
       return <Twemoji svg text={emoji} />;
     }
@@ -25,12 +25,12 @@ export const COLUMNS: ColumnsType<ILink> = [
     title: 'Title',
     dataIndex: 'title',
     width: 250,
-    className: styles.visible
+    className: styles.Visible
   },
   {
     title: 'URL',
     dataIndex: 'url',
-    className: styles.visible,
+    className: styles.Visible,
     render: function Url(url) {
       return <a href={url}>{url}</a>;
     }
@@ -48,7 +48,7 @@ export const COLUMNS: ColumnsType<ILink> = [
     dataIndex: 'clicks',
     align: 'center',
     width: 40,
-    className: styles.visible
+    className: styles.Visible
   },
   {
     title: 'Action',
