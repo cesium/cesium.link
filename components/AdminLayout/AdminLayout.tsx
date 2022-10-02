@@ -17,7 +17,7 @@ interface Props {
 export default function AdminLayout({ tab, children }: PropsWithChildren<Props>) {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={styles.container}>
+      <div className={styles.Container}>
         <div>
           <Navbar entries={NAVBAR_ENTRIES} selected={tab} />
           {children}
