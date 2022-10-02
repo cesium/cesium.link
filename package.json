@@ -33,7 +33,7 @@
     "antd": "^4.23.4",
     "array-move": "^4.0.0",
     "axios": "^0.27.2",
-    "classnames": "^2.3.2",
+    "clsx": "^1.2.1",
     "dayjs": "^1.11.5",
     "mongoose": "^6.6.3",
     "nanoid": "^4.0.0",
