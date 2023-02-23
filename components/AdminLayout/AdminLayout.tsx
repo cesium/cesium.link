@@ -1,5 +1,4 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import 'antd/dist/antd.css';
 import { PropsWithChildren } from 'react';
 
 import Footer from '~/components/Footer';
