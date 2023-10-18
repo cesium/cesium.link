@@ -5,8 +5,11 @@
 [ci-workflow]: https://github.com/cesium/cesium.link/actions/workflows/ci.yml
 
 <h1 align="center">
-  <img src=".github/brand/cesium-link-DARK.svg#gh-light-mode-only" width="500">
-  <img src=".github/brand/cesium-link-LIGHT.svg#gh-dark-mode-only" width="500">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/brand/cesium-link-DARK.svg" width="500">
+    <source media="(prefers-color-scheme: light)" srcset=".github/brand cesium-link-LIGHT.svg" width="500">
+    <img alt="cesium-link" height="auto" width="500">  
+  </picture>
 </h1>
 
 [![CI][ci-status]][ci-workflow]
