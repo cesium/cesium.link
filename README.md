@@ -6,8 +6,8 @@
 
 <h1 align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset=".github/brand/cesium-link-DARK.svg" width="500">
-    <source media="(prefers-color-scheme: light)" srcset=".github/brand cesium-link-LIGHT.svg" width="500">
+    <source media="(prefers-color-scheme: dark)" srcset=".github/brand/cesium-link-LIGHT.svg" width="500">
+    <source media="(prefers-color-scheme: light)" srcset=".github/brand/cesium-link-DARK.svg" width="500">
     <img alt="cesium-link" height="auto" width="500">  
   </picture>
 </h1>
