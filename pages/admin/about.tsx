@@ -11,7 +11,7 @@ const URL = getUrl();
 const About = () => (
   <Col>
     <Row justify="center">
-      <Image src="/logo.png" alt="CeSIUM's Logo" width={150} height={150} />
+      <Image src="/cesium-logo.png" alt="CeSIUM's Logo" width={150} height={150} />
     </Row>
 
     <Row justify="center">
