@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps<{ links: ILink[] }> = async () => {
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({ links }) => (
   <Layout title="CeSIUM">
-    <Image src="/2020.png" alt="CeSIUM's T-shirt 2020/21" width={150} height={150} />
+    <Image src="/logo.png" alt="CeSIUM's Logo" width={150} height={150} />
 
     <h1 className={styles.title}>CeSIUM</h1>
 
