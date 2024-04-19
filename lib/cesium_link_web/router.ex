@@ -19,6 +19,9 @@ defmodule CesiumLinkWeb.Router do
 
     live "/", HomeLive.Index, :index
 
+    live "/admin", AuthLive.Index, :index
+    get "/auth/google/callback", GoogleAuthController, :index
+
     get "/r/:slug", RedirectController, :redirect_regular
     get "/f/:slug", RedirectController, :redirect_form
 

@@ -62,6 +62,11 @@ config :cesium_link, CesiumLinkWeb.Endpoint,
     ]
   ]
 
+
+config :elixir_auth_google,
+  client_id: System.get_env("GOOGLE_CLIENT_ID"),
+  client_secret: System.get_env("GOOGLE_CLIENT_SECRET")
+
 # Enable dev routes for dashboard and mailbox
 config :cesium_link, dev_routes: true
 
