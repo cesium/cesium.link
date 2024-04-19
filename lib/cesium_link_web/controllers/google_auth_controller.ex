@@ -1,14 +1,41 @@
 defmodule CesiumLinkWeb.GoogleAuthController do
   use CesiumLinkWeb, :controller
 
+  alias CesiumLink.Accounts
+  alias CesiumLinkWeb.UserAuth
+
   @doc """
-  `index/2` handles the callback from Google Auth API redirect.
+  Handles the callback from Google Auth API redirect.
   """
   def index(conn, %{"code" => code}) do
-    {:ok, token} = ElixirAuthGoogle.get_token(code, CesiumLinkWeb.Endpoint.url())
+    case ElixirAuthGoogle.get_token(code, CesiumLinkWeb.Endpoint.url()) do
+      {:ok, token} -> handle_google_auth(conn, token)
+      {:error, _} ->
+        conn
+        |> put_flash(:error, "Error logging in with Google Auth")
+        |> redirect(to: "/")
+    end
+  end
+
+  defp handle_google_auth(conn, token) do
     {:ok, profile} = ElixirAuthGoogle.get_user_profile(token.access_token)
-    IO.inspect(profile)
-    conn
-    |> redirect("/admin/links")
+    case get_user_by_email(profile.email) do
+      {:ok, user} ->
+        conn
+        |> UserAuth.log_in_user(user, %{email: user.email})
+      {:error, _} ->
+        conn
+        |> put_flash(:error, "Error logging in with Google Auth")
+        |> redirect(to: "/")
+    end
+  end
+
+  # Returns an account for the given email (if one doesn't exist, it creates it with a random password)
+  defp get_user_by_email(email) do
+    Accounts.get_user_by_email(email)
+    |> case do
+      nil -> Accounts.register_user_with_random_password(%{email: email})
+      user -> {:ok, user}
+    end
   end
 end
