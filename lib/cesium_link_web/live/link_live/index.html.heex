@@ -1,0 +1,57 @@
+<.header>
+  Listing Links
+  <:actions>
+    <.link patch={~p"/admin/links/new"}>
+      <.button>New Link</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="links"
+  rows={@streams.links}
+>
+  <:col :let={{_id, link}} label="Name"><%= link.name %></:col>
+  <:col :let={{_id, link}} label="Emoji"><%= link.emoji %></:col>
+  <:col :let={{_id, link}} label="URL">
+      <.link
+      target="_blank"
+      class="hover:text-brand transition-all hover:underline"
+      navigate={link.url}
+    >
+      <%= link.url %>
+    </.link>
+  </:col>
+  <:col :let={{_id, link}} label="Visits"><%= link.visits %></:col>
+  <:col :let={{_id, link}} label="Index"><%= link.index %></:col>
+  <:col :let={{_id, link}} label="Attention">
+    <input type="checkbox" disabled={true} checked={link.attention} class="self-center block rounded-md text-gray-600"/>
+  </:col>
+  <:col :let={{_id, link}} label="Archived">
+    <input type="checkbox" disabled={true} checked={link.archived} class="block rounded-md text-gray-600"/>
+  </:col>
+  <:action :let={{_id, link}}>
+    <.link patch={~p"/admin/links/#{link}/edit"}>
+      <.icon name="hero-pencil" class="w-5 h-5" />
+    </.link>
+  </:action>
+  <:action :let={{id, link}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: link.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      <.icon name="hero-trash" class="w-5 h-5" />
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="link-modal" show on_cancel={JS.patch(~p"/admin/links")}>
+  <.live_component
+    module={CesiumLinkWeb.LinkLive.FormComponent}
+    id={@link.id || :new}
+    title={@page_title}
+    action={@live_action}
+    link={@link}
+    patch={~p"/admin/links"}
+  />
+</.modal>

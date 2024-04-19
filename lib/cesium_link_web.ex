@@ -49,10 +49,19 @@ defmodule CesiumLinkWeb do
     end
   end
 
-  def live_view do
+  def admin_live_view do
     quote do
       use Phoenix.LiveView,
         layout: {CesiumLinkWeb.Layouts, :app}
+
+      unquote(html_helpers())
+    end
+  end
+
+  def live_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {CesiumLinkWeb.Layouts, :root}
 
       unquote(html_helpers())
     end

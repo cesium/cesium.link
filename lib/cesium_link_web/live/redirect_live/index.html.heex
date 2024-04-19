@@ -1,0 +1,72 @@
+<.header>
+  Redirects
+  <:actions>
+    <.link patch={~p"/admin/redirects/new"}>
+      <.button>New Redirect</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="redirects" rows={@streams.redirects}>
+  <:col :let={{_id, redirect}} label="Name"><%= redirect.name %></:col>
+  <:col :let={{_id, redirect}} label="Slug"><%= redirect.slug %></:col>
+  <:col :let={{_id, redirect}} label="URL">
+    <.link
+      target="_blank"
+      class="hover:text-brand transition-all hover:underline"
+      navigate={redirect.url}
+    >
+      <%= redirect.url %>
+    </.link>
+  </:col>
+  <:col :let={{_id, redirect}} label="Link">
+    <.link
+      target="_blank"
+      class="hover:text-brand transition-all hover:underline"
+      navigate={get_redirect_url(redirect)}
+    >
+      <%= get_redirect_url(redirect) %>
+    </.link>
+    <span class="hover:cursor-pointer hover:text-brand transition-all" onclick={"navigator.clipboard.writeText('#{get_redirect_url(redirect)}');"}>
+      <.icon name="hero-clipboard" class="w-4 h-4 mb-1 ml-1" />
+    </span>
+  </:col>
+  <:col :let={{_id, redirect}} label="Visits"><%= redirect.visits %></:col>
+  <:col :let={{_id, redirect}} label="Type">
+    <span class="block text-center ring-1 px-3 capitalize ring-zinc-500 rounded-xl w-18 cursor-default">
+      <%= redirect.type %>
+    </span>
+  </:col>
+  <:col :let={{_id, redirect}} label="Last Edited">
+    <%= relative_datetime(redirect.edited_at) %>
+  </:col>
+  <:action :let={{_id, redirect}}>
+    <.link patch={~p"/admin/redirects/#{redirect}/edit"}>
+      <.icon name="hero-pencil" class="w-5 h-5" />
+    </.link>
+  </:action>
+  <:action :let={{id, redirect}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: redirect.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      <.icon name="hero-trash" class="w-5 h-5" />
+    </.link>
+  </:action>
+</.table>
+
+<.modal
+  :if={@live_action in [:new, :edit]}
+  id="redirect-modal"
+  show
+  on_cancel={JS.patch(~p"/admin/redirects")}
+>
+  <.live_component
+    module={CesiumLinkWeb.RedirectLive.FormComponent}
+    id={@redirect.id || :new}
+    title={@page_title}
+    action={@live_action}
+    redirect={@redirect}
+    patch={~p"/admin/redirects"}
+  />
+</.modal>

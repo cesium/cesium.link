@@ -17,6 +17,8 @@ defmodule CesiumLinkWeb.CoreComponents do
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
+  alias Timex.Format.DateTime.Formatters.Relative
+
   import CesiumLinkWeb.Gettext
 
   @doc """
@@ -644,6 +646,42 @@ defmodule CesiumLinkWeb.CoreComponents do
     |> JS.hide(to: "##{id}", transition: {"block", "block", "hidden"})
     |> JS.remove_class("overflow-hidden", to: "body")
     |> JS.pop_focus()
+  end
+
+  @doc """
+  Returns a relative datetime string for the given datetime.
+
+  ## Examples
+
+      iex> relative_datetime(Timex.today() |> Timex.shift(years: -3))
+      "3 years ago"
+
+      iex> relative_datetime(Timex.today() |> Timex.shift(years: 3))
+      "in 3 years"
+
+      iex> relative_datetime(Timex.today() |> Timex.shift(months: -8))
+      "8 months ago"
+
+      iex> relative_datetime(Timex.today() |> Timex.shift(months: 8))
+      "in 8 months"
+
+      iex> relative_datetime(Timex.today() |> Timex.shift(days: -1))
+      "yesterday"
+
+  """
+  def relative_datetime(nil), do: ""
+
+  def relative_datetime(""), do: ""
+
+  def relative_datetime(datetime) do
+    Relative.lformat!(datetime, "{relative}", Gettext.get_locale())
+  end
+
+  @doc """
+  Returns the frontend URL for the application.
+  """
+  def frontend_url do
+    CesiumLinkWeb.Endpoint.url()
   end
 
   @doc """

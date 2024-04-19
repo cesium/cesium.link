@@ -17,7 +17,20 @@ defmodule CesiumLinkWeb.Router do
   scope "/", CesiumLinkWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", HomeLive.Index, :index
+
+    get "/r/:slug", RedirectController, :redirect_regular
+    get "/f/:slug", RedirectController, :redirect_form
+
+    scope "/admin" do
+      live "/links", LinkLive.Index, :index
+      live "/links/new", LinkLive.Index, :new
+      live "/links/:id/edit", LinkLive.Index, :edit
+
+      live "/redirects", RedirectLive.Index, :index
+      live "/redirects/new", RedirectLive.Index, :new
+      live "/redirects/:id/edit", RedirectLive.Index, :edit
+    end
   end
 
   # Other scopes may use custom stacks.
