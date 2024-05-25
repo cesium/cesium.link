@@ -17,8 +17,10 @@ defmodule CesiumLink.Links do
       [%Link{}, ...]
 
   """
-  def list_links do
-    Repo.all(Link)
+  def list_links() do
+    Link
+    |> order_by(asc: :index)
+    |> Repo.all()
   end
 
   @doc """
@@ -113,5 +115,17 @@ defmodule CesiumLink.Links do
   """
   def change_link(%Link{} = link, attrs \\ %{}) do
     Link.changeset(link, attrs)
+  end
+
+  @doc """
+  Returns the next index a link should have.
+
+  ## Examples
+
+      iex> get_next_link_index()
+      5
+  """
+  def get_next_link_index do
+    (Repo.aggregate(from(l in Link), :max, :index) || -1) + 1
   end
 end

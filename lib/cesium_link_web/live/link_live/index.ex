@@ -44,4 +44,17 @@ defmodule CesiumLinkWeb.LinkLive.Index do
 
     {:noreply, stream_delete(socket, :links, link)}
   end
+
+  @impl true
+  def handle_event("update-sorting", %{"ids" => ids}, socket) do
+    ids
+    |> Enum.with_index(0)
+    |> Enum.each(fn {"links-" <> id, index} ->
+      id
+      |> Links.get_link!()
+      |> Links.update_link(%{index: index})
+    end)
+
+    {:noreply, socket}
+  end
 end

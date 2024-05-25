@@ -24,6 +24,8 @@ defmodule CesiumLink.Links.Link do
   def changeset(link, attrs) do
     link
     |> cast(attrs, @required_fields ++ @optional_fields)
+    |> unique_constraint(:index)
     |> validate_required(@required_fields)
+    |> validate_format(:url, ~r{^https?://}, message: "must start with http:// or https://")
   end
 end

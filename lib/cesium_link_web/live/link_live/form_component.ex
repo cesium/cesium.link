@@ -22,7 +22,6 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
         <.input field={@form[:name]} type="text" label="Name" />
         <.input field={@form[:emoji]} type="text" label="Emoji" />
         <.input field={@form[:url]} type="text" label="URL" />
-        <.input field={@form[:index]} type="number" label="Index" />
         <.input field={@form[:attention]} type="checkbox" label="Attention" />
         <.input field={@form[:archived]} type="checkbox" label="Archived" />
         <:actions>
@@ -73,7 +72,7 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
   end
 
   defp save_link(socket, :new, link_params) do
-    case Links.create_link(link_params |> Map.put_new("edited_at", Timex.now())) do
+    case Links.create_link(link_params |> Map.put_new("index", Links.get_next_link_index()) |> Map.put_new("edited_at", Timex.now())) do
       {:ok, link} ->
         notify_parent({:saved, link})
 
