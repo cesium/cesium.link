@@ -20,7 +20,7 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:name]} type="text" label="Name" />
-        <.input field={@form[:emoji]} type="text" label="Emoji" />
+        <.input field={@form[:emoji]} type="emoji" label="Emoji" />
         <.input field={@form[:url]} type="text" label="URL" />
         <.input field={@form[:attention]} type="checkbox" label="Attention" />
         <.input field={@form[:archived]} type="checkbox" label="Archived" />

@@ -3,3 +3,8 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+
+.emoji-mart-emoji {
+    @apply flex;
+    @apply items-center;
+}

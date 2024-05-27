@@ -20,6 +20,7 @@ defmodule CesiumLinkWeb.CoreComponents do
   alias Timex.Format.DateTime.Formatters.Relative
 
   import CesiumLinkWeb.Gettext
+  import CesiumLinkWeb.Components.Emoji
 
   @doc """
   Renders a modal.
@@ -278,7 +279,7 @@ defmodule CesiumLinkWeb.CoreComponents do
   attr :type, :string,
     default: "text",
     values: ~w(checkbox color date datetime-local email file month number password
-               range search select tel text textarea time url week)
+               range search select tel text textarea time url week emoji)
 
   attr :field, Phoenix.HTML.FormField,
     doc: "a form field struct retrieved from the form, for example: @form[:email]"
@@ -364,6 +365,29 @@ defmodule CesiumLinkWeb.CoreComponents do
         ]}
         {@rest}
       ><%= Phoenix.HTML.Form.normalize_value("textarea", @value) %></textarea>
+      <.error :for={msg <- @errors}><%= msg %></.error>
+    </div>
+    """
+  end
+
+  def input(%{type: "emoji"} = assigns) do
+    ~H"""
+    <div phx-feedback-for={@name}>
+      <.label for={@id}><%= @label %></.label>
+      <input
+        type={@type}
+        name={@name}
+        id={@id}
+        value={Phoenix.HTML.Form.normalize_value(@type, @value)}
+        class={[
+          "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
+          "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
+          @errors == [] && "border-zinc-300 focus:border-zinc-400",
+          @errors != [] && "border-rose-400 focus:border-rose-400"
+        ]}
+        {@rest}
+        phx-hook="EmojiPicker"
+      />
       <.error :for={msg <- @errors}><%= msg %></.error>
     </div>
     """

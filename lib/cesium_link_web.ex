@@ -95,6 +95,7 @@ defmodule CesiumLinkWeb do
       # Core UI components and translation
       import CesiumLinkWeb.CoreComponents
       import CesiumLinkWeb.Gettext
+      import CesiumLinkWeb.Components.Emoji
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
