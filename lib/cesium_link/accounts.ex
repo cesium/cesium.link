@@ -27,24 +27,6 @@ defmodule CesiumLink.Accounts do
   end
 
   @doc """
-  Gets a user by email and password.
-
-  ## Examples
-
-      iex> get_user_by_email_and_password("foo@example.com", "correct_password")
-      %User{}
-
-      iex> get_user_by_email_and_password("foo@example.com", "invalid_password")
-      nil
-
-  """
-  def get_user_by_email_and_password(email, password)
-      when is_binary(email) and is_binary(password) do
-    user = Repo.get_by(User, email: email)
-    if User.valid_password?(user, password), do: user
-  end
-
-  @doc """
   Gets a single user.
 
   Raises `Ecto.NoResultsError` if the User does not exist.
@@ -77,24 +59,6 @@ defmodule CesiumLink.Accounts do
   def register_user(attrs) do
     %User{}
     |> User.registration_changeset(attrs)
-    |> Repo.insert()
-  end
-
-  @doc """
-  Registers a user with a random password.
-
-  ## Examples
-
-      iex> register_user_with_random_password(%{field: value})
-      {:ok, %User{}}
-
-      iex> register_user_with_random_password(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def register_user_with_random_password(attrs) do
-    %User{}
-    |> User.registration_changeset(attrs |> Map.put(:password, :crypto.strong_rand_bytes(16) |> Base.encode64))
     |> Repo.insert()
   end
 

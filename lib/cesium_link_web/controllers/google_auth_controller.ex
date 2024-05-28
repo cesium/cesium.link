@@ -30,11 +30,11 @@ defmodule CesiumLinkWeb.GoogleAuthController do
     end
   end
 
-  # Returns an account for the given email (if one doesn't exist, it creates it with a random password)
+  # Returns an account for the given email (if one doesn't exist, it creates it)
   defp get_user_by_email(email) do
     Accounts.get_user_by_email(email)
     |> case do
-      nil -> Accounts.register_user_with_random_password(%{email: email})
+      nil -> Accounts.register_user(%{email: email})
       user -> {:ok, user}
     end
   end
