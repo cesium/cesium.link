@@ -374,20 +374,19 @@ defmodule CesiumLinkWeb.CoreComponents do
     ~H"""
     <div phx-feedback-for={@name}>
       <.label for={@id}><%= @label %></.label>
-      <input
-        type={@type}
-        name={@name}
-        id={@id}
-        value={Phoenix.HTML.Form.normalize_value(@type, @value)}
-        class={[
-          "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
-          "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
-          @errors == [] && "border-zinc-300 focus:border-zinc-400",
-          @errors != [] && "border-rose-400 focus:border-rose-400"
-        ]}
-        {@rest}
-        phx-hook="EmojiPicker"
-      />
+      <div class="border-[0.666667px] mt-2 py-2 pl-2 flex w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6 phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400 border-zinc-300 focus:border-zinc-400">
+        <div id={@id} class="hover:cursor-pointer" phx-hook="EmojiPicker">
+          <.icon name="hero-face-smile" class="text-zinc-800"/>
+        </div>
+        <input
+          id={"input-"<>@id}
+          type={@type}
+          name={@name}
+          value={Phoenix.HTML.Form.normalize_value(@type, @value)}
+          class="pl-2 outline-none"
+          {@rest}
+        />
+        </div>
       <.error :for={msg <- @errors}><%= msg %></.error>
     </div>
     """
