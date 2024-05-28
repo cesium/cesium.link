@@ -20,7 +20,6 @@ defmodule CesiumLinkWeb.CoreComponents do
   alias Timex.Format.DateTime.Formatters.Relative
 
   import CesiumLinkWeb.Gettext
-  import CesiumLinkWeb.Components.Emoji
 
   @doc """
   Renders a modal.

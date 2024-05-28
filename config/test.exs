@@ -23,12 +23,6 @@ config :cesium_link, CesiumLinkWeb.Endpoint,
   secret_key_base: "S3eFlLAxJdMkBj4Tgyq0AZZBUuZ9lrk5rDcekfCRtHnCu5YaioE6+Vt7ip7C9eWB",
   server: false
 
-# In test we don't send emails.
-config :cesium_link, CesiumLink.Mailer, adapter: Swoosh.Adapters.Test
-
-# Disable swoosh api client as it is only required for production adapters.
-config :swoosh, :api_client, false
-
 # Print only warnings and errors during test
 config :logger, level: :warning
 

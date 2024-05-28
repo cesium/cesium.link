@@ -7,7 +7,6 @@ defmodule CesiumLinkWeb.Components.Card do
 
   attr :id, :string, required: true
   attr :link, :map, required: true
-  slot :decoration, required: true
 
   def card(assigns) do
     ~H"""
