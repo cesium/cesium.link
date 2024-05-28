@@ -19,6 +19,7 @@ export const EmojiPicker = {
 
 function updateEmojiInput(id, emoji) {
     document.getElementById("input-" + id).value = emoji;
+    document.getElementById(id).parentElement.querySelector("em-emoji-picker").style.display = "none";
 }
 
 function removeEmojiPicker(element) {

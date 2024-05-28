@@ -17,4 +17,10 @@ defmodule CesiumLinkWeb.HomeLive.Index do
     |> assign(:page_title, "CeSIUM")
     |> assign(:links, Links.list_unarchived_links_by_index())}
   end
+
+  @impl true
+  def handle_event("click", %{"id" => id}, socket) do
+    Links.increment_link_visits(Links.get_link!(id))
+    {:noreply, socket}
+  end
 end

@@ -23,7 +23,7 @@
       class="hover:text-brand transition-all hover:underline"
       navigate={link.url}
     >
-      <%= link.url %>
+      <%= truncate_elipsis(link.url, 50) %>
     </.link>
   </:col>
   <:col :let={{_id, link}} label="Visits"><%= link.visits %></:col>

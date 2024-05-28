@@ -128,4 +128,18 @@ defmodule CesiumLink.Links do
   def get_next_link_index do
     (Repo.aggregate(from(l in Link), :max, :index) || -1) + 1
   end
+
+  @doc """
+  Increments the number of visits for a link.
+
+  ## Examples
+
+      iex> increment_link_visits(link)
+      %Link{}
+
+  """
+  def increment_link_visits(%Link{} = link) do
+    link
+    |> update_link(%{visits: link.visits + 1})
+  end
 end

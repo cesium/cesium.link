@@ -383,7 +383,8 @@ defmodule CesiumLinkWeb.CoreComponents do
           type={@type}
           name={@name}
           value={Phoenix.HTML.Form.normalize_value(@type, @value)}
-          class="pl-2 outline-none"
+          class="pl-2 outline-none hover:cursor-default"
+          readonly
           {@rest}
         />
         </div>
@@ -736,5 +737,16 @@ defmodule CesiumLinkWeb.CoreComponents do
   """
   def translate_errors(errors, field) when is_list(errors) do
     for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
+  end
+
+  @doc """
+  Truncates a string to a given length and appends an ellipsis if the string is longer.
+  """
+  def truncate_elipsis(str, len) do
+    if String.length(str) > len do
+      String.slice(str, 0, len) <> "..."
+    else
+      str
+    end
   end
 end
