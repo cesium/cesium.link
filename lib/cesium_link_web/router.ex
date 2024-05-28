@@ -22,7 +22,6 @@ defmodule CesiumLinkWeb.Router do
 
     live "/", HomeLive.Index, :index
 
-    live "/admin", AuthLive.Index, :index
     get "/auth/google/callback", GoogleAuthController, :index
 
     get "/r/:slug", RedirectController, :redirect_regular
@@ -58,23 +57,19 @@ defmodule CesiumLinkWeb.Router do
 
     live_session :redirect_if_user_is_authenticated,
       on_mount: [{CesiumLinkWeb.UserAuth, :redirect_if_user_is_authenticated}] do
-      live "/users/register", UserRegistrationLive, :new
-      live "/users/log_in", UserLoginLive, :new
-      live "/users/reset_password", UserForgotPasswordLive, :new
-      live "/users/reset_password/:token", UserResetPasswordLive, :edit
+      live "/admin", AuthLive.Index, :index
     end
 
     post "/users/log_in", UserSessionController, :create
   end
+
+  ## Authenticated routes
 
   scope "/", CesiumLinkWeb do
     pipe_through [:browser, :require_authenticated_user]
 
     live_session :require_authenticated_user,
       on_mount: [{CesiumLinkWeb.UserAuth, :ensure_authenticated}] do
-      live "/users/settings", UserSettingsLive, :edit
-      live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
-
       scope "/admin" do
         live "/links", LinkLive.Index, :index
         live "/links/new", LinkLive.Index, :new
@@ -91,11 +86,5 @@ defmodule CesiumLinkWeb.Router do
     pipe_through [:browser]
 
     delete "/users/log_out", UserSessionController, :delete
-
-    live_session :current_user,
-      on_mount: [{CesiumLinkWeb.UserAuth, :mount_current_user}] do
-      live "/users/confirm/:token", UserConfirmationLive, :edit
-      live "/users/confirm", UserConfirmationInstructionsLive, :new
-    end
   end
 end

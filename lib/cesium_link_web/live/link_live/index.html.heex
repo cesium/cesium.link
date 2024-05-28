@@ -26,7 +26,7 @@
       <%= truncate_elipsis(link.url, 50) %>
     </.link>
   </:col>
-  <:col :let={{_id, link}} label="Visits"><%= link.visits %></:col>
+  <:col :let={{_id, link}} label="Clicks"><%= link.visits %></:col>
   <:col :let={{_id, link}} label="Attention">
     <input type="checkbox" disabled={true} checked={link.attention} class="self-center block rounded-md text-gray-600"/>
   </:col>
