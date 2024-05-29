@@ -12,8 +12,6 @@ defmodule CesiumLink.Application do
       CesiumLink.Repo,
       {DNSCluster, query: Application.get_env(:cesium_link, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: CesiumLink.PubSub},
-      # Start the Finch HTTP client for sending emails
-      {Finch, name: CesiumLink.Finch},
       # Start a worker by calling: CesiumLink.Worker.start_link(arg)
       # {CesiumLink.Worker, arg},
       # Start to serve requests, typically the last entry

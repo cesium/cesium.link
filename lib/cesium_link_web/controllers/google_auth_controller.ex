@@ -9,7 +9,9 @@ defmodule CesiumLinkWeb.GoogleAuthController do
   """
   def index(conn, %{"code" => code}) do
     case ElixirAuthGoogle.get_token(code, CesiumLinkWeb.Endpoint.url()) do
-      {:ok, token} -> handle_google_auth(conn, token)
+      {:ok, token} ->
+        handle_google_auth(conn, token)
+
       {:error, _} ->
         conn
         |> put_flash(:error, "Error logging in with Google Auth")
@@ -19,10 +21,12 @@ defmodule CesiumLinkWeb.GoogleAuthController do
 
   defp handle_google_auth(conn, token) do
     {:ok, profile} = ElixirAuthGoogle.get_user_profile(token.access_token)
+
     case get_user_by_email(profile.email) do
       {:ok, user} ->
         conn
         |> UserAuth.log_in_user(user, %{email: user.email})
+
       {:error, _} ->
         conn
         |> put_flash(:error, "Error logging in with Google Auth")

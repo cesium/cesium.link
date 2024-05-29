@@ -46,11 +46,10 @@ defmodule CesiumLinkWeb.RedirectLive.Index do
   end
 
   defp get_redirect_url(%Redirect{slug: slug, type: type}) do
-    CesiumLinkWeb.Endpoint.url()
-    <>
-    case type do
-      :default -> "/r/#{slug}"
-      :form -> "/f/#{slug}"
-    end
+    CesiumLinkWeb.Endpoint.url() <>
+      case type do
+        :default -> "/r/#{slug}"
+        :form -> "/f/#{slug}"
+      end
   end
 end

@@ -7,31 +7,23 @@
   </:actions>
 </.header>
 
-<.table
-  id="links"
-  rows={@streams.links}
-  phx-hook="Sorting"
->
-  <:col :let={{_id, _link}}><.icon name="hero-bars-3 cursor-pointer ml-4" class="handle w-5 h-5"/></:col>
+<.table id="links" rows={@streams.links} phx-hook="Sorting">
+  <:col :let={{_id, _link}}><.icon name="hero-bars-3 cursor-pointer ml-4" class="handle w-5 h-5" /></:col>
   <:col :let={{_id, link}} label="Name"><%= link.name %></:col>
   <:col :let={{_id, link}} label="Emoji">
-    <.emoji code={link.emoji}/>
+    <.emoji code={link.emoji} />
   </:col>
   <:col :let={{_id, link}} label="URL">
-      <.link
-      target="_blank"
-      class="hover:text-brand transition-all hover:underline"
-      navigate={link.url}
-    >
+    <.link target="_blank" class="hover:text-brand transition-all hover:underline" navigate={link.url}>
       <%= truncate_elipsis(link.url, 50) %>
     </.link>
   </:col>
   <:col :let={{_id, link}} label="Clicks"><%= link.visits %></:col>
   <:col :let={{_id, link}} label="Attention">
-    <input type="checkbox" disabled={true} checked={link.attention} class="self-center block rounded-md text-gray-600"/>
+    <input type="checkbox" disabled={true} checked={link.attention} class="self-center block rounded-md text-gray-600" />
   </:col>
   <:col :let={{_id, link}} label="Archived">
-    <input type="checkbox" disabled={true} checked={link.archived} class="block rounded-md text-gray-600"/>
+    <input type="checkbox" disabled={true} checked={link.archived} class="block rounded-md text-gray-600" />
   </:col>
   <:action :let={{_id, link}}>
     <.link patch={~p"/admin/links/#{link}/edit"}>
@@ -39,22 +31,12 @@
     </.link>
   </:action>
   <:action :let={{id, link}}>
-    <.link
-      phx-click={JS.push("delete", value: %{id: link.id}) |> hide("##{id}")}
-      data-confirm="Are you sure?"
-    >
+    <.link phx-click={JS.push("delete", value: %{id: link.id}) |> hide("##{id}")} data-confirm="Are you sure?">
       <.icon name="hero-trash" class="w-5 h-5" />
     </.link>
   </:action>
 </.table>
 
 <.modal :if={@live_action in [:new, :edit]} id="link-modal" show on_cancel={JS.patch(~p"/admin/links")}>
-  <.live_component
-    module={CesiumLinkWeb.LinkLive.FormComponent}
-    id={@link.id || :new}
-    title={@page_title}
-    action={@live_action}
-    link={@link}
-    patch={~p"/admin/links"}
-  />
+  <.live_component module={CesiumLinkWeb.LinkLive.FormComponent} id={@link.id || :new} title={@page_title} action={@live_action} link={@link} patch={~p"/admin/links"} />
 </.modal>

@@ -6,9 +6,9 @@ defmodule CesiumLinkWeb.Components.Emoji do
 
   def emoji(assigns) do
     ~H"""
-      <span>
-        <em-emoji id={@code} set="twitter" class={@class}/>
-      </span>
+    <span>
+      <em-emoji id={@code} set="twitter" class={@class} />
+    </span>
     """
   end
 end

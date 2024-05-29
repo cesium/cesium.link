@@ -6,18 +6,12 @@
       </a>
       <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
         <li>
-          <.link
-            href={~p"/admin/links"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
+          <.link href={~p"/admin/links"} class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700">
             Links
           </.link>
         </li>
         <li>
-          <.link
-            href={~p"/admin/redirects"}
-            class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-          >
+          <.link href={~p"/admin/redirects"} class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700">
             Redirects
           </.link>
         </li>
@@ -28,11 +22,7 @@
         <p class="text-[0.8125rem] leading-6 text-zinc-900">
           <%= @current_user.email %>
         </p>
-        <.link
-          href={~p"/users/log_out"}
-          method="delete"
-          class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
-        >
+        <.link href={~p"/users/log_out"} method="delete" class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700">
           Log out
         </.link>
       <% end %>

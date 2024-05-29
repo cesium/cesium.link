@@ -13,9 +13,9 @@ defmodule CesiumLinkWeb.HomeLive.Index do
   @impl true
   def handle_params(_params, _url, socket) do
     {:noreply,
-    socket
-    |> assign(:page_title, "CeSIUM")
-    |> assign(:links, Links.list_unarchived_links_by_index())}
+     socket
+     |> assign(:page_title, "CeSIUM")
+     |> assign(:links, Links.list_unarchived_links_by_index())}
   end
 
   @impl true

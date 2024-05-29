@@ -11,20 +11,12 @@
   <:col :let={{_id, redirect}} label="Name"><%= redirect.name %></:col>
   <:col :let={{_id, redirect}} label="Slug"><%= redirect.slug %></:col>
   <:col :let={{_id, redirect}} label="URL">
-    <.link
-      target="_blank"
-      class="hover:text-brand transition-all hover:underline"
-      navigate={redirect.url}
-    >
+    <.link target="_blank" class="hover:text-brand transition-all hover:underline" navigate={redirect.url}>
       <%= truncate_elipsis(redirect.url, 50) %>
     </.link>
   </:col>
   <:col :let={{_id, redirect}} label="Link">
-    <.link
-      target="_blank"
-      class="hover:text-brand transition-all hover:underline"
-      navigate={get_redirect_url(redirect)}
-    >
+    <.link target="_blank" class="hover:text-brand transition-all hover:underline" navigate={get_redirect_url(redirect)}>
       <%= get_redirect_url(redirect) %>
     </.link>
     <span class="hover:cursor-pointer hover:text-brand transition-all" onclick={"navigator.clipboard.writeText('#{get_redirect_url(redirect)}');"}>
@@ -46,27 +38,12 @@
     </.link>
   </:action>
   <:action :let={{id, redirect}}>
-    <.link
-      phx-click={JS.push("delete", value: %{id: redirect.id}) |> hide("##{id}")}
-      data-confirm="Are you sure?"
-    >
+    <.link phx-click={JS.push("delete", value: %{id: redirect.id}) |> hide("##{id}")} data-confirm="Are you sure?">
       <.icon name="hero-trash" class="w-5 h-5" />
     </.link>
   </:action>
 </.table>
 
-<.modal
-  :if={@live_action in [:new, :edit]}
-  id="redirect-modal"
-  show
-  on_cancel={JS.patch(~p"/admin/redirects")}
->
-  <.live_component
-    module={CesiumLinkWeb.RedirectLive.FormComponent}
-    id={@redirect.id || :new}
-    title={@page_title}
-    action={@live_action}
-    redirect={@redirect}
-    patch={~p"/admin/redirects"}
-  />
+<.modal :if={@live_action in [:new, :edit]} id="redirect-modal" show on_cancel={JS.patch(~p"/admin/redirects")}>
+  <.live_component module={CesiumLinkWeb.RedirectLive.FormComponent} id={@redirect.id || :new} title={@page_title} action={@live_action} redirect={@redirect} patch={~p"/admin/redirects"} />
 </.modal>

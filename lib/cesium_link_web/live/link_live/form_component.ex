@@ -12,13 +12,7 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
         <:subtitle>Use this form to manage link records in your database.</:subtitle>
       </.header>
 
-      <.simple_form
-        for={@form}
-        id="link-form"
-        phx-target={@myself}
-        phx-change="validate"
-        phx-submit="save"
-      >
+      <.simple_form for={@form} id="link-form" phx-target={@myself} phx-change="validate" phx-submit="save">
         <.input field={@form[:name]} type="text" label="Name" />
         <.input field={@form[:emoji]} type="emoji" label="Emoji" />
         <.input field={@form[:url]} type="text" label="URL" />
@@ -57,7 +51,10 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
   end
 
   defp save_link(socket, :edit, link_params) do
-    case Links.update_link(socket.assigns.link, link_params |> Map.put_new("edited_at", Timex.now())) do
+    case Links.update_link(
+           socket.assigns.link,
+           link_params |> Map.put_new("edited_at", Timex.now())
+         ) do
       {:ok, link} ->
         notify_parent({:saved, link})
 
@@ -72,7 +69,11 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
   end
 
   defp save_link(socket, :new, link_params) do
-    case Links.create_link(link_params |> Map.put_new("index", Links.get_next_link_index()) |> Map.put_new("edited_at", Timex.now())) do
+    case Links.create_link(
+           link_params
+           |> Map.put_new("index", Links.get_next_link_index())
+           |> Map.put_new("edited_at", Timex.now())
+         ) do
       {:ok, link} ->
         notify_parent({:saved, link})
 

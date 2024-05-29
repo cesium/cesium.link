@@ -32,17 +32,23 @@ defmodule CesiumLink.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:bcrypt_elixir, "~> 3.0"},
+      # core
       {:phoenix, "~> 1.7.12"},
-      {:phoenix_ecto, "~> 4.4"},
-      {:ecto_sql, "~> 3.10"},
-      {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 4.0"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.20.2"},
-      {:floki, ">= 0.30.0", only: :test},
-      {:phoenix_live_dashboard, "~> 0.8.3"},
-      {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+
+      # database
+      {:ecto_sql, "~> 3.10"},
+      {:phoenix_ecto, "~> 4.4"},
+      {:postgrex, ">= 0.0.0"},
+
+      # auth
+      {:elixir_auth_google, "~> 1.6.9"},
+
+      # security
+      {:bcrypt_elixir, "~> 3.0"},
+
+      # frontend
       {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
       {:heroicons,
        github: "tailwindlabs/heroicons",
@@ -51,15 +57,28 @@ defmodule CesiumLink.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:finch, "~> 0.13"},
+      {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
+
+      # monitoring
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
+      {:phoenix_live_dashboard, "~> 0.8.3"},
+
+      # utilities
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
-      {:dns_cluster, "~> 0.1.1"},
+
+      # server
       {:bandit, "~> 1.2"},
+      {:dns_cluster, "~> 0.1.1"},
+
+      # testing
+      {:floki, ">= 0.30.0", only: :test},
+
+      # tools
       {:timex, "~> 3.0"},
-      {:elixir_auth_google, "~> 1.6.9"}
+      {:tailwind_formatter, "~> 0.3.7", only: [:dev, :test], runtime: false},
+      {:doctest_formatter, "~> 0.2.0", runtime: false}
     ]
   end
 

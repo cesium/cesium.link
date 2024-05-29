@@ -12,23 +12,11 @@ defmodule CesiumLinkWeb.RedirectLive.FormComponent do
         <:subtitle>Use this form to manage redirect records in your database.</:subtitle>
       </.header>
 
-      <.simple_form
-        for={@form}
-        id="redirect-form"
-        phx-target={@myself}
-        phx-change="validate"
-        phx-submit="save"
-      >
+      <.simple_form for={@form} id="redirect-form" phx-target={@myself} phx-change="validate" phx-submit="save">
         <.input field={@form[:name]} type="text" label="Name" />
         <.input field={@form[:slug]} type="text" label="Slug" />
         <.input field={@form[:url]} type="text" label="URL" />
-        <.input
-          field={@form[:type]}
-          type="select"
-          label="Type"
-          prompt="Choose a value"
-          options={["Default": :default,"Form": :form]}
-        />
+        <.input field={@form[:type]} type="select" label="Type" prompt="Choose a value" options={[Default: :default, Form: :form]} />
         <:actions>
           <.button phx-disable-with="Saving...">Save Redirect</.button>
         </:actions>
@@ -62,7 +50,10 @@ defmodule CesiumLinkWeb.RedirectLive.FormComponent do
   end
 
   defp save_redirect(socket, :edit, redirect_params) do
-    case Redirects.update_redirect(socket.assigns.redirect, redirect_params |> Map.put_new("edited_at", Timex.now())) do
+    case Redirects.update_redirect(
+           socket.assigns.redirect,
+           redirect_params |> Map.put_new("edited_at", Timex.now())
+         ) do
       {:ok, redirect} ->
         notify_parent({:saved, redirect})
 
