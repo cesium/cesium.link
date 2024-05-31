@@ -17,13 +17,13 @@
         </li>
       </ul>
     </div>
-    <div>
+    <div class="flex gap-x-4 py-4">
       <%= if @current_user do %>
         <p class="text-[0.8125rem] leading-6 text-zinc-900">
           <%= @current_user.email %>
         </p>
         <.link href={~p"/users/log_out"} method="delete" class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700">
-          Log out
+          <.icon name="hero-arrow-left-start-on-rectangle" />
         </.link>
       <% end %>
     </div>

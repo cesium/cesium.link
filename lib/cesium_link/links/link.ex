@@ -2,8 +2,8 @@ defmodule CesiumLink.Links.Link do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @required_fields ~w(name emoji url index attention archived edited_at)a
-  @optional_fields ~w(visits)a
+  @required_fields ~w(name emoji url attention edited_at)a
+  @optional_fields ~w(index archived visits)a
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id

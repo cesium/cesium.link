@@ -19,6 +19,37 @@ defmodule CesiumLink.Links do
   """
   def list_links() do
     Link
+    |> Repo.all()
+  end
+
+  @doc """
+  Returns the list of unarchived links.
+
+  ## Examples
+
+      iex> list_unarchived_links()
+      [%Link{}, ...]
+
+  """
+  def list_unarchived_links() do
+    Link
+    |> where([l], l.archived == false)
+    |> order_by(asc: :index)
+    |> Repo.all()
+  end
+
+  @doc """
+  Returns the list of archived links.
+
+  ## Examples
+
+      iex> list_archived_links()
+      [%Link{}, ...]
+
+  """
+  def list_archived_links() do
+    Link
+    |> where([l], l.archived == true)
     |> order_by(asc: :index)
     |> Repo.all()
   end
@@ -102,6 +133,34 @@ defmodule CesiumLink.Links do
   """
   def delete_link(%Link{} = link) do
     Repo.delete(link)
+  end
+
+  @doc """
+  Archives a link.
+
+  ## Examples
+
+      iex> archive_link(link)
+      %Link{}
+
+  """
+  def archive_link(%Link{} = link) do
+    link
+    |> update_link(%{archived: true, index: nil})
+  end
+
+  @doc """
+  Unarchives a link.
+
+  ## Examples
+
+      iex> unarchive_link(link)
+      %Link{}
+
+  """
+  def unarchive_link(%Link{} = link) do
+    link
+    |> update_link(%{archived: false, index: get_next_link_index()})
   end
 
   @doc """

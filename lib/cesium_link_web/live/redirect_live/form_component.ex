@@ -9,7 +9,7 @@ defmodule CesiumLinkWeb.RedirectLive.FormComponent do
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>Use this form to manage redirect records in your database.</:subtitle>
+        <:subtitle>URL shortener with custom slug.</:subtitle>
       </.header>
 
       <.simple_form for={@form} id="redirect-form" phx-target={@myself} phx-change="validate" phx-submit="save">

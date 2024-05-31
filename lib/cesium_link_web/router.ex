@@ -72,7 +72,9 @@ defmodule CesiumLinkWeb.Router do
       scope "/admin" do
         live "/links", LinkLive.Index, :index
         live "/links/new", LinkLive.Index, :new
+        live "/links/archived", ArchivedLive.Index, :index
         live "/links/:id/edit", LinkLive.Index, :edit
+        live "/links/archived/:id/edit", ArchivedLive.Index, :edit
 
         live "/redirects", RedirectLive.Index, :index
         live "/redirects/new", RedirectLive.Index, :new

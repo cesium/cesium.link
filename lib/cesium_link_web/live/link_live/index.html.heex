@@ -1,8 +1,15 @@
 <.header>
-  Listing Links
+  Links
   <:actions>
+    <.link class="pr-2" patch={~p"/admin/links/archived"}>
+      <.button>
+        <.icon name="hero-archive-box" class="w-5 h-5" />
+      </.button>
+    </.link>
     <.link patch={~p"/admin/links/new"}>
-      <.button>New Link</.button>
+      <.button>
+        <.icon name="hero-plus" class="w-5 h-5" /> New Link
+      </.button>
     </.link>
   </:actions>
 </.header>
@@ -22,17 +29,14 @@
   <:col :let={{_id, link}} label="Attention">
     <input type="checkbox" disabled={true} checked={link.attention} class="self-center block rounded-md text-gray-600" />
   </:col>
-  <:col :let={{_id, link}} label="Archived">
-    <input type="checkbox" disabled={true} checked={link.archived} class="block rounded-md text-gray-600" />
-  </:col>
   <:action :let={{_id, link}}>
     <.link patch={~p"/admin/links/#{link}/edit"}>
       <.icon name="hero-pencil" class="w-5 h-5" />
     </.link>
   </:action>
   <:action :let={{id, link}}>
-    <.link phx-click={JS.push("delete", value: %{id: link.id}) |> hide("##{id}")} data-confirm="Are you sure?">
-      <.icon name="hero-trash" class="w-5 h-5" />
+    <.link phx-click={JS.push("archive", value: %{id: link.id}) |> hide("##{id}")} data-confirm="Are you sure you want to archive this link?">
+      <.icon name="hero-archive-box" class="w-5 h-5" />
     </.link>
   </:action>
 </.table>

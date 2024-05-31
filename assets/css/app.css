@@ -2,9 +2,26 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* This file is for your main application CSS */
-
 .emoji-mart-emoji {
     @apply flex;
     @apply items-center;
+}
+
+.animate-attention {
+    animation-delay: 2s;
+    animation-name: shakeX;
+    animation-duration: 1s;
+    annimation-fill-mode: both;
+}
+
+@keyframes shakeX {
+    0%, 100% {
+        transform: translateZ(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translate3d(-10px, 0, 0);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translate3d(10px, 0, 0);
+    }
 }

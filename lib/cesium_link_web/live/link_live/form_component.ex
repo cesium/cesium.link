@@ -9,7 +9,7 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>Use this form to manage link records in your database.</:subtitle>
+        <:subtitle>Links appear as highlights on the home page of the app.</:subtitle>
       </.header>
 
       <.simple_form for={@form} id="link-form" phx-target={@myself} phx-change="validate" phx-submit="save">
@@ -17,7 +17,6 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
         <.input field={@form[:emoji]} type="emoji" label="Emoji" />
         <.input field={@form[:url]} type="text" label="URL" />
         <.input field={@form[:attention]} type="checkbox" label="Attention" />
-        <.input field={@form[:archived]} type="checkbox" label="Archived" />
         <:actions>
           <.button phx-disable-with="Saving...">Save Link</.button>
         </:actions>

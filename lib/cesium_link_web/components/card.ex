@@ -18,7 +18,7 @@ defmodule CesiumLinkWeb.Components.Card do
       class="group relative overflow-hidden cursor-pointer basis-[45%] p-[1.5rem] min-w-[20rem] text-left m-[1rem] border-[1px] rounded-[10px] transition-all ease-out duration-[0.45s] select-none hover:left-0 lg:w-[85%] w-full lg:mx-[0.8rem] mx-0"
     >
       <div class="w-full h-[5px] mt-[10px] self-end left-[-100%] bg-brand absolute transition-all ease-out duration-[0.3s] bottom-0 group-hover:left-0" />
-      <h3 class="text-[1.5rem] m-0 flex font-bold">
+      <h3 class={["text-[1.5rem] m-0 flex font-bold", @link.attention && "animate-attention"]}>
         <.emoji code={@link.emoji} class="flex h-full pr-3" />
         <%= @link.name %>
       </h3>
