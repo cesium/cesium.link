@@ -4,7 +4,7 @@
       <a href="/">
         <img src={~p"/images/cesium-link.svg"} width="150" />
       </a>
-      <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
+      <ul class="relative z-10 flex items-center gap-2 sm:gap-8 px-4 sm:px-6 lg:px-8 justify-end">
         <li>
           <.link href={~p"/admin/links"} class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700">
             Links
@@ -13,6 +13,11 @@
         <li>
           <.link href={~p"/admin/redirects"} class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700">
             Redirects
+          </.link>
+        </li>
+        <li>
+          <.link href={~p"/admin/qrcode"} class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700">
+            QR Generator
           </.link>
         </li>
       </ul>

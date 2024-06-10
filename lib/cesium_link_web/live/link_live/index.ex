@@ -28,7 +28,7 @@ defmodule CesiumLinkWeb.LinkLive.Index do
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Links")
+    |> assign(:page_title, "Links")
     |> assign(:link, nil)
   end
 

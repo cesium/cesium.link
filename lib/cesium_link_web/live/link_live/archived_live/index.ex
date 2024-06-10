@@ -22,7 +22,7 @@ defmodule CesiumLinkWeb.ArchivedLive.Index do
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Links")
+    |> assign(:page_title, "Archived Links")
     |> assign(:link, nil)
   end
 

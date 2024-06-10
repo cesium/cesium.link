@@ -28,7 +28,7 @@ defmodule CesiumLinkWeb.RedirectLive.Index do
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Redirects")
+    |> assign(:page_title, "Redirects")
     |> assign(:redirect, nil)
   end
 
