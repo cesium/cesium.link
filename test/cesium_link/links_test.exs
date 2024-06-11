@@ -1,9 +1,9 @@
 defmodule CesiumLink.LinksTest do
-  alias Ecto.UUID
   use CesiumLink.DataCase
 
   alias CesiumLink.Links
   alias CesiumLink.Links.Link
+  alias Ecto.UUID
 
   import CesiumLink.LinksFixtures
 

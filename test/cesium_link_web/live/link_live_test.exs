@@ -34,7 +34,7 @@ defmodule CesiumLinkWeb.LinkLiveTest do
         |> live(~p"/admin/links/#{link.id}/edit")
 
       assert html =~ "Name"
-      assert html =~ "some name"
+      assert html =~ link.name
     end
   end
 end
