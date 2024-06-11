@@ -1,4 +1,7 @@
 defmodule CesiumLink.Links.Link do
+  @moduledoc """
+  Link schema.
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

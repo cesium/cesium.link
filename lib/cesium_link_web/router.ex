@@ -1,4 +1,7 @@
 defmodule CesiumLinkWeb.Router do
+  @moduledoc """
+  The application router.
+  """
   use CesiumLinkWeb, :router
 
   import CesiumLinkWeb.UserAuth

@@ -1,4 +1,7 @@
 defmodule CesiumLink.Accounts.UserToken do
+  @moduledoc """
+  User tokens for session management.
+  """
   use Ecto.Schema
   import Ecto.Query
   alias CesiumLink.Accounts.UserToken

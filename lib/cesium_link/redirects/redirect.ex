@@ -1,4 +1,7 @@
 defmodule CesiumLink.Redirects.Redirect do
+  @moduledoc """
+  Redirect schema.
+  """
   use Ecto.Schema
   import Ecto.Changeset
 

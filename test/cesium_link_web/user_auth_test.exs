@@ -1,9 +1,10 @@
 defmodule CesiumLinkWeb.UserAuthTest do
   use CesiumLinkWeb.ConnCase, async: true
 
-  alias Phoenix.LiveView
   alias CesiumLink.Accounts
   alias CesiumLinkWeb.UserAuth
+  alias Phoenix.LiveView
+
   import CesiumLink.AccountsFixtures
 
   @remember_me_cookie "_cesium_link_web_user_remember_me"

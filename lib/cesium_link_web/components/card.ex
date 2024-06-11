@@ -1,4 +1,7 @@
 defmodule CesiumLinkWeb.Components.Card do
+  @moduledoc """
+  Component for rendering a link card.
+  """
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS

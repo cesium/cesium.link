@@ -77,6 +77,7 @@ defmodule CesiumLink.MixProject do
 
       # tools
       {:timex, "~> 3.0"},
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:tailwind_formatter, "~> 0.3.7", only: [:dev, :test], runtime: false},
       {:doctest_formatter, "~> 0.2.0", runtime: false}
     ]

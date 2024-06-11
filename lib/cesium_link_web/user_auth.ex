@@ -1,4 +1,7 @@
 defmodule CesiumLinkWeb.UserAuth do
+  @moduledoc """
+  User authentication handling.
+  """
   use CesiumLinkWeb, :verified_routes
 
   import Plug.Conn

@@ -1,4 +1,7 @@
 defmodule CesiumLinkWeb.Components.Footer do
+  @moduledoc """
+  Application footer component.
+  """
   use Phoenix.Component
 
   def footer(assigns) do

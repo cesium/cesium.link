@@ -1,4 +1,7 @@
 defmodule CesiumLinkWeb.Components.Emoji do
+  @moduledoc """
+  Emoji rendering component.
+  """
   use Phoenix.Component
 
   attr :code, :string, required: true

@@ -17,7 +17,7 @@ defmodule CesiumLink.Links do
       [%Link{}, ...]
 
   """
-  def list_links() do
+  def list_links do
     Link
     |> Repo.all()
   end
@@ -31,7 +31,7 @@ defmodule CesiumLink.Links do
       [%Link{}, ...]
 
   """
-  def list_unarchived_links() do
+  def list_unarchived_links do
     Link
     |> where([l], l.archived == false)
     |> order_by(asc: :index)
@@ -47,7 +47,7 @@ defmodule CesiumLink.Links do
       [%Link{}, ...]
 
   """
-  def list_archived_links() do
+  def list_archived_links do
     Link
     |> where([l], l.archived == true)
     |> order_by(asc: :index)

@@ -1,4 +1,7 @@
 defmodule CesiumLinkWeb.Components.GoogleOAuthButton do
+  @moduledoc """
+  A component for rendering a Google OAuth button.
+  """
   use Phoenix.Component
 
   def google_oauth_button(assigns) do
