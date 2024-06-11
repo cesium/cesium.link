@@ -2,7 +2,6 @@ defmodule CesiumLinkWeb.ArchivedLive.Index do
   use CesiumLinkWeb, :admin_live_view
 
   alias CesiumLink.Links
-  alias CesiumLink.Links.Link
 
   @impl true
   def mount(_params, _session, socket) do
