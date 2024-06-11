@@ -14,7 +14,7 @@
     <.emoji code={link.emoji} />
   </:col>
   <:col :let={{_id, link}} label="URL">
-    <.link target="_blank" class="hover:text-brand transition-all hover:underline" navigate={link.url}>
+    <.link target="_blank" class="hover:text-brand hover:underline" navigate={link.url}>
       <%= truncate_elipsis(link.url, 50) %>
     </.link>
   </:col>

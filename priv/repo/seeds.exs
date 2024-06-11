@@ -8,7 +8,8 @@ defmodule CesiumLink.Repo.Seeds do
 
   def run do
     [
-      "links.exs"
+      "links.exs",
+      "redirects.exs"
     ]
     |> Enum.each(fn file ->
       Code.require_file("#{@seeds_dir}/#{file}")
