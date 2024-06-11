@@ -74,10 +74,10 @@ defmodule CesiumLink.Links do
 
   ## Examples
 
-      iex> get_link!(123)
+      iex> get_link!("eae0d8c5-1cd4-40e4-9fe1-28b3a9fb5e76")
       %Link{}
 
-      iex> get_link!(456)
+      iex> get_link!("626fffb7-72e0-48e0-91cc-1038bc1a4532")
       ** (Ecto.NoResultsError)
 
   """

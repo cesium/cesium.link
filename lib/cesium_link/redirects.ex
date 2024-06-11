@@ -28,10 +28,10 @@ defmodule CesiumLink.Redirects do
 
   ## Examples
 
-      iex> get_redirect!(123)
+      iex> get_redirect!("eae0d8c5-1cd4-40e4-9fe1-28b3a9fb5e76")
       %Redirect{}
 
-      iex> get_redirect!(456)
+      iex> get_redirect!("626fffb7-72e0-48e0-91cc-1038bc1a4532")
       ** (Ecto.NoResultsError)
 
   """
