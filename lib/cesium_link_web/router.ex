@@ -77,7 +77,10 @@ defmodule CesiumLinkWeb.Router do
         live "/links/new", LinkLive.Index, :new
         live "/links/archived", ArchivedLive.Index, :index
         live "/links/:id/edit", LinkLive.Index, :edit
+        live "/links/:id/archive", LinkLive.Index, :archive
         live "/links/archived/:id/edit", ArchivedLive.Index, :edit
+        live "/links/archived/:id/unarchive", ArchivedLive.Index, :unarchive
+        live "/links/archived/:id/delete", ArchivedLive.Index, :delete
 
         live "/redirects", RedirectLive.Index, :index
         live "/redirects/new", RedirectLive.Index, :new

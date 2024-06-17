@@ -20,6 +20,12 @@ defmodule CesiumLinkWeb.LinkLive.Index do
     |> assign(:link, Links.get_link!(id))
   end
 
+  defp apply_action(socket, :archive, %{"id" => id}) do
+    socket
+    |> assign(:page_title, "Archive Link")
+    |> assign(:link, Links.get_link!(id))
+  end
+
   defp apply_action(socket, :new, _params) do
     socket
     |> assign(:page_title, "New Link")
@@ -42,7 +48,10 @@ defmodule CesiumLinkWeb.LinkLive.Index do
     link = Links.get_link!(id)
     {:ok, _} = Links.archive_link(link)
 
-    {:noreply, stream_delete(socket, :links, link)}
+    {:noreply,
+     stream_delete(socket, :links, link)
+     |> push_patch(to: ~p"/admin/links")
+     |> put_flash(:info, "Link archived successfully")}
   end
 
   @impl true

@@ -9,7 +9,9 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
     <div>
       <.header>
         <%= @title %>
-        <:subtitle>Links appear as highlights on the home page of the app.</:subtitle>
+        <:subtitle>
+          <%= gettext("Links appear as highlights on the home page of the app.") %>
+        </:subtitle>
       </.header>
 
       <.simple_form for={@form} id="link-form" phx-target={@myself} phx-change="validate" phx-submit="save">

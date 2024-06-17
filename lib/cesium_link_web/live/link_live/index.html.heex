@@ -36,8 +36,8 @@
       <.icon name="hero-pencil" class="w-5 h-5" />
     </.link>
   </:action>
-  <:action :let={{id, link}}>
-    <.link phx-click={JS.push("archive", value: %{id: link.id}) |> hide("##{id}")} data-confirm="Are you sure you want to archive this link?">
+  <:action :let={{_id, link}}>
+    <.link patch={~p"/admin/links/#{link}/archive"}>
       <.icon name="hero-archive-box" class="w-5 h-5" />
     </.link>
   </:action>
@@ -45,4 +45,25 @@
 
 <.modal :if={@live_action in [:new, :edit]} id="link-modal" show on_cancel={JS.patch(~p"/admin/links")}>
   <.live_component module={CesiumLinkWeb.LinkLive.FormComponent} id={@link.id || :new} title={@page_title} action={@live_action} link={@link} patch={~p"/admin/links"} />
+</.modal>
+
+<.modal :if={@live_action == :archive} id="archive-modal" show on_cancel={JS.patch(~p"/admin/links")}>
+  <div>
+    <.header>
+      <%= gettext("Archive Link") %>
+      <:subtitle>
+        <%= gettext("Are you sure you want to archive this link?") %>
+      </:subtitle>
+    </.header>
+    <div class="mt-8 w-full gap-2 flex flex-row">
+      <.link patch={~p"/admin/links"} class="w-full outline-none">
+        <.button class="w-full">
+          <%= gettext("Cancel") %>
+        </.button>
+      </.link>
+      <.button phx-click="archive" phx-value-id={@link.id} class="w-full">
+        <%= gettext("Confirm") %>
+      </.button>
+    </div>
+  </div>
 </.modal>

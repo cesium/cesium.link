@@ -27,13 +27,13 @@
       <.icon name="hero-pencil" class="w-5 h-5" />
     </.link>
   </:action>
-  <:action :let={{id, link}}>
-    <.link phx-click={JS.push("unarchive", value: %{id: link.id}) |> hide("##{id}")} data-confirm="Are you sure you want to turn this link public?">
+  <:action :let={{_id, link}}>
+    <.link patch={~p"/admin/links/archived/#{link}/unarchive"}>
       <.icon name="hero-archive-box-x-mark" class="w-5 h-5" />
     </.link>
   </:action>
-  <:action :let={{id, link}}>
-    <.link phx-click={JS.push("delete", value: %{id: link.id}) |> hide("##{id}")} data-confirm="Are you sure you want to delete this link?">
+  <:action :let={{_id, link}}>
+    <.link patch={~p"/admin/links/archived/#{link}/delete"}>
       <.icon name="hero-trash" class="w-5 h-5" />
     </.link>
   </:action>
@@ -41,4 +41,46 @@
 
 <.modal :if={@live_action in [:new, :edit]} id="link-modal" show on_cancel={JS.patch(~p"/admin/links/archived")}>
   <.live_component module={CesiumLinkWeb.LinkLive.FormComponent} id={@link.id || :new} title={@page_title} action={@live_action} link={@link} patch={~p"/admin/links/archived"} />
+</.modal>
+
+<.modal :if={@live_action == :unarchive} id="unarchive-modal" show on_cancel={JS.patch(~p"/admin/links/archived")}>
+  <div>
+    <.header>
+      <%= gettext("Unarchive Link") %>
+      <:subtitle>
+        <%= gettext("Are you sure you want to turn this link public again?") %>
+      </:subtitle>
+    </.header>
+    <div class="mt-8 w-full gap-2 flex flex-row">
+      <.link patch={~p"/admin/links/archived"} class="w-full outline-none">
+        <.button class="w-full">
+          <%= gettext("Cancel") %>
+        </.button>
+      </.link>
+      <.button phx-click="unarchive" phx-value-id={@link.id} class="w-full">
+        <%= gettext("Confirm") %>
+      </.button>
+    </div>
+  </div>
+</.modal>
+
+<.modal :if={@live_action == :delete} id="delete-modal" show on_cancel={JS.patch(~p"/admin/links/archived")}>
+  <div>
+    <.header>
+      <%= gettext("Delete Link") %>
+      <:subtitle>
+        <%= gettext("Are you sure you want to delete this link? This action is irreversible.") %>
+      </:subtitle>
+    </.header>
+    <div class="mt-8 w-full gap-2 flex flex-row">
+      <.link patch={~p"/admin/links/archived"} class="w-full outline-none">
+        <.button class="w-full">
+          <%= gettext("Cancel") %>
+        </.button>
+      </.link>
+      <.button phx-click="delete" phx-value-id={@link.id} class="w-full">
+        <%= gettext("Confirm") %>
+      </.button>
+    </div>
+  </div>
 </.modal>

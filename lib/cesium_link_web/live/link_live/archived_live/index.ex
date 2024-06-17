@@ -19,6 +19,18 @@ defmodule CesiumLinkWeb.ArchivedLive.Index do
     |> assign(:link, Links.get_link!(id))
   end
 
+  defp apply_action(socket, :unarchive, %{"id" => id}) do
+    socket
+    |> assign(:page_title, "Unarchive Link")
+    |> assign(:link, Links.get_link!(id))
+  end
+
+  defp apply_action(socket, :delete, %{"id" => id}) do
+    socket
+    |> assign(:page_title, "Delete Link")
+    |> assign(:link, Links.get_link!(id))
+  end
+
   defp apply_action(socket, :index, _params) do
     socket
     |> assign(:page_title, "Archived Links")
@@ -35,7 +47,10 @@ defmodule CesiumLinkWeb.ArchivedLive.Index do
     link = Links.get_link!(id)
     {:ok, _} = Links.delete_link(link)
 
-    {:noreply, stream_delete(socket, :links, link)}
+    {:noreply,
+     stream_delete(socket, :links, link)
+     |> push_patch(to: ~p"/admin/links/archived")
+     |> put_flash(:info, "Link deleted successfully")}
   end
 
   @impl true
@@ -43,6 +58,9 @@ defmodule CesiumLinkWeb.ArchivedLive.Index do
     link = Links.get_link!(id)
     {:ok, _} = Links.unarchive_link(link)
 
-    {:noreply, stream_delete(socket, :links, link)}
+    {:noreply,
+     stream_delete(socket, :links, link)
+     |> push_patch(to: ~p"/admin/links/archived")
+     |> put_flash(:info, "Link unarchived successfully")}
   end
 end
