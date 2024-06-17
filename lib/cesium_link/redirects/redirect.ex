@@ -30,5 +30,6 @@ defmodule CesiumLink.Redirects.Redirect do
     |> validate_format(:slug, ~r{^[a-z0-9-]+$},
       message: "must contain only lowercase letters, numbers, and hyphens"
     )
+    |> unique_constraint(:slug, message: "already in use")
   end
 end

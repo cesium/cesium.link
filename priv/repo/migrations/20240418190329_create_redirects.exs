@@ -13,5 +13,7 @@ defmodule CesiumLink.Repo.Migrations.CreateRedirects do
 
       timestamps(type: :utc_datetime)
     end
+
+    create unique_index(:redirects, [:slug])
   end
 end
