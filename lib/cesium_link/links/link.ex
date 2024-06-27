@@ -29,6 +29,8 @@ defmodule CesiumLink.Links.Link do
     |> cast(attrs, @required_fields ++ @optional_fields)
     |> unique_constraint(:index)
     |> validate_required(@required_fields)
-    |> validate_format(:url, ~r{^https?://}, message: "must start with http:// or https://")
+    |> validate_format(:url, ~r/^https?:\/\/.*\.[a-zA-Z]{2,}$/,
+      message: "must start with http:// or https:// and have a valid domain"
+    )
   end
 end

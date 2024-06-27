@@ -26,7 +26,9 @@ defmodule CesiumLink.Redirects.Redirect do
     redirect
     |> cast(attrs, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
-    |> validate_format(:url, ~r{^https?://}, message: "must start with http:// or https://")
+    |> validate_format(:url, ~r/^https?:\/\/.*\.[a-zA-Z]{2,}$/,
+      message: "must start with http:// or https:// and have a valid domain"
+    )
     |> validate_format(:slug, ~r{^[a-z0-9-]+$},
       message: "must contain only lowercase letters, numbers, and hyphens"
     )
