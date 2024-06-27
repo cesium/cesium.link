@@ -37,8 +37,8 @@
       <.icon name="hero-pencil" class="w-5 h-5" />
     </.link>
   </:action>
-  <:action :let={{id, redirect}}>
-    <.link phx-click={JS.push("delete", value: %{id: redirect.id}) |> hide("##{id}")} data-confirm="Are you sure?">
+  <:action :let={{_id, redirect}}>
+    <.link patch={~p"/admin/redirects/#{redirect}/delete"}>
       <.icon name="hero-trash" class="w-5 h-5" />
     </.link>
   </:action>
@@ -46,4 +46,25 @@
 
 <.modal :if={@live_action in [:new, :edit]} id="redirect-modal" show on_cancel={JS.patch(~p"/admin/redirects")}>
   <.live_component module={CesiumLinkWeb.RedirectLive.FormComponent} id={@redirect.id || :new} title={@page_title} action={@live_action} redirect={@redirect} patch={~p"/admin/redirects"} />
+</.modal>
+
+<.modal :if={@live_action == :delete} id="delete-modal" show on_cancel={JS.patch(~p"/admin/redirects")}>
+  <div>
+    <.header>
+      <%= gettext("Delete Redirect") %>
+      <:subtitle>
+        <%= gettext("Are you sure you want to delete this redirect? This action is irreversible.") %>
+      </:subtitle>
+    </.header>
+    <div class="mt-8 w-full gap-2 flex flex-row">
+      <.link patch={~p"/admin/redirects"} class="w-full outline-none">
+        <.button class="w-full">
+          <%= gettext("Cancel") %>
+        </.button>
+      </.link>
+      <.button phx-click="delete" phx-value-id={@redirect.id} class="w-full">
+        <%= gettext("Confirm") %>
+      </.button>
+    </div>
+  </div>
 </.modal>

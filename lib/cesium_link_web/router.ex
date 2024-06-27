@@ -85,6 +85,7 @@ defmodule CesiumLinkWeb.Router do
         live "/redirects", RedirectLive.Index, :index
         live "/redirects/new", RedirectLive.Index, :new
         live "/redirects/:id/edit", RedirectLive.Index, :edit
+        live "/redirects/:id/delete", RedirectLive.Index, :delete
 
         live "/qrcode", QRCodeLive.Index, :index
       end

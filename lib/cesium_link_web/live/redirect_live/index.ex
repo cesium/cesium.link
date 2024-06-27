@@ -20,6 +20,12 @@ defmodule CesiumLinkWeb.RedirectLive.Index do
     |> assign(:redirect, Redirects.get_redirect!(id))
   end
 
+  defp apply_action(socket, :delete, %{"id" => id}) do
+    socket
+    |> assign(:page_title, "Delete Redirect")
+    |> assign(:redirect, Redirects.get_redirect!(id))
+  end
+
   defp apply_action(socket, :new, _params) do
     socket
     |> assign(:page_title, "New Redirect")
@@ -42,7 +48,10 @@ defmodule CesiumLinkWeb.RedirectLive.Index do
     redirect = Redirects.get_redirect!(id)
     {:ok, _} = Redirects.delete_redirect(redirect)
 
-    {:noreply, stream_delete(socket, :redirects, redirect)}
+    {:noreply,
+     stream_delete(socket, :redirects, redirect)
+     |> push_patch(to: ~p"/admin/redirects")
+     |> put_flash(:info, "Redirect deleted successfully")}
   end
 
   defp get_redirect_url(%Redirect{slug: slug, type: type}) do
