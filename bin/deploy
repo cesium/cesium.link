@@ -19,9 +19,11 @@ function display_help() {
   cat <<EOF
   $(help_title_section Usage)
     ${PROGRAM} [options] <command>
+
   $(help_title_section Commands)
     prod              Deploy to production environment.
     stg               Deploy to staging environment [default command].
+    
   $(help_title_section Options)
     -h --help         Show this screen.
     -v --version      Show version.

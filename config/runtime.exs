@@ -31,7 +31,6 @@ if config_env() in [:prod, :stg] do
   %URI{host: database_host} = URI.parse(database_url)
 
   # Location of root certificates to verify database SSL connections
-
   database_ca_cert_filepath =
     System.get_env("DATABASE_CA_CERT_FILEPATH") || "/etc/ssl/certs/ca-certificates.crt"
 

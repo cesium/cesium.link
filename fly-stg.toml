@@ -2,8 +2,6 @@ app = "cesium-link-stg"
 primary_region = "mad"
 kill_signal = "SIGTERM"
 
-[build]
-
 [deploy]
   release_command = "/app/bin/migrate"
 

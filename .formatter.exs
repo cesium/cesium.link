@@ -6,8 +6,7 @@
     "*.{heex,ex,exs}",
     "priv/*/seeds.exs",
     "priv/repo/seeds/*.exs",
-    "{config,lib,test}/**/*.{heex,ex,exs}",
-    "storybook/**/*.exs"
+    "{config,lib,test}/**/*.{heex,ex,exs}"
   ],
   subdirectories: ["priv/*/migrations"]
 ]
