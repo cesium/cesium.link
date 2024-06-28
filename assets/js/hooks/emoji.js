@@ -4,8 +4,8 @@ export const EmojiPicker = {
     mounted() {
         this.el.addEventListener("click", (event) => 
             {
-                if(this.el.parentElement.querySelector("em-emoji-picker") == null) {
-                    const picker = new EmojiMart.Picker({onEmojiSelect: (data) => {updateEmojiInput(this.el.id, data.id); }, theme: "light", set: "native", autoFocus: true, onClickOutside: () => {picker.remove();}});
+                if (this.el.parentElement.querySelector("em-emoji-picker") == null) {
+                    const picker = new EmojiMart.Picker({onEmojiSelect: (data) => {updateEmojiInput(this.el.id, data.id); }, theme: "light", set: "native", autoFocus: true, onClickOutside: () => {picker.remove()}});
                     picker.style.position = "absolute";
                     picker.style.left = "100px";
                     this.el.parentElement.appendChild(picker);
