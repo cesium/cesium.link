@@ -45,9 +45,6 @@ defmodule CesiumLink.MixProject do
       # auth
       {:elixir_auth_google, "~> 1.6.9"},
 
-      # security
-      {:bcrypt_elixir, "~> 3.0"},
-
       # frontend
       {:tailwind, "~> 0.2", runtime: Mix.env() == :dev},
       {:heroicons,
