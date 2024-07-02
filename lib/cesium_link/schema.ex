@@ -1,4 +1,8 @@
 defmodule CesiumLink.Schema do
+  @moduledoc """
+  The application Schema for all the modules, providing Ecto.UUIDs as default
+  id.
+  """
   import Ecto.Changeset
 
   defmacro __using__(_) do

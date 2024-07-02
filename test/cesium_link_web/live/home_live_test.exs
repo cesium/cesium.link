@@ -21,7 +21,7 @@ defmodule CesiumLinkWeb.HomeLiveTest do
         conn
         |> live(~p"/")
 
-      view |> element("##{link.id}") |> render_click()
+      view |> element("#links-#{link.id}") |> render_click()
 
       assert Links.get_link!(link.id).visits == 1
     end
