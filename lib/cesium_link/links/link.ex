@@ -2,14 +2,11 @@ defmodule CesiumLink.Links.Link do
   @moduledoc """
   Link schema.
   """
-  use Ecto.Schema
-  import Ecto.Changeset
+  use CesiumLink.Schema
 
   @required_fields ~w(name emoji url attention edited_at)a
   @optional_fields ~w(index archived visits)a
 
-  @primary_key {:id, :binary_id, autogenerate: true}
-  @foreign_key_type :binary_id
   schema "links" do
     field :archived, :boolean, default: false
     field :attention, :boolean, default: false
@@ -29,8 +26,6 @@ defmodule CesiumLink.Links.Link do
     |> cast(attrs, @required_fields ++ @optional_fields)
     |> unique_constraint(:index)
     |> validate_required(@required_fields)
-    |> validate_format(:url, ~r/^https?:\/\/.*\.[a-zA-Z]{2,}$/,
-      message: "must start with http:// or https:// and have a valid domain"
-    )
+    |> validate_url(:url)
   end
 end

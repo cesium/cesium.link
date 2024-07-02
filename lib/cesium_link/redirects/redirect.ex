@@ -2,14 +2,11 @@ defmodule CesiumLink.Redirects.Redirect do
   @moduledoc """
   Redirect schema.
   """
-  use Ecto.Schema
-  import Ecto.Changeset
+  use CesiumLink.Schema
 
   @required_fields ~w(name slug url type edited_at)a
   @optional_fields ~w(visits)a
 
-  @primary_key {:id, :binary_id, autogenerate: true}
-  @foreign_key_type :binary_id
   schema "redirects" do
     field :name, :string
     field :slug, :string
@@ -26,9 +23,7 @@ defmodule CesiumLink.Redirects.Redirect do
     redirect
     |> cast(attrs, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
-    |> validate_format(:url, ~r/^https?:\/\/.*\.[a-zA-Z]{2,}$/,
-      message: "must start with http:// or https:// and have a valid domain"
-    )
+    |> validate_url(:url)
     |> validate_format(:slug, ~r{^[a-z0-9-]+$},
       message: "must contain only lowercase letters, numbers, and hyphens"
     )
