@@ -3,9 +3,17 @@ name: Build and Test
 on:
   push:
     branches: [main]
+    paths:
+    - '**/*.ex'
+    - '**/*.exs'
+    - '**/*.html.heex'
   pull_request:
     branches: [main]
     types: [opened, synchronize]
+    paths:
+    - '**/*.ex'
+    - '**/*.exs'
+    - '**/*.html.heex'
 
 jobs:
   build:

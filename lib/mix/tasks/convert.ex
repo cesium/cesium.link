@@ -5,9 +5,9 @@ defmodule Mix.Tasks.Convert do
   """
   use Mix.Task
 
+  alias CesiumLink.Links.Link
   alias CesiumLink.Redirects.Redirect
   alias CesiumLink.Repo
-  alias CesiumLink.Links.Link
 
   def run(files) do
     case length(files) do

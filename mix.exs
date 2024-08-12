@@ -99,7 +99,8 @@ defmodule CesiumLink.MixProject do
         "tailwind cesium_link --minify",
         "esbuild cesium_link --minify",
         "phx.digest"
-      ]
+      ],
+      lint: ["credo -C default"]
     ]
   end
 end
