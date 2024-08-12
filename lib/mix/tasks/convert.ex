@@ -1,6 +1,7 @@
 defmodule Mix.Tasks.Convert do
   @moduledoc """
   Task to read data exported (in CSV files, one for each table) from the old cesium.link project and import it to database following the new schemas.
+  Takes in 3 files as arguments in the following order: links, redirects, forms.
   """
   use Mix.Task
 

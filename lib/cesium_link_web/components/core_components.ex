@@ -443,7 +443,7 @@ defmodule CesiumLinkWeb.CoreComponents do
       end
 
     ~H"""
-    <div class="overflow-y-auto px-4 sm:overflow-visible sm:px-0">
+    <div class="overflow-x-auto overflow-y-hidden px-4 sm:overflow-visible sm:px-0">
       <table class="w-[40rem] mt-11 sm:w-full">
         <thead class="text-left text-sm leading-6 text-zinc-500">
           <tr>

@@ -1,6 +1,7 @@
 .env
 .env.*
 !.env.*.sample
+.envrc
 
 # The directory Mix will write compiled artifacts to.
 /_build/
