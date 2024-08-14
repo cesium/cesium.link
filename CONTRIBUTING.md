@@ -1,5 +1,4 @@
 [asdf-vm]: https://asdf-vm.com/
-[auth0-docs]: https://auth0.com/docs/get-started/auth0-overview/create-applications
 
 # 🚀 Getting Started
 
@@ -10,50 +9,91 @@ local machine for development and testing purposes.
 
 The following software is required to be installed on your system:
 
-- [Node.js 16.17+](https://nodejs.org/en/download/)
-- [MongoDB 5+](https://www.mongodb.com/)
+- [Erlang 26+](https://www.erlang.org/downloads)
+- [Elixir 1.14+](https://elixir-lang.org/install.html)
+- [PostgreSQL 13+](https://www.postgresql.org/download/)(see [this section](#-docker) for setting up with docker)
 
-We recommend using [asdf version manager][asdf-vm] to install and manage all the
-programming languages' requirements.
+We recommend using [asdf version manager][asdf-vm] to install and manage all
+the programming languages' requirements.
 
-## 👽 Third-party dependencies
-
-This project uses the [Auth0](https://auth0.com/) for authentication and
-authorization (with a custom javascript script). You need to create an App for
-a SPA to interact with it in development [here][auth0-docs].
+If you prefer to use docker, see the [section below](#-docker).
 
 ## 🔧 Setup
 
-Install all dependencies.
+First, clone the repository:
 
 ```
-npm install
+git clone git@github.com:cesium/cesium.link.git
+cd cesium.link
 ```
 
-Then, create your local environment file and fill in all the required details.
+Then, run the setup script to get all dependencies configured. Make sure the database is up and running.
 
 ```
-cp -n .env.sample .env.local
+bin/setup
 ```
+
+Then you should change the `.env.dev` file as needed. Run this script again if
+needed.
 
 ## 🔨 Development
 
-Starting the development server.
+Start the development server and then you can visit `http://localhost:4000`
+from your browser.
 
 ```
-npm run develop
+bin/server
 ```
 
-Test your code against common guidelines.
+Run the tests.
 
 ```
-npm run test
+bin/test
 ```
 
 Lint your code.
 
 ```
-npm run lint
+bin/lint
+```
+
+Format your code.
+
+```
+bin/format
+```
+
+## 🐳 Docker
+
+For data persistence this project uses a PostgreSQL database. You should have
+PostgreSQL up and running.
+
+If you want to setup the required database using docker containers you can
+easily do it with [docker-compose](https://docs.docker.com/compose/install/).
+
+Create and start the database containers. You should use `linux.yml` if running on Linux and `darwin.yml` if running on macOS.
+
+```
+cp .env.dev.sample .env.dev
+docker-compose -f docker-compose.dev.yml -f {linux,darwin}.yml up db
+```
+
+Start the previously created containers.
+
+```
+docker-compose -f docker-compose.dev.yml -f {linux,darwin}.yml start
+```
+
+Stop the containers.
+
+```
+docker-compose -f docker-compose.dev.yml -f {linux,darwin}.yml stop
+```
+
+Destroy the containers and volumes created.
+
+```
+docker-compose -f docker-compose.dev.yml -f {linux,darwin}.yml down -v
 ```
 
 ## 🔗 References
@@ -61,6 +101,9 @@ npm run lint
 You can use these resources to learn more about the technologies this project
 uses.
 
-- [Getting Started with React](https://reactjs.org/docs/getting-started.html)
-- [Learn Next.js](https://nextjs.org/learn)
-- [Ant Design Components Overview](https://ant.design/components/overview/)
+- [Getting Started with Elixir](https://elixir-lang.org/getting-started/introduction.html)
+- [Erlang/Elixir Syntax: A Crash Course](https://elixir-lang.org/crash-course.html)
+- [Elixir School Course](https://elixirschool.com/en/)
+- [Phoenix Guides Overview](https://hexdocs.pm/phoenix/overview.html)
+- [Phoenix Documentation](https://hexdocs.pm/phoenix)
+- [Ecto Documentation](https://hexdocs.pm/ecto)

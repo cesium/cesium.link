@@ -1,0 +1,69 @@
+<.header>
+  Links
+  <:actions>
+    <.link class="pr-2" patch={~p"/admin/links/archived"}>
+      <.button>
+        <.icon name="hero-archive-box" class="w-5 h-5" />
+      </.button>
+    </.link>
+    <.link patch={~p"/admin/links/new"}>
+      <.button>
+        <.icon name="hero-plus" class="w-5 h-5" /> New Link
+      </.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="links" rows={@streams.links} phx-hook="Sorting">
+  <:col :let={{_id, _link}}><.icon name="hero-bars-3 cursor-pointer ml-4" class="handle w-5 h-5" /></:col>
+  <:col :let={{_id, link}} label="Name">
+    <p class="font-semibold text-zinc-900"><%= link.name %></p>
+  </:col>
+  <:col :let={{_id, link}} label="Emoji">
+    <.emoji code={link.emoji} />
+  </:col>
+  <:col :let={{_id, link}} label="URL">
+    <.link target="_blank" class="hover:text-brand hover:underline" navigate={link.url}>
+      <%= truncate_elipsis(link.url, 50) %>
+    </.link>
+  </:col>
+  <:col :let={{_id, link}} label="Clicks"><%= link.visits %></:col>
+  <:col :let={{_id, link}} label="Attention">
+    <input type="checkbox" disabled={true} checked={link.attention} class="self-center block rounded-md text-gray-600" />
+  </:col>
+  <:action :let={{_id, link}}>
+    <.link patch={~p"/admin/links/#{link}/edit"}>
+      <.icon name="hero-pencil" class="w-5 h-5" />
+    </.link>
+  </:action>
+  <:action :let={{_id, link}}>
+    <.link patch={~p"/admin/links/#{link}/archive"}>
+      <.icon name="hero-archive-box" class="w-5 h-5" />
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="link-modal" show on_cancel={JS.patch(~p"/admin/links")}>
+  <.live_component module={CesiumLinkWeb.LinkLive.FormComponent} id={@link.id || :new} title={@page_title} action={@live_action} link={@link} patch={~p"/admin/links"} />
+</.modal>
+
+<.modal :if={@live_action == :archive} id="archive-modal" show on_cancel={JS.patch(~p"/admin/links")}>
+  <div>
+    <.header>
+      <%= gettext("Archive Link") %>
+      <:subtitle>
+        <%= gettext("Are you sure you want to archive this link?") %>
+      </:subtitle>
+    </.header>
+    <div class="mt-8 w-full gap-2 flex flex-row">
+      <.link patch={~p"/admin/links"} class="w-full outline-none">
+        <.button class="w-full">
+          <%= gettext("Cancel") %>
+        </.button>
+      </.link>
+      <.button phx-click="archive" phx-value-id={@link.id} class="w-full">
+        <%= gettext("Confirm") %>
+      </.button>
+    </div>
+  </div>
+</.modal>
