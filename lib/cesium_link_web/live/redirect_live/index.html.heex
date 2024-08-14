@@ -1,0 +1,70 @@
+<.header>
+  Redirects
+  <:actions>
+    <.link patch={~p"/admin/redirects/new"}>
+      <.button><.icon name="hero-plus" class="w-5 h-5" /> New Redirect</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="redirects" rows={@streams.redirects}>
+  <:col :let={{_id, redirect}} label="Name"><%= redirect.name %></:col>
+  <:col :let={{_id, redirect}} label="Slug"><%= redirect.slug %></:col>
+  <:col :let={{_id, redirect}} label="URL">
+    <.link target="_blank" class="hover:text-brand transition-all hover:underline" navigate={redirect.url}>
+      <%= truncate_elipsis(redirect.url, 50) %>
+    </.link>
+  </:col>
+  <:col :let={{_id, redirect}} label="Link">
+    <.link target="_blank" class="hover:text-brand transition-all hover:underline" navigate={get_redirect_url(redirect)}>
+      <%= get_redirect_url(redirect) %>
+    </.link>
+    <span class="hover:cursor-pointer hover:text-brand transition-all" onclick={"navigator.clipboard.writeText('#{get_redirect_url(redirect)}');"}>
+      <.icon name="hero-clipboard" class="w-4 h-4 mb-1 ml-1" />
+    </span>
+  </:col>
+  <:col :let={{_id, redirect}} label="Visits"><%= redirect.visits %></:col>
+  <:col :let={{_id, redirect}} label="Type">
+    <span class="block text-center ring-1 px-3 capitalize ring-zinc-500 rounded-xl w-18 cursor-default">
+      <%= redirect.type %>
+    </span>
+  </:col>
+  <:col :let={{_id, redirect}} label="Last Edited">
+    <%= relative_datetime(redirect.edited_at) %>
+  </:col>
+  <:action :let={{_id, redirect}}>
+    <.link patch={~p"/admin/redirects/#{redirect}/edit"}>
+      <.icon name="hero-pencil" class="w-5 h-5" />
+    </.link>
+  </:action>
+  <:action :let={{_id, redirect}}>
+    <.link patch={~p"/admin/redirects/#{redirect}/delete"}>
+      <.icon name="hero-trash" class="w-5 h-5" />
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="redirect-modal" show on_cancel={JS.patch(~p"/admin/redirects")}>
+  <.live_component module={CesiumLinkWeb.RedirectLive.FormComponent} id={@redirect.id || :new} title={@page_title} action={@live_action} redirect={@redirect} patch={~p"/admin/redirects"} />
+</.modal>
+
+<.modal :if={@live_action == :delete} id="delete-modal" show on_cancel={JS.patch(~p"/admin/redirects")}>
+  <div>
+    <.header>
+      <%= gettext("Delete Redirect") %>
+      <:subtitle>
+        <%= gettext("Are you sure you want to delete this redirect? This action is irreversible.") %>
+      </:subtitle>
+    </.header>
+    <div class="mt-8 w-full gap-2 flex flex-row">
+      <.link patch={~p"/admin/redirects"} class="w-full outline-none">
+        <.button class="w-full">
+          <%= gettext("Cancel") %>
+        </.button>
+      </.link>
+      <.button phx-click="delete" phx-value-id={@redirect.id} class="w-full">
+        <%= gettext("Confirm") %>
+      </.button>
+    </div>
+  </div>
+</.modal>

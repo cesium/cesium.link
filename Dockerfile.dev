@@ -1,0 +1,12 @@
+FROM elixir:1.14-alpine
+
+# Install build dependencies
+RUN apk add --no-cache build-base git python3
+
+# Install hex + rebar
+RUN mix local.hex --force && \
+    mix local.rebar --force
+
+WORKDIR /app
+
+CMD [ "sh", "-c", "mix setup; mix phx.server" ]
