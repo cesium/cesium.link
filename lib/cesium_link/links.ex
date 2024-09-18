@@ -64,7 +64,11 @@ defmodule CesiumLink.Links do
 
   """
   def list_unarchived_links_by_index do
-    Repo.all(from l in Link, where: l.archived == false, order_by: [asc: l.index])
+    Link
+    |> where([l], fragment("? > now()", l.publish_at))
+    |> where([l], l.archived == false )
+    |> order_by([l], asc: l.index)
+    |> Repo.all()
   end
 
   @doc """
