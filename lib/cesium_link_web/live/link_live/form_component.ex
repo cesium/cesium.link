@@ -19,7 +19,9 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
         <.input field={@form[:emoji]} type="emoji" label="Emoji" />
         <.input field={@form[:url]} type="text" label="URL" />
         <.input field={@form[:attention]} type="checkbox" label="Attention" />
-        <.input field={@form[:publish_at]} type="datetime-local" label="Publish At" />
+        <%= if @action == :new do %>
+          <.input field={@form[:publish_at]} type="datetime-local" label="Publish At" />
+        <% end %>
         <:actions>
           <.button phx-disable-with="Saving...">Save Link</.button>
         </:actions>
