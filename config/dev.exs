@@ -22,7 +22,7 @@ config :cesium_link, CesiumLinkWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
   code_reloader: true,
-  debug_errors: false,
+  debug_errors: true,
   secret_key_base: "6u3rGnb0UXmh9e8TXewRiiEYUFNvzvvgHTrDY0EqxJq7t44sm8gVtVO9+7AfQtQV",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:cesium_link, ~w(--sourcemap=inline --watch)]},
