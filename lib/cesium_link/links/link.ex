@@ -5,7 +5,7 @@ defmodule CesiumLink.Links.Link do
   use CesiumLink.Schema
 
   @required_fields ~w(name emoji url attention edited_at)a
-  @optional_fields ~w(index archived visits)a
+  @optional_fields ~w(index archived visits publish_at)a
 
   schema "links" do
     field :archived, :boolean, default: false
@@ -16,6 +16,7 @@ defmodule CesiumLink.Links.Link do
     field :url, :string
     field :visits, :integer, default: 0
     field :edited_at, :utc_datetime
+    field :publish_at, :utc_datetime
 
     timestamps(type: :utc_datetime)
   end
