@@ -15,30 +15,46 @@
 </.header>
 
 <.table id="links" rows={@streams.links} phx-hook="Sorting">
-  <:col :let={{_id, _link}}><.icon name="hero-bars-3 cursor-pointer ml-4" class="handle w-5 h-5" /></:col>
+  <:col :let={{_id, _link}}>
+    <% publish_future = _link.publish_at && DateTime.compare(_link.publish_at, DateTime.utc_now()) == :gt %>
+    <.icon name="hero-bars-3 cursor-pointer ml-4" class={"handle w-5 h-5 #{if publish_future, do: "opacity-50"}"} />
+  </:col>
   <:col :let={{_id, link}} label="Name">
-    <p class="font-semibold text-zinc-900"><%= link.name %></p>
+    <% publish_future = link.publish_at && DateTime.compare(link.publish_at, DateTime.utc_now()) == :gt %>
+    <p class={"font-semibold text-zinc-900 #{if publish_future, do: "opacity-50"}"}><%= link.name %></p>
   </:col>
   <:col :let={{_id, link}} label="Emoji">
-    <.emoji code={link.emoji} />
+    <% publish_future = link.publish_at && DateTime.compare(link.publish_at, DateTime.utc_now()) == :gt %>
+    <span class={if publish_future, do: "opacity-50"}>
+      <.emoji code={link.emoji} />
+    </span>
   </:col>
   <:col :let={{_id, link}} label="URL">
-    <.link target="_blank" class="hover:text-brand hover:underline" navigate={link.url}>
+    <% publish_future = link.publish_at && DateTime.compare(link.publish_at, DateTime.utc_now()) == :gt %>
+    <.link target="_blank" class={"hover:text-brand hover:underline #{if publish_future, do: "opacity-50"}"} navigate={link.url}>
       <%= truncate_elipsis(link.url, 50) %>
     </.link>
   </:col>
-  <:col :let={{_id, link}} label="Clicks"><%= link.visits %></:col>
+<:col :let={{_id, link}} label="Clicks">
+    <% publish_future = link.publish_at && DateTime.compare(link.publish_at, DateTime.utc_now()) == :gt %>
+    <p class={if publish_future, do: "opacity-50"}>
+      <%= link.visits %>
+    </p>
+  </:col>
   <:col :let={{_id, link}} label="Attention">
-    <input type="checkbox" disabled={true} checked={link.attention} class="self-center block rounded-md text-gray-600" />
+    <% publish_future = link.publish_at && DateTime.compare(link.publish_at, DateTime.utc_now()) == :gt %>
+    <input type="checkbox" disabled={true} checked={link.attention} class={"self-center block rounded-md text-gray-600 #{if publish_future, do: "opacity-50"}"} />
   </:col>
   <:action :let={{_id, link}}>
+    <% publish_future = link.publish_at && DateTime.compare(link.publish_at, DateTime.utc_now()) == :gt %>
     <.link patch={~p"/admin/links/#{link}/edit"}>
-      <.icon name="hero-pencil" class="w-5 h-5" />
+      <.icon name="hero-pencil" class={"w-5 h-5 #{if publish_future, do: "opacity-50"}"} />
     </.link>
   </:action>
   <:action :let={{_id, link}}>
+    <% publish_future = link.publish_at && DateTime.compare(link.publish_at, DateTime.utc_now()) == :gt %>
     <.link patch={~p"/admin/links/#{link}/archive"}>
-      <.icon name="hero-archive-box" class="w-5 h-5" />
+      <.icon name="hero-archive-box" class={"w-5 h-5 #{if publish_future, do: "opacity-50"}"} />
     </.link>
   </:action>
 </.table>
