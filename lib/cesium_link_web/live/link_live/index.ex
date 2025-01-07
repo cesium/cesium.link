@@ -66,4 +66,15 @@ defmodule CesiumLinkWeb.LinkLive.Index do
 
     {:noreply, socket}
   end
+
+  def handle_event("end-time",_, socket) do
+    {:noreply, socket |> push_navigate(to: ~p"/admin/links")}
+  end
+
+  def publish_in_future?(link) do
+    case link.publish_at do
+      nil -> false
+      publish_at -> DateTime.compare(publish_at, DateTime.utc_now()) == :gt
+    end
+  end
 end

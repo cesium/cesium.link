@@ -24,12 +24,14 @@ import topbar from "../vendor/topbar"
 import { Sorting } from "./hooks/sorting"
 import { EmojiPicker } from "./hooks/emoji"
 import { QRCodeGenerator } from "./hooks/qrcode-generator"
+import { Timer } from "./hooks/timer"
 
 // JS Hooks
 let Hooks = {}
 Hooks.Sorting = Sorting;
 Hooks.EmojiPicker = EmojiPicker;
 Hooks.QRCodeGenerator = QRCodeGenerator;
+Hooks.Timer = Timer;
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {
