@@ -15,23 +15,23 @@
 </.header>
 
 <.table id="links" rows={@streams.links} phx-hook="Sorting">
-  <:col :let={{_id, link}} >
+  <:col :let={{_id, link}}>
     <% publish_future = publish_in_future?(link) %>
     <.icon name="hero-bars-3 cursor-pointer ml-4" class={"handle w-5 h-5 #{if publish_future, do: "opacity-50"}"} />
   </:col>
-  
+
   <:col :let={{_id, link}} label="Name">
     <% publish_future = publish_in_future?(link) %>
     <p class={"font-semibold text-zinc-900 #{if publish_future, do: "opacity-50"}"}><%= link.name %></p>
   </:col>
-  
+
   <:col :let={{_id, link}} label="Emoji">
     <% publish_future = publish_in_future?(link) %>
     <span class={if publish_future, do: "opacity-50"}>
       <.emoji code={link.emoji} />
     </span>
   </:col>
-  
+
   <:col :let={{_id, link}} label="URL">
     <% publish_future = publish_in_future?(link) %>
     <.link target="_blank" class={"hover:text-brand hover:underline #{if publish_future, do: "opacity-50"}"} navigate={link.url}>
@@ -42,44 +42,40 @@
   <:col :let={{_id, link}} label="Time Left">
     <% publish_future = publish_in_future?(link) %>
     <%= if publish_future do %>
-    <div 
-    id="timer-countdown"
-    phx-hook="Timer"
-    data-finish-time={DateTime.to_unix(link.publish_at)}>
-    00:00:00
-    </div>
+      <div id="timer-countdown" phx-hook="Timer" data-finish-time={DateTime.to_unix(link.publish_at)}>
+        00:00:00
+      </div>
     <% else %>
       <h1>No time</h1>
     <% end %>
   </:col>
-  
+
   <:col :let={{_id, link}} label="Clicks">
     <% publish_future = publish_in_future?(link) %>
     <p class={if publish_future, do: "opacity-50"}>
       <%= link.visits %>
     </p>
   </:col>
-  
+
   <:col :let={{_id, link}} label="Attention">
     <% publish_future = publish_in_future?(link) %>
     <input type="checkbox" disabled={true} checked={link.attention} class={"self-center block rounded-md text-gray-600 #{if publish_future, do: "opacity-50"}"} />
-    </:col>
-  
-  <:action :let={{_id, link}} >
+  </:col>
+
+  <:action :let={{_id, link}}>
     <% publish_future = publish_in_future?(link) %>
     <.link patch={~p"/admin/links/#{link}/edit"}>
       <.icon name="hero-pencil" class={"w-5 h-5 #{if publish_future, do: "opacity-50"}"} />
     </.link>
   </:action>
-  
-  <:action :let={{_id, link}} >
+
+  <:action :let={{_id, link}}>
     <% publish_future = publish_in_future?(link) %>
     <.link patch={~p"/admin/links/#{link}/archive"}>
       <.icon name="hero-archive-box" class={"w-5 h-5 #{if publish_future, do: "opacity-50"}"} />
     </.link>
   </:action>
 </.table>
-
 
 <.modal :if={@live_action in [:new, :edit]} id="link-modal" show on_cancel={JS.patch(~p"/admin/links")}>
   <.live_component module={CesiumLinkWeb.LinkLive.FormComponent} id={@link.id || :new} title={@page_title} action={@live_action} link={@link} patch={~p"/admin/links"} />

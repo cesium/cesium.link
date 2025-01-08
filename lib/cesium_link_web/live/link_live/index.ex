@@ -67,7 +67,7 @@ defmodule CesiumLinkWeb.LinkLive.Index do
     {:noreply, socket}
   end
 
-  def handle_event("end-time",_, socket) do
+  def handle_event("end-time", _, socket) do
     {:noreply, socket |> push_navigate(to: ~p"/admin/links")}
   end
 
