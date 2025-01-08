@@ -71,10 +71,10 @@ defmodule CesiumLinkWeb.LinkLive.Index do
     {:noreply, socket |> push_navigate(to: ~p"/admin/links")}
   end
 
-  def publish_in_future?(link) do
-    case link.publish_at do
-      nil -> false
-      publish_at -> DateTime.compare(publish_at, DateTime.utc_now()) == :gt
-    end
-  end
+  def published?(%Link{publish_at: nil}), do: true
+
+  def published?(%Link{publish_at: publish_at}),
+    do: DateTime.compare(publish_at, DateTime.utc_now()) == :lt
+
+  defp publish_in_future?(link), do: not published?(link)
 end
