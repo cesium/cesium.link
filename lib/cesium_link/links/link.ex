@@ -17,6 +17,7 @@ defmodule CesiumLink.Links.Link do
     field :visits, :integer, default: 0
     field :edited_at, :utc_datetime
     field :publish_at, :utc_datetime
+    field :in_future, :boolean, default: false
 
     timestamps(type: :utc_datetime)
   end

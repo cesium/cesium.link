@@ -16,27 +16,27 @@
 
 <.table id="links" rows={@streams.links} phx-hook="Sorting">
   <:col :let={{_id, link}}>
-    <.icon name="hero-bars-3 cursor-pointer ml-4" class={"handle w-5 h-5 #{if publish_in_future?(link), do: "opacity-50"}"} />
+    <.icon name="hero-bars-3 cursor-pointer ml-4" class={"handle w-5 h-5 #{if link.in_future, do: "opacity-50"}"} />
   </:col>
 
   <:col :let={{_id, link}} label="Name">
-    <p class={"font-semibold text-zinc-900 #{if publish_in_future?(link), do: "opacity-50"}"}><%= link.name %></p>
+    <p class={"font-semibold text-zinc-900 #{if link.in_future, do: "opacity-50"}"}><%= link.name %></p>
   </:col>
 
   <:col :let={{_id, link}} label="Emoji">
-    <span class={if publish_in_future?(link), do: "opacity-50"}>
+    <span class={if link.in_future, do: "opacity-50"}>
       <.emoji code={link.emoji} />
     </span>
   </:col>
 
   <:col :let={{_id, link}} label="URL">
-    <.link target="_blank" class={"hover:text-brand hover:underline #{if publish_in_future?(link), do: "opacity-50"}"} navigate={link.url}>
+    <.link target="_blank" class={"hover:text-brand hover:underline #{if link.in_future, do: "opacity-50"}"} navigate={link.url}>
       <%= truncate_elipsis(link.url, 50) %>
     </.link>
   </:col>
 
   <:col :let={{_id, link}} label="Time Left">
-    <%= if publish_in_future?(link) do %>
+    <%= if link.in_future do %>
       <div id="timer-countdown" phx-hook="Timer" data-finish-time={DateTime.to_unix(link.publish_at)} class="opacity-50">
         00:00:00
       </div>
@@ -46,27 +46,28 @@
   </:col>
 
   <:col :let={{_id, link}} label="Clicks">
-    <p class={if publish_in_future?(link), do: "opacity-50"}>
+    <p class={if link.in_future, do: "opacity-50"}>
       <%= link.visits %>
     </p>
   </:col>
 
   <:col :let={{_id, link}} label="Attention">
-    <input type="checkbox" disabled={true} checked={link.attention} class={"self-center block rounded-md text-gray-600 #{if publish_in_future?(link), do: "opacity-50"}"} />
+    <input type="checkbox" disabled={true} checked={link.attention} class={"self-center block rounded-md text-gray-600 #{if link.in_future, do: "opacity-50"}"} />
   </:col>
 
   <:action :let={{_id, link}}>
     <.link patch={~p"/admin/links/#{link}/edit"}>
-      <.icon name="hero-pencil" class={"w-5 h-5 #{if publish_in_future?(link), do: "opacity-50"}"} />
+      <.icon name="hero-pencil" class={"w-5 h-5 #{if link.in_future, do: "opacity-50"}"} />
     </.link>
   </:action>
 
   <:action :let={{_id, link}}>
     <.link patch={~p"/admin/links/#{link}/archive"}>
-      <.icon name="hero-archive-box" class={"w-5 h-5 #{if publish_in_future?(link), do: "opacity-50"}"} />
+      <.icon name="hero-archive-box" class={"w-5 h-5 #{if link.in_future, do: "opacity-50"}"} />
     </.link>
   </:action>
 </.table>
+
 
 <.modal :if={@live_action in [:new, :edit]} id="link-modal" show on_cancel={JS.patch(~p"/admin/links")}>
   <.live_component module={CesiumLinkWeb.LinkLive.FormComponent} id={@link.id || :new} title={@page_title} action={@live_action} link={@link} patch={~p"/admin/links"} />
