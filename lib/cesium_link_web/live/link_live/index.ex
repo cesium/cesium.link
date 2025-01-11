@@ -7,14 +7,15 @@ defmodule CesiumLinkWeb.LinkLive.Index do
   @impl true
   def mount(_params, _session, socket) do
     links = Links.list_unarchived_links()
-    enriched_links = Enum.map(links, fn link ->
-      in_future = publish_in_future?(link)
-      %{link | in_future: in_future}
-    end)
+
+    enriched_links =
+      Enum.map(links, fn link ->
+        in_future = publish_in_future?(link)
+        %{link | in_future: in_future}
+      end)
 
     {:ok, stream(socket, :links, enriched_links)}
   end
-
 
   @impl true
   def handle_params(params, _url, socket) do
