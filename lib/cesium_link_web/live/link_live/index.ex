@@ -11,9 +11,8 @@ defmodule CesiumLinkWeb.LinkLive.Index do
     enriched_links =
       Enum.map(links, fn link ->
         in_future = publish_in_future?(link)
-        %{link | in_future: in_future}
+        Map.put(link, :in_future, in_future)
       end)
-
     {:ok, stream(socket, :links, enriched_links)}
   end
 

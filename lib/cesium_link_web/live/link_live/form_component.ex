@@ -65,7 +65,7 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
         {:noreply,
          socket
          |> put_flash(:info, "Link updated successfully")
-         |> push_patch(to: socket.assigns.patch)}
+         |> push_navigate(to: ~p"/admin/links")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign_form(socket, changeset)}
@@ -84,12 +84,13 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
         {:noreply,
          socket
          |> put_flash(:info, "Link created successfully")
-         |> push_patch(to: socket.assigns.patch)}
+         |> push_navigate(to: ~p"/admin/links")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign_form(socket, changeset)}
     end
   end
+
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
     assign(socket, :form, to_form(changeset))
