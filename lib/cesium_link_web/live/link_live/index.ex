@@ -13,6 +13,7 @@ defmodule CesiumLinkWeb.LinkLive.Index do
         in_future = publish_in_future?(link)
         Map.put(link, :in_future, in_future)
       end)
+
     {:ok, stream(socket, :links, enriched_links)}
   end
 
