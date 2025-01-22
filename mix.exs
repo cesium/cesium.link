@@ -41,6 +41,7 @@ defmodule CesiumLink.MixProject do
       {:ecto_sql, "~> 3.10"},
       {:phoenix_ecto, "~> 4.4"},
       {:postgrex, ">= 0.0.0"},
+      {:nebulex_redis_adapter, "~> 2.4.2"},
 
       # auth
       {:elixir_auth_google, "~> 1.6.9"},

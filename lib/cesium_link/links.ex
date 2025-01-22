@@ -64,6 +64,21 @@ defmodule CesiumLink.Links do
 
   """
   def list_unarchived_links_by_index do
+    case safe_get_from_redis("links") do
+      {:ok, nil} ->
+        links = list_unarchived_links_by_index_from_db()
+        CesiumLink.Standalone.put("links", links)
+        links
+
+      {:ok, links} ->
+        links
+
+      {:error, _reason} ->
+        list_unarchived_links_by_index_from_db()
+    end
+  end
+
+  def list_unarchived_links_by_index_from_db do
     Repo.all(from l in Link, where: l.archived == false, order_by: [asc: l.index])
   end
 
@@ -99,6 +114,14 @@ defmodule CesiumLink.Links do
     %Link{}
     |> Link.changeset(attrs)
     |> Repo.insert()
+    |> case do
+      {:ok, link} ->
+        safe_put_to_redis("links", list_unarchived_links_by_index_from_db())
+        {:ok, link}
+
+      error ->
+        error
+    end
   end
 
   @doc """
@@ -117,6 +140,14 @@ defmodule CesiumLink.Links do
     link
     |> Link.changeset(attrs)
     |> Repo.update()
+    |> case do
+      {:ok, link} ->
+        safe_put_to_redis("links", list_unarchived_links_by_index_from_db())
+        {:ok, link}
+
+      error ->
+        error
+    end
   end
 
   @doc """
@@ -133,6 +164,14 @@ defmodule CesiumLink.Links do
   """
   def delete_link(%Link{} = link) do
     Repo.delete(link)
+    |> case do
+      {:ok, link} ->
+        safe_put_to_redis("links", list_unarchived_links_by_index_from_db())
+        {:ok, link}
+
+      error ->
+        error
+    end
   end
 
   @doc """
@@ -200,5 +239,19 @@ defmodule CesiumLink.Links do
   def increment_link_visits(%Link{} = link) do
     link
     |> update_link(%{visits: link.visits + 1})
+  end
+
+  defp safe_get_from_redis(key) do
+    {:ok, CesiumLink.Standalone.get(key)}
+  rescue
+    exception ->
+      {:error, exception}
+  end
+
+  defp safe_put_to_redis(key, value) do
+    {:ok, CesiumLink.Standalone.put(key, value)}
+  rescue
+    exception ->
+      {:error, exception}
   end
 end
