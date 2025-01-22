@@ -64,6 +64,18 @@ defmodule CesiumLink.Links do
 
   """
   def list_unarchived_links_by_index do
+    case CesiumLink.Standalone.get("links") do
+      nil ->
+        links = list_unarchived_links_by_index_from_db()
+        CesiumLink.Standalone.put("links", links)
+        links
+
+      links ->
+        links
+    end
+  end
+
+  def list_unarchived_links_by_index_from_db do
     Repo.all(from l in Link, where: l.archived == false, order_by: [asc: l.index])
   end
 

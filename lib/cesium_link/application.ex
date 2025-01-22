@@ -10,6 +10,7 @@ defmodule CesiumLink.Application do
     children = [
       CesiumLinkWeb.Telemetry,
       CesiumLink.Repo,
+      CesiumLink.Standalone,
       {DNSCluster, query: Application.get_env(:cesium_link, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: CesiumLink.PubSub},
       # Start a worker by calling: CesiumLink.Worker.start_link(arg)

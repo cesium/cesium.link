@@ -32,6 +32,12 @@ config :esbuild,
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
+config :cesium_link, CesiumLink.Standalone,
+  conn_opts: [
+    host: "localhost",
+    port: 6379
+  ]
+
 # Configure tailwind (the version is required)
 config :tailwind,
   version: "3.4.0",

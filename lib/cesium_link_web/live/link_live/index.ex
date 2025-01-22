@@ -3,6 +3,7 @@ defmodule CesiumLinkWeb.LinkLive.Index do
 
   alias CesiumLink.Links
   alias CesiumLink.Links.Link
+  alias CesiumLink.Standalone
 
   @impl true
   def mount(_params, _session, socket) do
@@ -47,6 +48,7 @@ defmodule CesiumLinkWeb.LinkLive.Index do
   def handle_event("archive", %{"id" => id}, socket) do
     link = Links.get_link!(id)
     {:ok, _} = Links.archive_link(link)
+    Standalone.put("links", Links.list_unarchived_links_by_index_from_db())
 
     {:noreply,
      stream_delete(socket, :links, link)
