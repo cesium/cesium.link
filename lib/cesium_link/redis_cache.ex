@@ -3,6 +3,6 @@ defmodule CesiumLink.Standalone do
   Standalone redis cache.
   """
   use Nebulex.Cache,
-    otp_app: :safira,
+    otp_app: :cesium_link,
     adapter: NebulexRedisAdapter
 end

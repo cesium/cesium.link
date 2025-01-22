@@ -2,7 +2,6 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
   use CesiumLinkWeb, :live_component
 
   alias CesiumLink.Links
-  alias CesiumLink.Standalone
 
   @impl true
   def render(assigns) do
@@ -59,7 +58,6 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
          ) do
       {:ok, link} ->
         notify_parent({:saved, link})
-        Standalone.put("links", Links.list_unarchived_links_by_index_from_db())
 
         {:noreply,
          socket
@@ -79,7 +77,6 @@ defmodule CesiumLinkWeb.LinkLive.FormComponent do
          ) do
       {:ok, link} ->
         notify_parent({:saved, link})
-        Standalone.put("links", Links.list_unarchived_links_by_index_from_db())
 
         {:noreply,
          socket
