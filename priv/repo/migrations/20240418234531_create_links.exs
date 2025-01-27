@@ -12,7 +12,6 @@ defmodule CesiumLink.Repo.Migrations.CreateLinks do
       add :attention, :boolean, default: false, null: false
       add :archived, :boolean, default: false, null: false
       add :edited_at, :utc_datetime
-      add :in_future, :boolean, default: false, null: false
 
       timestamps(type: :utc_datetime)
     end
