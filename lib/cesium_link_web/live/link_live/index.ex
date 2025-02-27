@@ -6,7 +6,15 @@ defmodule CesiumLinkWeb.LinkLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :links, Links.list_unarchived_links())}
+    links = Links.list_unarchived_links()
+
+    enriched_links =
+      Enum.map(links, fn link ->
+        in_future = publish_in_future?(link)
+        Map.put(link, :in_future, in_future)
+      end)
+
+    {:ok, stream(socket, :links, enriched_links)}
   end
 
   @impl true
@@ -66,4 +74,15 @@ defmodule CesiumLinkWeb.LinkLive.Index do
 
     {:noreply, socket}
   end
+
+  def handle_event("end-time", _, socket) do
+    {:noreply, socket |> push_navigate(to: ~p"/admin/links")}
+  end
+
+  def published?(%Link{publish_at: nil}), do: true
+
+  def published?(%Link{publish_at: publish_at}),
+    do: DateTime.compare(publish_at, DateTime.utc_now()) == :lt
+
+  defp publish_in_future?(link), do: not published?(link)
 end
