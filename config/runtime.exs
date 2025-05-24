@@ -68,7 +68,7 @@ if config_env() in [:prod, :stg] do
   config :cesium_link, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
   config :cesium_link, CesiumLinkWeb.Endpoint,
-    url: [host: host, port: 443, scheme: "http"],
+    url: [host: host, port: 80, scheme: "http"],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
