@@ -74,6 +74,7 @@ if config_env() in [:prod, :stg] do
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
       # See the documentation on https://hexdocs.pm/bandit/Bandit.html#t:options/0
       # for details about using IPv6 vs IPv4 and loopback vs public addresses.
+      ip: {0, 0, 0, 0},  # IPv4 wildcard address
       port: port
     ],
     secret_key_base: secret_key_base
